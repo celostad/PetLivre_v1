@@ -1,0 +1,111 @@
+/* CSS Document */
+
+body{
+	margin:0.7em;
+
+}
+
+.body {
+/*	font-family: Verdana, sans-serif; */
+	color: #555;
+	background-color: #FFFFFF;
+	padding: 0 0.2em;
+	margin:0;
+	text-align:center; /* hack para o IE */
+}
+
+.link1 {
+	font-family: Verdana, sans-serif; 
+	font-size: 10px;
+	font-weight: bold;
+}
+/*
+a {
+	color: #5F8FBF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #32ba72;
+	text-decoration: none;
+}
+*/
+<!--
+a.classe1:link {color:#FFFFFF; font-weight: bold; cursor: hand; text-decoration:none}
+a.classe1:active {color:none;font-weight: bold;text-decoration:none}
+a.classe1:visited {color:#FFFFFF;font-weight: bold;text-decoration:none}
+a.classe1:hover {color:#000000;font-weight: bold;text-decoration:none}
+-->
+
+a.classe2:link {color:#5F8FBF; cursor: hand; text-decoration:none}
+a.classe2:active {color:none; text-decoration:none}
+a.classe2:visited {color:#5F8FBF;text-decoration:none}
+a.classe2:hover {color:#32ba72;text-decoration:none}
+
+
+.button {
+	font-size: 0.78em;
+	color: #fff;
+	background: #009900;
+	border: 1px solid #bbffbb;
+	height: auto;
+	margin-top: 0.5em;
+	padding: 0.2em;
+	cursor: pointer;
+}
+
+/* paginação */
+
+.pgoff {
+	font-family: Verdana, Arial, Helvetica; 
+	font-size: 11px;
+	color: #FF0000;
+	text-decoration: none
+	}
+
+a.pg {font-family: Verdana, Arial, Helvetica; font-size: 11px; color: #003366; text-decoration: none}
+a:hover.pg {font-family: Verdana, Arial, Helvetica; font-size: 11px; color: #0066cc; text-decoration:underline}
+
+
+/* FONTS */
+.style2 {
+	color: #000000;
+	font-style: italic;
+}
+.style3 {color: #FFFFFF}
+
+.cabec_style11 {
+	font-family: Verdana, sans-serif; 
+	font-size: 11px;
+	color: #555;
+	font-weight: bold;
+}
+
+.style5 {
+	font-size: 8pt;
+	color: #000000;
+	font-family: arial,times,sans-serif; 
+}
+
+
+.info {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 8pt;
+}
+
+.folha {
+    page-break-after: always;
+}
+
+.quebrapagina {
+   page-break-before: always;
+}
+
+
+.titulo_tab_branco_medio_bold {
+	font-size: 12px;
+	color: #FFFFFF;
+	font-family: tahoma; 
+	font-weight: bold;
+
+}

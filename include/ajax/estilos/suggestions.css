@@ -1,0 +1,17 @@
+DIV.suggestions {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background-color: white;
+    position: absolute;
+}
+
+DIV.suggestions DIV {
+    cursor: default;
+    padding: 0px 3px;
+}
+
+DIV.suggestions DIV.current {
+    background-color: #36c;
+    color: white;
+}

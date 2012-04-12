@@ -1,0 +1,32 @@
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+.buttonmenu{
+list-style-type: none;
+margin: 0;
+padding: 0;
+width: 100px;
+}
+
+.buttonmenu li a{
+color: #FFFFFF;
+display: block;
+width: 100%;
+padding: 2px 4px;
+text-decoration: none;
+font-weight: bold;
+border: 1px solid;
+border-color:#D5BFD0 #5A3A54 #5A3A54 #D5BFD0; /*light dark dark light*/
+background-color: #e8b8d7;
+text-decoration:none;
+}
+
+
+.buttonmenu li a:visited{
+color: #FFFFFF;
+}
+
+.buttonmenu li a:hover, .buttonmenu li a:active{
+color: black;
+background-color: #8DCF23;/*#CDB4C8*/
+}
