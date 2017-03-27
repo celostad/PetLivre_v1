@@ -7,7 +7,7 @@ Como Configurar:
 3) Ajustar o arquivo "/include/arruma_link.php"
 	- (Apartir de sua url) Contar as barras invertidas até o diretório "petlivre";
 4)Configurar o arquivo conexao.php e "/include/conexao.php" com os dados do banco de dados.
-
+5) Para alterar a imagem do cabeçalho, ir em: imagens/titulo.jpg e trocar. Tamanho: 452x80 pixel
 
 Para acessar:
 

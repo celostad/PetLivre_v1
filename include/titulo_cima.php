@@ -29,7 +29,7 @@
     <td width="452" rowspan="2"><div align="center">
       <table width="452" height="80" border="1" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC">
         <tr>
-          <!-- <td><img src="<?=$pontos;?>imagens/titulo.jpg" width="452" height="80" /></td> -->
+          <td><img src="<?=$pontos;?>imagens/titulo.jpg" width="452" height="80" /></td>
         </tr>
       </table>
     </div></td>
