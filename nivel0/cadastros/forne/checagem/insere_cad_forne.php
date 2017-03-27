@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../../include/arruma_link.php");
@@ -27,21 +27,21 @@ $txt_obs_forne = $_POST["txt_obs_forne"];
 $data_atual = Convert_Data_Port_Ingl($data_atual2);
 
 
-$sql = mysql_query("SELECT * FROM `tab_temp_fornecedor` WHERE user_cadastro='$usuario'") or die("Erro ao selecionar   -   Selecionar User_cadastro inicial  SQL");
+$sql = mysqli_query($connection, "SELECT * FROM `tab_temp_fornecedor` WHERE user_cadastro='$usuario'") or die("Erro ao selecionar   -   Selecionar User_cadastro inicial  SQL");
 
-if ($linha = mysql_fetch_array($sql)){
+if ($linha = mysqli_fetch_array($sql)){
 
 //  *******************  ATUALIZA AS VARIÁVEIS NO BD TEMP *****************************************
 
-$sql1 = mysql_query("UPDATE `tab_temp_fornecedor` SET razao_social='$txt_razao_social', contato='$txt_contato', cnpj='$txt_cnpj', endereco='$txt_endereco', bairro='$txt_bairro', cidade ='$txt_cidade', cep='$txt_cep', uf ='$txt_uf', ddd_tel ='$txt_ddd_tel',
-tel_com = '$txt_tel_com', email='$txt_email', ddd_cel='$txt_ddd_cel', cel= '$txt_cel', obs_forne  ='$txt_obs_forne', data_cadastro  ='$data_atual' WHERE user_cadastro='$usuario'") or die (mysql_error());
+$sql1 = mysqli_query($connection, "UPDATE `tab_temp_fornecedor` SET razao_social='$txt_razao_social', contato='$txt_contato', cnpj='$txt_cnpj', endereco='$txt_endereco', bairro='$txt_bairro', cidade ='$txt_cidade', cep='$txt_cep', uf ='$txt_uf', ddd_tel ='$txt_ddd_tel',
+tel_com = '$txt_tel_com', email='$txt_email', ddd_cel='$txt_ddd_cel', cel= '$txt_cel', obs_forne  ='$txt_obs_forne', data_cadastro  ='$data_atual' WHERE user_cadastro='$usuario'") or die (mysqli_error($connection));
 
 //  -------------------------------------------------------------------------------------------
 
 }else{
 //  *******************  INSERE AS VARIÁVEIS NO BD TEMP *****************************************
 
-$sql2 = mysql_query("INSERT INTO `tab_temp_fornecedor` (`codigo`, `razao_social`, `contato`,`cnpj`, `endereco`, `bairro`, `cidade`, `cep`, `uf`, `ddd_tel`, `tel_com`, `email`, `ddd_cel`, `cel`, `obs_forne`, `user_cadastro`, `data_cadastro`) VALUES (NULL, '$txt_razao_social', '$txt_contato', '$txt_cnpj', '$txt_endereco', '$txt_bairro', '$txt_cidade', '$txt_cep', '$txt_uf', '$txt_ddd_tel', '$txt_tel_com', '$txt_email', '$txt_ddd_cel', '$txt_cel', '$txt_obs_forne', '$usuario', '$data_atual')") or die (mysql_error());
+$sql2 = mysqli_query($connection, "INSERT INTO `tab_temp_fornecedor` (`codigo`, `razao_social`, `contato`,`cnpj`, `endereco`, `bairro`, `cidade`, `cep`, `uf`, `ddd_tel`, `tel_com`, `email`, `ddd_cel`, `cel`, `obs_forne`, `user_cadastro`, `data_cadastro`) VALUES (NULL, '$txt_razao_social', '$txt_contato', '$txt_cnpj', '$txt_endereco', '$txt_bairro', '$txt_cidade', '$txt_cep', '$txt_uf', '$txt_ddd_tel', '$txt_tel_com', '$txt_email', '$txt_ddd_cel', '$txt_cel', '$txt_obs_forne', '$usuario', '$data_atual')") or die (mysqli_error($connection));
 
 //  -------------------------------------------------------------------------------------------
 }
@@ -49,16 +49,16 @@ $sql2 = mysql_query("INSERT INTO `tab_temp_fornecedor` (`codigo`, `razao_social`
 
 
 if (empty($txt_razao_social)){echo '<script>alert("                   Atenção!\n\nÉ necessário preencher o campo (RAZÃO SOCIAL).\n\n");</script>';
-echo '<script>window.location = "../cad_forne.php";</script>';break;}
+echo '<script>window.location = "../cad_forne.php";</script>';}
 
 if ($txt_tel_com <>""){
 if ($txt_ddd_tel =="" or $txt_tel_com ==" "){
 echo '<script>alert("                   Atenção!\n\nÉ necessário preencher o campo (DDD-TELEFONE).\n\n");</script>';
-echo '<script>window.location = "../cad_forne.php";</script>';break;}
+echo '<script>window.location = "../cad_forne.php";</script>';}
 
 if (strlen($txt_tel_com) < 9){
 echo '<script>alert("                   Atenção!\n\nO Telefone inserido é invalido ou tem poucos caracteres.\n\n");</script>';
-echo '<script>window.location = "../cad_forne.php";</script>';break;}
+echo '<script>window.location = "../cad_forne.php";</script>';}
 }
 
 

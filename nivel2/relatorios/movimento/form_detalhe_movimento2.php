@@ -55,9 +55,9 @@ document.form.submit();
   </tr>
   
 <?php
-$sql = mysql_query("SELECT DISTINCT data FROM `tab_caixa` WHERE status=1 and (data BETWEEN '$data_inicial' AND '$data_final' ) ORDER BY data ASC") or die("erro ao selecionar a tabela: SQL");
+$sql = mysqli_query($connection, "SELECT DISTINCT data FROM `tab_caixa` WHERE status=1 and (data BETWEEN '$data_inicial' AND '$data_final' ) ORDER BY data ASC") or die("erro ao selecionar a tabela: SQL");
 
-$nro_row = mysql_num_rows($sql);
+$nro_row = mysqli_num_rows($sql);
 
 
 if ($nro_row >1){
@@ -69,14 +69,14 @@ if ($nro_row >1){
       <select name="cmbx_sel_periodo" id="cmbx_sel_periodo" onchange="javascript: sel_periodo()">
         <option>Selecione...</option>
 		<?php
-		while ($linha = mysql_fetch_array($sql)) {
+		while ($linha = mysqli_fetch_array($sql)) {
 
 		$valor = $linha['valor'];
 		$data = $linha['data'];
 		$data_conv = Convert_Data_Ingl_Port($data);
 		
-		$sql_somatoria = mysql_query("SELECT * FROM tab_caixa WHERE status=1 and produto <>'' && data='$data'");
-		while($linha_somatoria = mysql_fetch_array($sql_somatoria)) {
+		$sql_somatoria = mysqli_query($connection, "SELECT * FROM tab_caixa WHERE status=1 and produto <>'' && data='$data'");
+		while($linha_somatoria = mysqli_fetch_array($sql_somatoria)) {
 		$txt_valor1 = $linha_somatoria['valor'];
 		$total1 += $txt_valor1;
 		}
@@ -98,9 +98,9 @@ if ($nro_row >1){
 
 }else{
 
-$sql2 = mysql_query("SELECT * FROM `tab_caixa` WHERE status=1 && data ='$data_inicial'") or die("erro ao selecionar a tabela: SQL2");
+$sql2 = mysqli_query($connection, "SELECT * FROM `tab_caixa` WHERE status=1 && data ='$data_inicial'") or die("erro ao selecionar a tabela: SQL2");
 
-while ($linha2 = mysql_fetch_array($sql2)) {
+while ($linha2 = mysqli_fetch_array($sql2)) {
 
 
 

@@ -8,7 +8,7 @@ $pass = "";// padrão para xampp ou wamp é ""
 
 $db = "test";// é o nome do banco que vc criou no phpmyadmin
 
-$conn = mysql_connect($host, $user, $pass) or die (mysql_error());
+$conn = mysql_connect($host, $user, $pass) or die (mysqli_error($connection));
 
 
 

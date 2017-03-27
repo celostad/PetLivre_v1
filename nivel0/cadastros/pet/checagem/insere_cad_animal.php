@@ -1,7 +1,8 @@
-<?
+<?php
 session_start();
 
 include("../../../../include/arruma_link.php");
+include($pontos."include/mostra_erros.php");
 require_once($pontos."conexao.php");
 include("func_data.php");
 
@@ -21,9 +22,12 @@ $txt_rga = $_POST["txt_rga"];
 $txt_cod_dono = $_POST["txt_cod_dono"];
 $txt_obs_pet = $_POST["txt_obs_pet"];
 
+
+//var_dump($_POST);
+
 // PEGA O NOME DO DONO
-$sql_dono = mysql_query("SELECT codigo,nome FROM `tab_clie` WHERE codigo='$txt_cod_dono'") or die("Erro ao selecionar   -   Selecionar User_cadastro inicial  SQL");
-if ($linha_dono = mysql_fetch_array($sql_dono)){$txt_nome_dono = $linha_dono['nome'];}
+$sql_dono = mysqli_query($connection, "SELECT codigo,nome FROM `tab_clie` WHERE codigo='$txt_cod_dono'") or die("Erro ao selecionar   -   Selecionar User_cadastro inicial  SQL");
+if ($linha_dono = mysqli_fetch_array($sql_dono)){$txt_nome_dono = $linha_dono['nome'];}
 //---------------------------
 
 if (empty($txt_cod_dono)){$txt_cod_dono = 0;}
@@ -38,49 +42,50 @@ $txt_data_nasc = Convert_Data_Port_Ingl($txt_data_nasc);
 $data_atual = Convert_Data_Port_Ingl($data_atual2);
 
 
-$sql = mysql_query("SELECT * FROM `tab_temp_pet` WHERE user_cadastro='$usuario'") or die("Erro ao selecionar   -   Selecionar User_cadastro inicial  SQL");
+$sql = mysqli_query($connection, "SELECT * FROM `tab_temp_pet` WHERE user_cadastro='$usuario'") or die("Erro ao selecionar   -   Selecionar User_cadastro inicial  SQL");
 
-if ($linha = mysql_fetch_array($sql)){
+if ($linha = mysqli_fetch_array($sql)){
 
-//  *******************  ATUALIZA AS VARIÁVEIS NO BD TEMP *****************************************
+	//  *******************  ATUALIZA AS VARIÁVEIS NO BD TEMP *****************************************
 
-$sql1 = mysql_query("UPDATE `tab_temp_pet` SET nome='$txt_nome_pet', sexo='$txt_sexo', cor='$txt_cor', dono='$txt_nome_dono', cod_dono='$txt_cod_dono', data_nasc ='$txt_data_nasc', especie='$txt_especie', raca ='$txt_raca', porte ='$txt_porte',
-mensalista = '$txt_mensal', chip='$txt_chip', rga='$txt_rga', obs= '$txt_obs_pet', data_cadastro  ='$data_atual' WHERE user_cadastro='$usuario'") or die (mysql_error());
+	$sql1 = mysqli_query($connection, "UPDATE `tab_temp_pet` SET nome='$txt_nome_pet', sexo='$txt_sexo', cor='$txt_cor', dono='$txt_nome_dono', cod_dono='$txt_cod_dono', data_nasc ='$txt_data_nasc', especie='$txt_especie', raca ='$txt_raca', porte ='$txt_porte',
+	mensalista = '$txt_mensal', chip='$txt_chip', rga='$txt_rga', obs= '$txt_obs_pet', data_cadastro  ='$data_atual' WHERE user_cadastro='$usuario'") or die (mysqli_error($connection));
 
 //  -------------------------------------------------------------------------------------------
 
 }else{
 //  *******************  INSERE AS VARIÁVEIS NO BD TEMP *****************************************
 
-$sql2 = mysql_query("INSERT INTO `tab_temp_pet` (`codigo`, `nome`, `sexo`,`cor`, `dono`, `cod_dono`, `data_nasc`, `especie`, `raca`, `porte`, `mensalista`, `chip`, `rga`, `obs`, `user_cadastro`, `data_cadastro`) VALUES (NULL, '$txt_nome_pet', '$txt_sexo', '$txt_cor',
-'$txt_nome_dono', '$txt_cod_dono', '$txt_data_nasc', '$txt_especie', '$txt_raca', '$txt_porte', '$txt_mensal', '$txt_chip', '$txt_rga', '$txt_obs_pet', '$usuario', '$data_atual')") or die (mysql_error());
+	$sql2 = mysqli_query($connection, "INSERT INTO `tab_temp_pet` (`codigo`, `nome`, `sexo`,`cor`, `dono`, `cod_dono`, `data_nasc`, `especie`, `raca`, `porte`, `mensalista`, `chip`, `rga`, `obs`, `user_cadastro`, `data_cadastro`) VALUES (NULL, '$txt_nome_pet', '$txt_sexo', '$txt_cor',
+	'$txt_nome_dono', '$txt_cod_dono', '$txt_data_nasc', '$txt_especie', '$txt_raca', '$txt_porte', '$txt_mensal', '$txt_chip', '$txt_rga', '$txt_obs_pet', '$usuario', '$data_atual')") or die (mysqli_error($connection));
 
 //  -------------------------------------------------------------------------------------------
 }
 
+//var_dump($_POST);
 
 
 if (empty($txt_nome_pet)){echo '<script>alert("                   Atenção!\n\nÉ necessário preencher o campo (NOME).\n\n");</script>';
-echo '<script>window.location = "../cad_pet.php";</script>';break;}
+echo '<script>window.location = "../cad_pet.php";</script>';}
 
 if (empty($txt_raca)){echo '<script>alert("                   Atenção!\n\nÉ necessário preencher o campo (RAÇA).\n\n");</script>';
-echo '<script>window.location = "../cad_pet.php";</script>';break;}
+echo '<script>window.location = "../cad_pet.php";</script>';}
 
 if (empty($txt_sexo)){echo '<script>alert("                   Atenção!\n\nÉ necessário preencher o campo (SEXO).\n\n");</script>';
-echo '<script>window.location = "../cad_pet.php";</script>';break;}
+echo '<script>window.location = "../cad_pet.php";</script>';}
 
 if (empty($txt_porte)){echo '<script>alert("                   Atenção!\n\nÉ necessário preencher o campo (PORTE).\n\n");</script>';
-echo '<script>window.location = "../cad_pet.php";</script>';break;}
+echo '<script>window.location = "../cad_pet.php";</script>';}
 
 if (empty($txt_cor)){echo '<script>alert("                   Atenção!\n\nÉ necessário preencher o campo (COR).\n\n");</script>';
-echo '<script>window.location = "../cad_pet.php";</script>';break;}
+echo '<script>window.location = "../cad_pet.php";</script>';}
 
 if (empty($txt_nome_dono)){echo '<script>alert("                   Atenção!\n\nÉ necessário preencher o campo (PROPRIETÁRIO(A)).\n\n");</script>';
-echo '<script>window.location = "../cad_pet.php";</script>';break;}
+echo '<script>window.location = "../cad_pet.php";</script>';}
 
 if (strlen($txt_data_nasc) < 10){
 echo '<script>alert("                   Atenção!\n\nA data de nascimento inserida é invalida ou tem poucos caracteres.\n\n");</script>';
-echo '<script>window.location = "../cad_pet.php";</script>';break;}
+echo '<script>window.location = "../cad_pet.php";</script>';}
 
 
 

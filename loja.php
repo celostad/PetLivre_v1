@@ -277,7 +277,7 @@ function googleTranslateElementInit() {
 
   <tr>
 
-    <td height="71" colspan="3" valign="top"><? include("rodape.php"); ?></td>
+    <td height="71" colspan="3" valign="top"><?php include("rodape.php"); ?></td>
 
   </tr>
 

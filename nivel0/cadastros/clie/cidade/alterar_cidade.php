@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../../include/arruma_link.php");
@@ -11,11 +11,11 @@ $usuario = $_SESSION["sessao_login"];
 $txt_rad_sel = $_SESSION["rad_sel"];
 
 
-$sql = mysql_query("SELECT * FROM combo_cidade WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql = mysqli_query($connection, "SELECT * FROM combo_cidade WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 
 
-if ($linha = mysql_fetch_array($sql)){
+if ($linha = mysqli_fetch_array($sql)){
 
 $cidade = $linha['cidade'];
 }
@@ -36,7 +36,7 @@ MM_reloadPage(true);
 // -->
 
 </script>
-<?
+<?php
   if ($checa_retorno=="cad_clie"){
  echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"../cad_clie.php\"'>";}
   
@@ -56,7 +56,7 @@ echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"..
     <td width="535" height="50" align="center"> 
       <form name="frmAjax"  method="post">
         <strong><em><b><font size="2" face="Times New Roman, Times, serif">cidade</font></b><font face="Times New Roman, Times, serif"><b><font size="2">:</font></b></font>
-        <input name="txt_cidade" type="text" id="txt_cidade" style="visibility:visible" size="25" maxlength="25" value="<? echo $cidade; ?>">
+        <input name="txt_cidade" type="text" id="txt_cidade" style="visibility:visible" size="25" maxlength="25" value="<?php echo $cidade; ?>">
 &nbsp;<a href="javascript:alterar_cidade2();"><img src="../../../../imagens/cad_clie/gravar.gif" width="31" height="37" border="0" align="absmiddle"></a></em></strong>
       </form>    </td>
   </tr>

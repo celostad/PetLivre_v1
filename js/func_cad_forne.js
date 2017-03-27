@@ -175,7 +175,7 @@ var f = ""
 
 //window.opener.location.submit();
 
-var minhapopup = window.open("busca_cad_forne.php","pop_consulta","width=420,height=90,scrollbars=auto,status=0");
+var minhapopup = window.open("busca_cad_forne.php","pop_consulta","width=550,height=90,scrollbars=auto,status=0");
 minhapopup.focus();
 }
 
@@ -241,7 +241,7 @@ var f = ""
 
 //window.opener.location.submit();
 
-var minhapopup = window.open("popup_anexa_foto.php","pop_post_anexa_foto","width=240,height=200,scrollbars=no,status=0");
+var minhapopup = window.open("popup_anexa_foto.php","pop_post_anexa_foto","width=400,height=200,scrollbars=no,status=0");
 /*
 document.form.action='checagem/fecha_popup_busca_clie.php';
 document.form.target="_self";
@@ -289,7 +289,7 @@ var f = ""
 
 if (document.form.txt_bairro.value =="-- Incluir  /  Alterar --"){
 
-var minhapopup = window.open('bairro/grava_variaveis_bd.php','pop_bairro','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('bairro/grava_variaveis_bd.php','pop_bairro','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='bairro/grava_variaveis_bd.php';
 document.form.target="pop_bairro";
 document.form.submit();
@@ -377,7 +377,7 @@ var f = ""
 
 if (document.form.txt_cidade.value =="-- Incluir  /  Alterar --"){
 
-var minhapopup = window.open('cidade/grava_variaveis_bd.php','pop_bairro','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('cidade/grava_variaveis_bd.php','pop_bairro','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='cidade/grava_variaveis_bd.php';
 document.form.target="pop_bairro";
 document.form.submit();
@@ -440,11 +440,10 @@ alert("            Atenção!\n\n Não há item selecionado!\n");
 document.frmAjax.rad_sel.focus();
 }else{
 
-if(confirm("               Atenção!\n\nConfirma a exclusão deste item?\n\n   Caso positivo, clique em OK.\n\n")){
-document.frmAjax.action='deleta_cidade.php';
-document.frmAjax.target="_self";
-document.frmAjax.submit();
+		if(confirm("               Atenção!\n\nConfirma a exclusão deste item?\n\n   Caso positivo, clique em OK.\n\n")){
+			document.frmAjax.action='deleta_cidade.php';
+			document.frmAjax.target="_self";
+			document.frmAjax.submit();
+		}
+	}
 }
-}
-}
-

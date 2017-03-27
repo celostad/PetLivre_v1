@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -22,9 +22,9 @@ $_SESSION["rad_clie"] ="";
 $_SESSION["retorno"] ="";
 
 //APAGA DADOS TAB_TEMP_CAIXA
-$sql_apaga_temp_banho = mysql_query("SELECT * FROM `tab_temp_banho` WHERE usuario='$usuario'") or die("erro ao selecionar1");
+$sql_apaga_temp_banho = mysqli_query($connection, "SELECT * FROM `tab_temp_banho` WHERE usuario='$usuario'") or die("erro ao selecionar1");
 
-if ($linha_apaga_temp_banho = mysql_fetch_array($sql_apaga_temp_banho)) {
+if ($linha_apaga_temp_banho = mysqli_fetch_array($sql_apaga_temp_banho)) {
 //APAGA DADOS TEMPORARIOS TABELA CLIENTE
 $sql1 = "DELETE FROM `tab_temp_banho` WHERE `usuario` = '$usuario'";
 $resultado1 = mysql_query($sql1) or die ("Problema no Delete TAB_TEMP_banho - SQL1");
@@ -40,16 +40,16 @@ $resultado1 = mysql_query($sql1) or die ("Problema no Delete TAB_TEMP_banho - SQ
 <body>
   <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
-      <td width="589"  valign="top"><? include("lista_agenda.php");}
+      <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
+      <td width="589"  valign="top"><?php include("lista_agenda.php");}
  ?></td>
     </tr>
     <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
     </tr>
 </table>

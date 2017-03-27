@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../barra.php");
@@ -21,9 +21,9 @@ window.location = "../clie/mostra_animal.php";
 $_SESSION["rad_animal_clie"] = $rad_animal_clie;
 
 
-$sql_ref3 = mysql_query("SELECT * FROM `tab_temp_clie` WHERE user_cadastro='$usuario'") or die("erro ao selecionar1");
+$sql_ref3 = mysqli_query($connection, "SELECT * FROM `tab_temp_clie` WHERE user_cadastro='$usuario'") or die("erro ao selecionar1");
 
-if ($linha_ref3 = mysql_fetch_array($sql_ref3)){
+if ($linha_ref3 = mysqli_fetch_array($sql_ref3)){
 
 $dados_check_clie = $linha_ref3['dados_check'];
 }

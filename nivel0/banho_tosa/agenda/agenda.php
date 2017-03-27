@@ -263,7 +263,7 @@ switch($month.$n){/*notem duas variaveis para o switch para identificar dia e li
 
             $n = 31;
 
-    break;
+    
 
     case 2: $mes = "FEVEREIRO";// todo ano bixesto fev tem 29 dias
 
@@ -279,67 +279,67 @@ switch($month.$n){/*notem duas variaveis para o switch para identificar dia e li
 
             }
 
-    break;
+    
 
     case 3: $mes = "MARÇO";
 
             $n = 31;
 
-    break;
+    
 
     case 4: $mes = "ABRIL";
 
             $n = 30;
 
-    break;
+    
 
     case 5: $mes = "MAIO";
 
             $n = 31;
 
-    break;
+    
 
     case 6: $mes = "JUNHO";
 
             $n = 30;
 
-    break;
+    
 
     case 7: $mes = "JULHO";
 
             $n = 31;
 
-    break;
+    
 
     case 8: $mes = "AGOSTO";
 
             $n = 31;
 
-    break;
+    
 
     case 9: $mes = "SETEMBRO";
 
             $n = 30;
 
-    break;
+    
 
     case 10: $mes = "OUTUBRO";
 
             $n = 31;
 
-    break;
+    
 
     case 11: $mes = "NOVEMBRO";
 
             $n = 30;
 
-    break;
+    
 
     case 12: $mes = "DEZEMBRO";
 
             $n = 31;
 
-    break;
+    
 
 }
 
@@ -351,19 +351,19 @@ $dialet = date('D', $pdianu);//escolhe pelo dia da semana
 
 switch($dialet){//verifica que dia cai
 
-    case "Sun": $branco = 0; break;
+    case "Sun": $branco = 0; 
 
-    case "Mon": $branco = 1; break;
+    case "Mon": $branco = 1; 
 
-    case "Tue": $branco = 2; break;
+    case "Tue": $branco = 2; 
 
-    case "Wed": $branco = 3; break;
+    case "Wed": $branco = 3; 
 
-    case "Thu": $branco = 4; break;
+    case "Thu": $branco = 4; 
 
-    case "Fri": $branco = 5; break;
+    case "Fri": $branco = 5; 
 
-    case "Sat": $branco = 6; break;
+    case "Sat": $branco = 6; 
 
 }            
 
@@ -417,9 +417,9 @@ switch($dialet){//verifica que dia cai
 
             $dtevento = $i."-".$month."-".$ano;
 
-        $sqlag = mysql_query("SELECT * FROM agenda WHERE dtevento = '$dtevento'") or die(mysql_error());
+        $sqlag = mysqli_query($connection, "SELECT * FROM agenda WHERE dtevento = '$dtevento'") or die(mysqli_error($connection));
 
-                $num = mysql_num_rows($sqlag);/*quantos eventos tem para o mes*/
+                $num = mysqli_num_rows($sqlag);/*quantos eventos tem para o mes*/
 
                 $idev = @mysql_result($sqlag, 0, "dtevento");
 
@@ -495,9 +495,9 @@ if(isset($_GET['d'])){/*link dos dias de eventos*/
 
     $idev = $_GET['d'];
 
-    $sqlev = mysql_query("SELECT * FROM agenda WHERE dtevento = '$idev' ORDER BY hora ASC") or die(mysql_error());
+    $sqlev = mysqli_query($connection, "SELECT * FROM agenda WHERE dtevento = '$idev' ORDER BY hora ASC") or die(mysqli_error($connection));
 
-    $numev = mysql_num_rows($sqlev);
+    $numev = mysqli_num_rows($sqlev);
 
     for($j = 0; $j < $numev; $j++){/*caso no mesmo dia tenha mais eventos continua imprimindo */
 

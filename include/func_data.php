@@ -1,4 +1,4 @@
-<?
+<?php
 $h = getdate(); //variavel recebe a data
 //$ha=date("H");
 //$date =date("$ha:i");
@@ -35,18 +35,18 @@ function Convert_Data_Ingl_Port($entradata){
 function diasemana() {
 		$hoje = time();
 		$ref = localtime($hoje, 1);
-		$dia = $ref[tm_wday];
+		$dia = $ref['tm_wday'];
 
 	//$diasemana = date("w", mktime(0,0,0,$mes,$dia,$ano) );
 
 	switch($dia) {
-		case"0": $diasemana = "Domingo";       break;
-		case"1": $diasemana = "Segunda-Feira"; break;
-		case"2": $diasemana = "Terça-Feira";   break;
-		case"3": $diasemana = "Quarta-Feira";  break;
-		case"4": $diasemana = "Quinta-Feira";  break;
-		case"5": $diasemana = "Sexta-Feira";   break;
-		case"6": $diasemana = "Sábado";        break;
+		case"0": $diasemana = "Domingo";       
+		case"1": $diasemana = "Segunda-Feira"; 
+		case"2": $diasemana = "Terça-Feira";   
+		case"3": $diasemana = "Quarta-Feira";  
+		case"4": $diasemana = "Quinta-Feira";  
+		case"5": $diasemana = "Sexta-Feira";   
+		case"6": $diasemana = "Sábado";        
 	}
 
 	return $diasemana;
@@ -60,13 +60,13 @@ function diasemana2($data) {
 	$diasemana = date("w", mktime(0,0,0,$mes,$dia,$ano) );
 
 	switch($diasemana) {
-		case"0": $diasemana = "Domingo";       break;
-		case"1": $diasemana = "Segunda-Feira"; break;
-		case"2": $diasemana = "Terça-Feira";   break;
-		case"3": $diasemana = "Quarta-Feira";  break;
-		case"4": $diasemana = "Quinta-Feira";  break;
-		case"5": $diasemana = "Sexta-Feira";   break;
-		case"6": $diasemana = "Sábado";        break;
+		case"0": $diasemana = "Domingo";       
+		case"1": $diasemana = "Segunda-Feira"; 
+		case"2": $diasemana = "Terça-Feira";   
+		case"3": $diasemana = "Quarta-Feira";  
+		case"4": $diasemana = "Quinta-Feira";  
+		case"5": $diasemana = "Sexta-Feira";   
+		case"6": $diasemana = "Sábado";        
 	}
 
 	return $diasemana;

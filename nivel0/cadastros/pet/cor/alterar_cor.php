@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../../include/arruma_link.php");
@@ -11,13 +11,13 @@ $usuario = $_SESSION["sessao_login"];
 $txt_rad_sel = $_SESSION["rad_sel"];
 
 
-$sql = mysql_query("SELECT * FROM combo_cor WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql = mysqli_query($connection, "SELECT * FROM combo_cor WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 
 
-if ($linha = mysql_fetch_array($sql)){
+if ($linha = mysqli_fetch_array($sql)){
 
-$cor = $linha['cor'];
+  $cor = $linha['cor'];
 }
 
 ?>
@@ -35,7 +35,7 @@ MM_reloadPage(true);
 // -->
 
 </script>
-<?
+<?php
   if ($checa_retorno=="cad_pet"){
  echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"../cad_pet.php\"'>";}
   
@@ -53,7 +53,7 @@ echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"..
     <td width="535" height="50" align="center"> 
       <form name="frmAjax"  method="post">
         <strong><em><b><font size="2" face="Times New Roman, Times, serif">Cor</font></b><font face="Times New Roman, Times, serif"><b><font size="2">:</font></b></font>
-        <input name="txt_cor" type="text" id="txt_cor" style="visibility:visible" size="28" maxlength="30" value="<? echo $cor; ?>">
+        <input name="txt_cor" type="text" id="txt_cor" style="visibility:visible" size="28" maxlength="30" value="<?php echo $cor; ?>">
 &nbsp;<a href="javascript:alterar_cor2();"><img src="../../../../imagens/cad_pet/gravar.gif" width="31" height="37" border="0" align="absmiddle"></a></em></strong>
       </form>
     </td>

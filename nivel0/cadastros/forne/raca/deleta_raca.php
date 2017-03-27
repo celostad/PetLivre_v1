@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 require_once("../../../../conexao.php");
@@ -22,7 +22,7 @@ $txt_rad_sel = $_POST["rad_sel"];
 
 
 $sql = "DELETE FROM `combo_raca` WHERE `codigo` = '$txt_rad_sel'";
-$resultado = mysql_query($sql) or die ("Problema na Consulta");
+$resultado = mysqli_query($connection,$sql) or die ("Problema na Consulta");
 
 
 

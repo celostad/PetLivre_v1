@@ -16,7 +16,7 @@ if(isset($_POST['done'])){
         $erro = "Opa, você deve preencher todos os campos";
     }else{
         
-       $sql = mysql_query("UPDATE agenda SET evento='$evento', dtevento='$dtevento', conteudo='$conteudo', hora='$hora', local='$local', autor='$autor' WHERE id='$id'")or die(mysql_error());
+       $sql = mysqli_query($connection, "UPDATE agenda SET evento='$evento', dtevento='$dtevento', conteudo='$conteudo', hora='$hora', local='$local', autor='$autor' WHERE id='$id'")or die(mysqli_error($connection));
 	   $linha = mysql_affected_rows();
             if($linha == 1){
                 $erro = "Dados alterados com sucesso!";
@@ -26,7 +26,7 @@ if(isset($_POST['done'])){
     }
 }
 $id = $_GET['id'];
-$sql = mysql_query("SELECT * FROM agenda WHERE id = '$id'");
+$sql = mysqli_query($connection, "SELECT * FROM agenda WHERE id = '$id'");
 $evento = @mysql_result($sql, 0, "evento");
 $dtevento = @mysql_result($sql, 0, "dtevento");
 $hora = @mysql_result($sql, 0, "hora");

@@ -14,9 +14,9 @@ if (!empty($_GET['ENVIAR_ADM'])){
 $login_postado = $_POST['login'];
 $senha_postada = $_POST['senha'];
 
-$sql = mysql_query("SELECT * FROM acesso WHERE login='$login_postado' AND senha=md5('$senha_postada')") or die("erro ao selecionar");
+$sql = mysqli_query($connection, "SELECT * FROM acesso WHERE login='$login_postado' AND senha=md5('$senha_postada')") or die("erro ao selecionar");
 
-if( $linha = mysql_fetch_array($sql)) {
+if( $linha = mysqli_fetch_array($sql)) {
  
   $nivel_bd = $linha['nivel'];
 }

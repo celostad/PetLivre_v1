@@ -56,16 +56,16 @@ echo '<script type="text/javascript" src="'.$pontos.'js/outros.js"></script>';
             <?		  
     
  // Faz o Select pegando o registro inicial at&eacute; a quantidade de registros para p&aacute;gina
-$sql_registros = mysql_query("SELECT * FROM tab_clie ORDER by nome ASC  LIMIT $inicio,$total_reg");
+$sql_registros = mysqli_query($connection, "SELECT * FROM tab_clie ORDER by nome ASC  LIMIT $inicio,$total_reg");
 
-     $sql_conta = mysql_query("SELECT * FROM tab_clie ");
+     $sql_conta = mysqli_query($connection, "SELECT * FROM tab_clie ");
    
-    $quantreg = mysql_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
+    $quantreg = mysqli_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
     
 $tp = ceil($quantreg/$total_reg);    
 $cor="#FFFFFF";
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $cod = $linha_ref['codigo'];
 $txt_nome_clie = $linha_ref['nome'];
@@ -86,24 +86,24 @@ $cor=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6";
             <tr bgcolor="<?=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
 ?>" class="info" onmouseover="this.style.backgroundColor='#5F8FBF'" onmouseout="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
-              <td width="30" class="info"><div align="center"><? echo $cod ; ?></div></td>
-              <td width="190" height="5" class="info"><div align="center">&nbsp;<? echo $txt_nome_clie; ?></div></td>
-              <td width="196" height="5" class="info"><div align="center">&nbsp;<? echo $txt_end_clie; ?></div></td>
+              <td width="30" class="info"><div align="center"><?php echo $cod ; ?></div></td>
+              <td width="190" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_nome_clie; ?></div></td>
+              <td width="196" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_end_clie; ?></div></td>
               <td width="100" height="5" class="info"><div align="center"> &nbsp;
-                    <? if (!empty($txt_ddd_tel)){echo "(".$txt_ddd_tel.") ".$txt_tel;} ?>
+                    <?php if (!empty($txt_ddd_tel)){echo "(".$txt_ddd_tel.") ".$txt_tel;} ?>
               </div></td>
               <td width="57" height="5" colspan="2" class="info"><div align="center">
-                  <? 
+                  <?php 
 if ($nivel >1){echo '<a href="javascript:checar(\'deleta_clie.php?id='.$cod.'\');"><img src="'.$pontos.'imagens/delete.gif" border="0" alt="Apagar registro" title="Apagar registro"></a>&nbsp;';
 }else{echo'&nbsp;&nbsp;&nbsp;&nbsp;';}
 
 echo '<a class="classe2" href="cad_clie.php?id='.$cod.'"><img src="'.$pontos.'imagens/atualizar.jpg" border="0" alt="Ver/Alterar Cliente" title="Ver/Alterar Cliente"></a>';
 
 // VERIFICA SE CLIENTE POSSUI ANIMAL
-$sql_ref2 = mysql_query("SELECT * FROM `tab_pet` WHERE cod_dono='$cod'") or die("erro ao selecionar sql_ref");
-$tr1 = mysql_num_rows($sql_ref2);
+$sql_ref2 = mysqli_query($connection, "SELECT * FROM `tab_pet` WHERE cod_dono='$cod'") or die("erro ao selecionar sql_ref");
+$tr1 = mysqli_num_rows($sql_ref2);
 
-if ($linha_ref2 = mysql_fetch_array($sql_ref2)){$txt_cod_dono=$linha_ref2['codigo'];}
+if ($linha_ref2 = mysqli_fetch_array($sql_ref2)){$txt_cod_dono=$linha_ref2['codigo'];}
 
 
 if ($tr1 >=1){
@@ -142,7 +142,7 @@ echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center">
           <tr>
             <td width="181" class="info"><div align="center"> <img src="<?=$pontos;?>imagens/cad_clie/procurar.gif" width="112" height="25" border="0" usemap="#Map_busca_clieMap" /></div></td>
             <td width="235" class="info"><div align="center">
-                <? // Chama o arquivo que monta a pagina&ccedil;&atilde;o
+                <?php // Chama o arquivo que monta a pagina&ccedil;&atilde;o
 if ($quantreg > 10){include("paginacao.php");}
 ?>
                 <br />

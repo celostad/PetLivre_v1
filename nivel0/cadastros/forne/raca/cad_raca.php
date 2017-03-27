@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../../barra.php");
@@ -49,15 +49,15 @@ echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"..
           </tr>
           <tr>
             <?
-$sql = mysql_query("SELECT * FROM combo_raca ORDER BY raca ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql = mysqli_query($connection, "SELECT * FROM combo_raca ORDER BY raca ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 
 for ($nro = 1; $nro <= 300; $nro++){
 
-$linha = mysql_fetch_array($sql);
+$linha = mysqli_fetch_array($sql);
 
 if ($linha =="") {
-break;
+
 }else {
 
 $codigo = $linha['codigo'];
@@ -65,10 +65,10 @@ $codigo = $linha['codigo'];
 $raca = $linha['raca'];
 
 ?>
-            <td width="46"><div align="center">&nbsp; <? echo $nro; ?> </div></td>
-            <td width="229"><div align="center">&nbsp; <? echo $raca; ?> </div></td>
+            <td width="46"><div align="center">&nbsp; <?php echo $nro; ?> </div></td>
+            <td width="229"><div align="center">&nbsp; <?php echo $raca; ?> </div></td>
             <td width="70"><div align="center">
-                <input type="radio" name="rad_sel" value="<? echo $codigo; ?>">
+                <input type="radio" name="rad_sel" value="<?php echo $codigo; ?>">
             </div></td>
           </tr>
           <?

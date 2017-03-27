@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -10,11 +10,11 @@ $usuario = $_SESSION["sessao_login"];
 $txt_rad_sel = $_SESSION["rad_sel"];
 
 
-$sql = mysql_query("SELECT * FROM tab_produto WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql = mysqli_query($connection, "SELECT * FROM tab_produto WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 
 
-if ($linha = mysql_fetch_array($sql)){
+if ($linha = mysqli_fetch_array($sql)){
 
 $produto = $linha['produto'];
 $sel_categoria = $linha['categoria'];
@@ -53,16 +53,16 @@ MM_reloadPage(true);
         <table width="430" border="0" cellpadding="1" cellspacing="1">
           <tr>
             <td width="219"><strong><em><b><font size="2" face="Times New Roman, Times, serif">Produto</font></b><font face="Times New Roman, Times, serif"><b><font size="2">:</font></b></font>
-                  <input name="txt_produto" type="text" id="txt_produto" style="visibility:visible" size="20" maxlength="25" value="<? echo $produto; ?>">
+                  <input name="txt_produto" type="text" id="txt_produto" style="visibility:visible" size="20" maxlength="25" value="<?php echo $produto; ?>">
             </em></strong></td>
             <td width="211"><strong><em><b><font size="2" face="Times New Roman, Times, serif">Categoria:</font></b>
 <?
-$sql_2 = mysql_query("select codigo, categoria_mat from combo_categoria ORDER BY categoria_mat ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql_2 = mysqli_query($connection, "select codigo, categoria_mat from combo_categoria ORDER BY categoria_mat ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 echo "<select name='sel_categoria' tabindex='1' id='sel_categoria'>";
 echo "<option value='".$sel_categoria."'>".$sel_categoria ."</option>";
 echo "<option>"."</option>";
-while($pega = mysql_fetch_array($sql_2)){
+while($pega = mysqli_fetch_array($sql_2)){
 echo "<option value='".$pega['categoria_mat']."'>".$pega['categoria_mat']."</option>";
 }
 echo "</select>";

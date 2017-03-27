@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -23,7 +23,7 @@ $sel_categoria = $_POST["sel_categoria"];
 $txt_rad_sel = $_SESSION["rad_sel"];
 
 
-$sql4 = mysql_query("UPDATE tab_produto SET produto= '$txt_produto', categoria= '$sel_categoria'  WHERE codigo = '$txt_rad_sel'");
+$sql4 = mysqli_query($connection, "UPDATE tab_produto SET produto= '$txt_produto', categoria= '$sel_categoria'  WHERE codigo = '$txt_rad_sel'");
 
 
 header("Location: cad_produto.php");    

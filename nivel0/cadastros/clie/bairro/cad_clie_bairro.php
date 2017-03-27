@@ -1,7 +1,9 @@
-<?
+<?php 
 session_start();
 
+
 include("../../../../include/arruma_link.php");
+include($pontos."include/mostra_erros.php");
 include($pontos."barra.php");
 include($pontos."conexao.php");
 
@@ -9,8 +11,8 @@ $checa_retorno = $_SESSION["checa_retorno"];
 $rad_sel_visl = $_SESSION["rad_sel_visl"];
 $retorno = $_SESSION["retorno"];
 
-/*
 
+/*
 echo "checa_retorno: ".$checa_retorno;
 echo  "<br>rad_sel_visl: ".$rad_sel_visl;
 echo  "<br>retorno: ".$retorno;
@@ -22,7 +24,7 @@ echo  "<br>retorno: ".$retorno;
 <script type="text/javascript" src="<?=$pontos;?>js/func_cad_clie.js"></script>
 </head>
 <title>Pet Livre  (Cadastro de Bairro) </title>
-<?
+<?php
   if ($checa_retorno=="cad_clie"){
  echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"../cad_clie.php\"'>";}
   
@@ -60,16 +62,16 @@ echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"..
                   </font></div></td>
                 </tr>
                 <tr>
-                  <?
-$sql = mysql_query("SELECT * FROM combo_bairro WHERE bairro<>'-- Incluir  /  Alterar --' ORDER BY bairro ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+                  <?php
+
+$sql = mysqli_query($connection, "SELECT * FROM combo_bairro WHERE bairro<>'-- Incluir  /  Alterar --' ORDER BY bairro ASC") or print("Erro ao ler a tabela: ".mysqli_error($connection));
 
 for ($nro = 1; $nro <= 300; $nro++){
 
-$linha = mysql_fetch_array($sql);
+$linha = mysqli_fetch_array($sql);
 
 if ($linha =="") {
-break;
+  
 }else {
 
 $codigo = $linha['codigo'];
@@ -77,16 +79,16 @@ $codigo = $linha['codigo'];
 $bairro = $linha['bairro'];
 
 ?>
-                  <td width="46"><div align="center">&nbsp; <? echo $nro; ?> </div></td>
-                  <td width="229"><div align="center">&nbsp; <? echo $bairro; ?> </div></td>
+                  <td width="46"><div align="center">&nbsp; <?php echo $nro; ?> </div></td>
+                  <td width="229"><div align="center">&nbsp; <?php echo $bairro; ?> </div></td>
                   <td width="70"><div align="center">
-                      <input type="radio" name="rad_sel" value="<? echo $codigo; ?>">
+                      <input type="radio" name="rad_sel" value="<?php echo $codigo; ?>">
                   </div></td>
                 </tr>
-                <?
+                <?php
 }
  }
- @mysql_close($sql);
+ @mysqli_close($sql);
 
 ?>
                 <tr>

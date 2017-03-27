@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../include/arruma_link.php");
@@ -17,8 +17,8 @@ $data_hoje= date("Y-m-d");
 echo '<script type="text/javascript" src="'.$pontos.'js/func_caixa.js"></script>';
 
 
-	    $sql_somatoria = mysql_query("SELECT * FROM tab_caixa WHERE status =0 and produto <>'' and data<>'$data_hoje'");
-		while($linha_somatoria = mysql_fetch_array($sql_somatoria)) {
+	    $sql_somatoria = mysqli_query($connection, "SELECT * FROM tab_caixa WHERE status =0 and produto <>'' and data<>'$data_hoje'");
+		while($linha_somatoria = mysqli_fetch_array($sql_somatoria)) {
 		$txt_valor1 = $linha_somatoria['valor'];
 		$total1 += $txt_valor1;
 		}
@@ -50,12 +50,12 @@ echo '<script type="text/javascript" src="'.$pontos.'js/func_caixa.js"></script>
 
  // Faz o Select pegando o DIA e STATUS
 
-    $sql_fcx = mysql_query("SELECT * FROM tab_caixa WHERE status =0 and produto <>'' and data<>'$data_hoje'");
+    $sql_fcx = mysqli_query($connection, "SELECT * FROM tab_caixa WHERE status =0 and produto <>'' and data<>'$data_hoje'");
 	
-	    $quantreg = mysql_num_rows($sql_fcx); // Quantidade de registros pra pagina&ccedil;&atilde;o
+	    $quantreg = mysqli_num_rows($sql_fcx); // Quantidade de registros pra pagina&ccedil;&atilde;o
 
      
-	while ($linha_fcx = mysql_fetch_array($sql_fcx)) {
+	while ($linha_fcx = mysqli_fetch_array($sql_fcx)) {
 	
 	$cod_produto = $linha_fcx['cod_produto'];
 	$txt_produto = $linha_fcx['produto'];
@@ -70,15 +70,15 @@ echo '<script type="text/javascript" src="'.$pontos.'js/func_caixa.js"></script>
 
 ?>
         <tr>
-          <td width="29" height="5" class="info"><div align="center">&nbsp;<? echo $nro; ?></div></td>
-          <td width="281" height="5" class="info"><div align="center">&nbsp;<? echo $txt_produto; ?></div></td>
-          <td width="80" class="info"><div align="center"><? echo $txt_qtde; ?></div></td>
-          <td width="77" class="info"><div align="center">&nbsp;<? echo $txt_medida; ?></div></td>
+          <td width="29" height="5" class="info"><div align="center">&nbsp;<?php echo $nro; ?></div></td>
+          <td width="281" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_produto; ?></div></td>
+          <td width="80" class="info"><div align="center"><?php echo $txt_qtde; ?></div></td>
+          <td width="77" class="info"><div align="center">&nbsp;<?php echo $txt_medida; ?></div></td>
           <?php if ($status_caixa_valor ==1){ 
 echo '<td width="81" class="info"><div align="center">'.number_format($txt_valor, 2, ',','.').'</div></td>';
 }?>
-          <td width="81" class="info"><div align="center"><? echo $data_bd_convertido; ?></div></td>
-          <td width="81" height="5" class="info"><div align="center"><? echo $txt_usuario; ?>&nbsp;</div></td>
+          <td width="81" class="info"><div align="center"><?php echo $data_bd_convertido; ?></div></td>
+          <td width="81" height="5" class="info"><div align="center"><?php echo $txt_usuario; ?>&nbsp;</div></td>
 <?
  }
 	if ($quantreg=="")
@@ -95,7 +95,7 @@ echo '<td width="81" class="info"><div align="center">'.number_format($txt_valor
     </tr>
     <tr>
       <td height="25"><div align="right"><font color="#FFFFFF">
-		    <? echo number_format($total1, 2, ',','.');?></font><br />
+		    <?php echo number_format($total1, 2, ',','.');?></font><br />
       </div></td>
     </tr>
     <tr>

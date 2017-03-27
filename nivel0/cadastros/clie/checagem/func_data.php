@@ -1,4 +1,4 @@
-<?
+<?php
 $h = getdate(); //variavel recebe a data
 $ha=date("H");
 $date =date("$ha:i");

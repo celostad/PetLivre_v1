@@ -1,4 +1,4 @@
-<?
+<?php
 session_start(); 
 
 unset($_SESSION["sessao_login"]);
@@ -37,7 +37,7 @@ $data_atual = Convert_Data_Port_Ingl($entrada);
 //    TERMINA A PARTE DA DATA
 
 
-$sql_acessos = mysql_query("UPDATE `acesso` SET acesso_atual='$data_atual' WHERE codigo='$cod_user'") or die (mysql_error()); 
+$sql_acessos = mysqli_query($connection, "UPDATE `acesso` SET acesso_atual='$data_atual' WHERE codigo='$cod_user'") or die (mysqli_error($connection)); 
 
 
 //---------------------  APAGA DADOS TEMPORARIOS  ----------------------------------------
@@ -45,27 +45,27 @@ $sql_acessos = mysql_query("UPDATE `acesso` SET acesso_atual='$data_atual' WHERE
 
 // PRIMEIRO APAGA DADOS TEMPORARIOS ANTERIOR NO BD TEMP LOGIN
 
-$sql_sessao_om = mysql_query("SELECT * FROM `bd_temp_login` WHERE temp_login ='$login'") or die("erro ao selecionar: BD_OM_LOGIN");
+$sql_sessao_om = mysqli_query($connection, "SELECT * FROM `bd_temp_login` WHERE temp_login ='$login'") or die("erro ao selecionar: BD_OM_LOGIN");
 
-if ($linha_sessao_om = mysql_fetch_array($sql_sessao_om)){
+if ($linha_sessao_om = mysqli_fetch_array($sql_sessao_om)){
 
 $sql_sessao_om3 = "DELETE FROM `bd_temp_login` WHERE temp_login ='$login'";
 $resultado_sessao_om3 = mysql_query($sql_sessao_om3) or die ("Problema no Delete SESSÃO: bd_temp_login");
 }
 
 
-$sql_bd_temp_acesso = mysql_query("SELECT * FROM `bd_temp_acesso` WHERE user_cadastrou='$login'") or die("erro ao selecionar: BD_TEMP_ACESSO");
+$sql_bd_temp_acesso = mysqli_query($connection, "SELECT * FROM `bd_temp_acesso` WHERE user_cadastrou='$login'") or die("erro ao selecionar: BD_TEMP_ACESSO");
 
-if ($linha_bd_temp_acesso = mysql_fetch_array($sql_bd_temp_acesso)){
+if ($linha_bd_temp_acesso = mysqli_fetch_array($sql_bd_temp_acesso)){
 
 $sql_bd_temp_acesso1 = "DELETE FROM `bd_temp_acesso` WHERE user_cadastrou='$login'";
 $resultado_bd_temp_acesso = mysql_query($sql_bd_temp_acesso1) or die ("Problema no Delete SESSÃO: BD_TEMP_ACESSO2");
 }
 
 
-$sql_bd_vtr_temp = mysql_query("SELECT * FROM `bd_viatura_temp` WHERE usuario='$login'") or die("erro ao selecionar: BD_VIATURA_TEMP");
+$sql_bd_vtr_temp = mysqli_query($connection, "SELECT * FROM `bd_viatura_temp` WHERE usuario='$login'") or die("erro ao selecionar: BD_VIATURA_TEMP");
 
-if ($linha_bd_vtr_temp = mysql_fetch_array($sql_bd_vtr_temp)){
+if ($linha_bd_vtr_temp = mysqli_fetch_array($sql_bd_vtr_temp)){
 
 $sql_bd_vtr_temp1 = "DELETE FROM `bd_viatura_temp` WHERE usuario='$login'";
 $resultado_bd_viatura_temp = mysql_query($sql_bd_vtr_temp1) or die ("Problema no Delete SESSÃO: BD_VIATURA_TEMP2");

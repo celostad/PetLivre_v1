@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 $sel_tipo_pesq = $_POST["sel_tipo_pesq"];
 $txt_descricao_pesq = $_POST["txt_descricao_pesq"];

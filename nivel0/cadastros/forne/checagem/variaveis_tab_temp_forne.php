@@ -1,7 +1,7 @@
-<?
-$sql_ref = mysql_query("SELECT * FROM `tab_temp_fornecedor` WHERE user_cadastro='$usuario'") or die("erro ao selecionar sql_ref");
+<?php
+$sql_ref = mysqli_query($connection, "SELECT * FROM `tab_temp_fornecedor` WHERE user_cadastro='$usuario'") or die("erro ao selecionar sql_ref");
 
-if ($linha_ref = mysql_fetch_array($sql_ref)) {
+if ($linha_ref = mysqli_fetch_array($sql_ref)) {
 
 $txt_razao_social = $linha_ref['razao_social'];
 $txt_contato = $linha_ref['contato'];

@@ -1,11 +1,12 @@
-<?
+<?php
 
 //######### INICIO Pagina&ccedil;&atilde;o
 
 //paginação
 $total_reg = "10"; 
 
-$pagina = $_GET["pagina"];
+if(!empty($pagina)) {$pagina = $_GET["pagina"];}else{$pagina="";}
+// $pagina = $_GET["pagina"];
 
 if(!$pagina) {
 $pc = "1";
@@ -52,21 +53,21 @@ echo '<script type="text/javascript" src="'.$pontos.'js/func_cad_forne.js"></scr
               <td width="110"><div align="center">Telefone</div></td>
               <td width="62" height="20"><div align="center">&nbsp;</div></td>
             </tr>
-            <?		  
+            <?php		  
     
  // Faz o Select pegando o registro inicial at&eacute; a quantidade de registros para p&aacute;gina
-    $sql_registros = mysql_query("SELECT * FROM tab_fornecedor ORDER BY razao_social ASC LIMIT $inicio, $total_reg");
+    $sql_registros = mysqli_query($connection, "SELECT * FROM tab_fornecedor ORDER BY razao_social ASC LIMIT $inicio, $total_reg");
 
 // Serve para contar quantos registros voc&ecirc; tem na seua tabela para fazer a pagina&ccedil;&atilde;o
-    $sql_conta = mysql_query("SELECT * FROM tab_fornecedor");
+    $sql_conta = mysqli_query($connection, "SELECT * FROM tab_fornecedor");
     
-    $quantreg = mysql_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
+    $quantreg = mysqli_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
     
  $tp = ceil($quantreg/$total_reg);    
    
 $cor="#FFFFFF";
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $cod = $linha_ref['codigo'];
 $txt_razao_social = $linha_ref['razao_social'];
@@ -82,15 +83,15 @@ if ($txt_ddd_cel <>""){$txt_ddd_tel=$txt_ddd_cel;}
 if ($txt_cel <>""){$txt_tel=$txt_cel;}
 
 $cor=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
-  ?>
+?>
             <tr bgcolor="<?=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
 ?>" class="info" onmouseover="this.style.backgroundColor='#66FF66'" onmouseout="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
-              <td width="31" class="info"><div align="center"><? echo $cod; ?></div></td>
-              <td width="205" height="5" class="info"><div align="center">&nbsp;<? echo $txt_razao_social; ?></div></td>
-              <td width="165" height="5" class="info"><div align="center">&nbsp;<? echo $txt_email; ?></div></td>
-              <td width="110" class="info"><div align="center">&nbsp;<? if (!empty($txt_ddd_tel)){echo "(".$txt_ddd_tel.") ".$txt_tel;} ?></div></td>
-              <td width="62" height="5" colspan="2" class="info"><div align="center"><? 
+              <td width="31" class="info"><div align="center"><?php echo $cod; ?></div></td>
+              <td width="205" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_razao_social; ?></div></td>
+              <td width="165" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_email; ?></div></td>
+              <td width="110" class="info"><div align="center">&nbsp;<?php if (!empty($txt_ddd_tel)){echo "(".$txt_ddd_tel.") ".$txt_tel;} ?></div></td>
+              <td width="62" height="5" colspan="2" class="info"><div align="center"><?php 
 if ($nivel >1){echo '<a href="javascript:checar(\'deleta_forne.php?id='.$cod.'\');"><img src="'.$pontos.'imagens/delete.gif" border="0" alt="Apagar registro" title="Apagar registro"></a>&nbsp;';
 }else{echo'&nbsp;&nbsp;&nbsp;&nbsp;';}
 
@@ -102,7 +103,7 @@ if ($quantreg==""){
 
 echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center"><b>&nbsp;N&atilde;o h&aacute; registros</b></font></div></td>';}
 
-@mysql_close();
+@mysqli_close();
 
 ?>
               </div></td>
@@ -122,9 +123,9 @@ echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center">
                 </map>
             </div></td>
             <td width="235" class="info"><div align="center">
-                <? // Chama o arquivo que monta a pagina&ccedil;&atilde;o
-if ($quantreg >=10){include("paginacao.php");}
-?>
+                <?php // Chama o arquivo que monta a pagina&ccedil;&atilde;o
+                      if ($quantreg >=10){include("paginacao.php");}
+                ?>
                 <br />
             </div></td>
             <td width="170" colspan="3" class="info"><div align="center"><img src="<?=$pontos;?>imagens/cad_clie/cadastrar.gif" width="105" height="25" border="0" usemap="#Map2Map" />
@@ -137,7 +138,7 @@ if ($quantreg >=10){include("paginacao.php");}
     </tr>
     <tr>
       <td height="20" colspan="5"><div align="center">
-          <?
+          <?php
 if ($quantreg >=10){
 echo "<font size='1' color='#cccccc' face='Verdana'>";
 echo "P&aacute;gina: $pc de $tp &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; registros: $quantreg";

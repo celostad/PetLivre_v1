@@ -1,25 +1,25 @@
 <?php
 
 
-// A variavel aux recebe o valor do total de paginas/intervalo
-$aux = $tp/$intervalo;
-$aux1 = $pc/$intervalo;
-$pi = $aux1 * $intervalo;
-if ($pi == "0") {
-$pi = "1";
-}
-$pf = $pi + $intervalo -1;
-$anterior = $pi-$intervalo;
-if($pc<=$intervalo) {
-$anterior = 1;
-}
-$aux2 = $pi + 1;
-if($pi>1) {
-$aux = $pi - 1;
-$aux2 = $pi + 1;
-//echo "<hr>";
-// Começa a listar a paginação
-echo "<<<font size='1' face='Verdana'><a href='".$PHP_SELF."?pagina=$aux'><b> Anterior </b></a></font>&nbsp;";
+  // A variavel aux recebe o valor do total de paginas/intervalo
+  $aux = $tp/$intervalo;
+  $aux1 = $pc/$intervalo;
+  $pi = $aux1 * $intervalo;
+  if ($pi == "0") {
+  $pi = "1";
+  }
+  $pf = $pi + $intervalo -1;
+  $anterior = $pi-$intervalo;
+  if($pc<=$intervalo) {
+  $anterior = 1;
+  }
+  $aux2 = $pi + 1;
+  if($pi>1) {
+  $aux = $pi - 1;
+  $aux2 = $pi + 1;
+  //echo "<hr>";
+  // Começa a listar a paginação
+  echo "<<<font size='1' face='Verdana'><a href='".$PHP_SELF."?pagina=$aux'><b> Anterior </b></a></font>&nbsp;";
 }
 else
 {

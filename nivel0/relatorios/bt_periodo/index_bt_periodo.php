@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -12,14 +12,14 @@ $checa_retorno = $_SESSION["checa_retorno"];
 
 if ($nivel ==1){
 echo '<script>
-alert("                          AtenÁ„o!\n\nVocÍ n„o tem permiss„o para visualizar esta p·gina.\n\n")
+alert("                          Aten√ß√£o!\n\nVoc√™ n√£o tem permiss√£o para visualizar esta p√°gina.\n\n")
 window.location = "../../index_menu.php"
 </script>';
 }
 if ($nivel ==2){$nivel_conv="Gerente";}
 if ($nivel ==3){$nivel_conv="Administrador";}
 
-// APAGA OS DADOS DAS VARI¡VEIS
+// APAGA OS DADOS DAS VARI√ÅVEIS
 
 $_SESSION["rad_sel_visl"] ="";
 $_SESSION["rad_animal_clie"] ="";
@@ -43,15 +43,15 @@ $data_final ="";
 <body>
   <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
-      <td width="589"  valign="top"><? include ("form_bt_periodo.php"); ?></td>
+      <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
+      <td width="589"  valign="top"><?php include ("form_bt_periodo.php"); ?></td>
     </tr>
     <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
     </tr>
 </table>

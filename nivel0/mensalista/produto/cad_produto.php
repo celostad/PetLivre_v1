@@ -72,12 +72,12 @@ window.setInterval(\"self.close();window.opener.focus();\",1000);'>";
                         </em></strong></td>
                         <td width="225"><strong><em><b><font size="2" face="Times New Roman, Times, serif">Categoria:</font></b>
                           <?
-$sql_2 = mysql_query("select codigo, categoria_mat from combo_categoria ORDER BY categoria_mat ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql_2 = mysqli_query($connection, "select codigo, categoria_mat from combo_categoria ORDER BY categoria_mat ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 echo "<select name='sel_categoria' tabindex='1' id='sel_categoria'>";
 echo "<option value='".$sel_categoria."'>".$sel_categoria ."</option>";
 echo "<option>"."</option>";
-while($pega = mysql_fetch_array($sql_2)){
+while($pega = mysqli_fetch_array($sql_2)){
 echo "<option value='".$pega['categoria_mat']."'>".$pega['categoria_mat']."</option>";
 }
 echo "</select>";
@@ -101,17 +101,17 @@ echo "</select>";
                   <?
 				  
  // Faz o Select pegando o registro inicial at&eacute; a quantidade de registros para p&aacute;gina
-    $sql_registros = mysql_query("SELECT * FROM tab_produto ORDER BY produto ASC LIMIT $inicio, $total_reg");
+    $sql_registros = mysqli_query($connection, "SELECT * FROM tab_produto ORDER BY produto ASC LIMIT $inicio, $total_reg");
 
 // Serve para contar quantos registros voc&ecirc; tem na seua tabela para fazer a pagina&ccedil;&atilde;o
-    $sql_conta = mysql_query("SELECT * FROM tab_produto");
+    $sql_conta = mysqli_query($connection, "SELECT * FROM tab_produto");
     
-    $quantreg = mysql_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
+    $quantreg = mysqli_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
     
  $tp = ceil($quantreg/$total_reg);    
    
 $cor="#FFFFFF";
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 				  
 $codigo = $linha_ref['codigo'];
 $produto = $linha_ref['produto'];
@@ -122,10 +122,10 @@ $cor=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6";
            <tr bgcolor="<?=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
 ?>" class="info" onMouseOver="this.style.backgroundColor='#66FF66'" onMouseOut="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
-                  <td width="50"><div align="center">&nbsp; <? echo $codigo; ?> </div></td>
-                  <td width="263"><div align="center">&nbsp; <? echo $produto; ?> </div></td>
+                  <td width="50"><div align="center">&nbsp; <?php echo $codigo; ?> </div></td>
+                  <td width="263"><div align="center">&nbsp; <?php echo $produto; ?> </div></td>
                   <td width="109"><div align="center">
-                      <input type="radio" name="rad_sel" value="<? echo $codigo; ?>">
+                      <input type="radio" name="rad_sel" value="<?php echo $codigo; ?>">
                   </div></td>
                 </tr>
                 <?
@@ -137,7 +137,7 @@ $cor=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6";
 ?>
                 <tr>
                   <td colspan="2"><div align="center">
-                    <? // Chama o arquivo que monta a pagina&ccedil;&atilde;o
+                    <?php // Chama o arquivo que monta a pagina&ccedil;&atilde;o
 if ($quantreg >5){include("paginacao.php");}
 ?>
                   </div></td>

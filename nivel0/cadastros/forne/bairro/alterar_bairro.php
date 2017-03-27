@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../../include/arruma_link.php");
@@ -11,11 +11,11 @@ $usuario = $_SESSION["sessao_login"];
 $txt_rad_sel = $_SESSION["rad_sel"];
 
 
-$sql = mysql_query("SELECT * FROM combo_bairro WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql = mysqli_query($connection, "SELECT * FROM combo_bairro WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 
 
-if ($linha = mysql_fetch_array($sql)){
+if ($linha = mysqli_fetch_array($sql)){
 
 $bairro = $linha['bairro'];
 }
@@ -54,7 +54,7 @@ echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"..
     <td width="535" height="50" align="center"> 
       <form name="frmAjax"  method="post">
         <strong><em><b><font size="2" face="Times New Roman, Times, serif">Bairro</font></b><font face="Times New Roman, Times, serif"><b><font size="2">:</font></b></font>
-        <input name="txt_bairro" type="text" id="txt_bairro" style="visibility:visible" size="25" maxlength="25" value="<? echo $bairro; ?>">
+        <input name="txt_bairro" type="text" id="txt_bairro" style="visibility:visible" size="25" maxlength="25" value="<?php echo $bairro; ?>">
 &nbsp;<a href="javascript:alterar_bairro2();"><img src="../../../../imagens/cad_clie/gravar.gif" width="31" height="37" border="0" align="absmiddle" alt="Gravar" title="Gravar"></a></em></strong>
       </form>    </td>
   </tr>

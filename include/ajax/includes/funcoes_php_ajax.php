@@ -49,7 +49,7 @@ function BuscaDados( $palavra ) {
 	$rsCidades = mysql_query($sql,$GLOBALS['conexao']);
 	$objResponse = new xajaxResponse();
 	$objResponse->addAssign("resposta","innerHTML","");
-	if ( mysql_num_rows($rsCidades) > 0 ):
+	if ( mysqli_num_rows($rsCidades) > 0 ):
 		$s = new String();
 		$s->append("<table cellpadding=\"0\" cellspacing=\"0\" class=\"tabela\">");
 		$s->append("<tr>");
@@ -82,9 +82,9 @@ function BuscaCidades( $id ) {
 	$objResponse = new xajaxResponse();
 	$objResponse->addAssign("resposta","innerHTML","");
 	$i = 0;
-	if ( mysql_num_rows($rsCidades) > 0 ):
+	if ( mysqli_num_rows($rsCidades) > 0 ):
 		$objResponse->addScript("$('cidade_dd').options[".$i++."] = new Option(\"Selecione uma Cidade\",\"\",true);");
-		while ( $Cidade = mysql_fetch_array($rsCidades) ):
+		while ( $Cidade = mysqli_fetch_array($rsCidades) ):
 			$objResponse->addScript("$('cidade_dd').options[".$i++."] = new Option(\"".utf8_encode($Cidade['cidade'])."\",\"".$Cidade['cidade_pk']."\",false);");
 		endwhile;
 	else:
@@ -97,7 +97,7 @@ function BuscaCidades( $id ) {
 function suggestStates($text,$btype) {
 	$sql = "SELECT `cidade` FROM `japs_cidade_dados` WHERE UPPER(`cidade`) LIKE UPPER('".$palavra."%');";
 	$rsCidades = mysql_query($sql,$GLOBALS['conexao']);
-	while ( $Cidade = mysql_fetch_array($rsCidades) ):
+	while ( $Cidade = mysqli_fetch_array($rsCidades) ):
 		$database[] = utf8_encode($Cidade['cidade']);
 	endwhile;
 
@@ -126,7 +126,7 @@ function Votacao($vote_sent, $id_sent, $ip_num) {
 	$ip_num = $_REQUEST['t'];*/
 	
 	$sql = "SELECT total_votes, total_value, used_ips FROM ".$tableName." WHERE id='".$id_sent."';";
-	$rsTotais = mysql_query($sql,$GLOBALS['conexao'])or die(" Error: ".mysql_error());
+	$rsTotais = mysql_query($sql,$GLOBALS['conexao'])or die(" Error: ".mysqli_error($connection));
 	$Totais = mysql_fetch_assoc($rsTotais);
 	$checkIP = unserialize($Totais['used_ips']);
 	$total_votos = $Totais['total_votes'];
@@ -158,7 +158,7 @@ function Votacao($vote_sent, $id_sent, $ip_num) {
 	mysql_query($sql,$GLOBALS['conexao']);
 	
 	$sql = "SELECT total_votes, total_value, used_ips FROM ".$tableName." WHERE id='".$id_sent."';";
-	$query = mysql_query($sql,$GLOBALS['conexao'])or die(" Error: ".mysql_error());
+	$query = mysql_query($sql,$GLOBALS['conexao'])or die(" Error: ".mysqli_error($connection));
 	$numbers = mysql_fetch_assoc($query);
 	$total_votos = $numbers['total_votes'];//how many votes total
 	$valor_votos = $numbers['total_value'];//total number of rating added together and stored
@@ -233,7 +233,7 @@ function ExibeConteudoInserir() {
 	$s->append("<option value=\"\">Selecione o Estado</option>");
 	$sql = "SELECT * FROM `japs_estado_dados`;";
 	$rsEst = mysql_query($sql,$GLOBALS['conexao']);
-	while ( $Est = mysql_fetch_array($rsEst) ):
+	while ( $Est = mysqli_fetch_array($rsEst) ):
 		$s->append("<option value=\"".$Est['estado_pk']."\">".$Est['estado']."</option>");
 	endwhile;
 	$s->append("</select><br />");
@@ -265,7 +265,7 @@ function ExibeConteudoDropDown() {
 	$s->append("<option value=\"\">Selecione o Estado</option>");
 	$sql = "SELECT * FROM `japs_estado_dados`;";
 	$rsEst = mysql_query($sql,$GLOBALS['conexao']);
-	while ( $Est = mysql_fetch_array($rsEst) ):
+	while ( $Est = mysqli_fetch_array($rsEst) ):
 		$s->append("<option value=\"".$Est['estado_pk']."\">".$Est['estado']."</option>");
 	endwhile;
 	$s->append("</select><br />");
@@ -313,7 +313,7 @@ function ExibeConteudoVotacao( $id ) {
 	$tableName = "ratings";
 	
 	$sql = "SELECT total_votes, total_value, used_ips FROM ".$tableName." WHERE id='".$id."';";
-	$rsTotais = mysql_query($sql,$GLOBALS['conexao']) or die(" Erro: ".mysql_error());
+	$rsTotais = mysql_query($sql,$GLOBALS['conexao']) or die(" Erro: ".mysqli_error($connection));
 	$Totais = mysql_fetch_assoc($rsTotais);
 	$total_votos = $Totais['total_votes'];
 	$valor_votos = $Totais['total_value'];

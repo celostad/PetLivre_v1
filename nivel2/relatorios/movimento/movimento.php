@@ -82,17 +82,17 @@ $_SESSION["rad_clie"] ="";
 $_SESSION["retorno"] ="";
 
 // RECEBIDOS
-$sql_caixa = mysql_query("SELECT * FROM `tab_caixa` WHERE status=1 and (data BETWEEN '$data_inicial' AND '$data_final' && cod_produto<>0)") or die("erro ao selecionar1");
+$sql_caixa = mysqli_query($connection, "SELECT * FROM `tab_caixa` WHERE status=1 and (data BETWEEN '$data_inicial' AND '$data_final' && cod_produto<>0)") or die("erro ao selecionar1");
 
-while ($linha_caixa = mysql_fetch_array($sql_caixa)) {
+while ($linha_caixa = mysqli_fetch_array($sql_caixa)) {
 $txt_valor = $linha_caixa['valor'];
 $soma += $txt_valor;
 }
 
 // DESPESAS
-$sql_caixa2 = mysql_query("SELECT material, valor, status, data FROM `tab_caixa` where material <>'' and status=1 and (data BETWEEN '$data_inicial' AND '$data_final')") or die("erro ao selecionar1");
+$sql_caixa2 = mysqli_query($connection, "SELECT material, valor, status, data FROM `tab_caixa` where material <>'' and status=1 and (data BETWEEN '$data_inicial' AND '$data_final')") or die("erro ao selecionar1");
 
-while ($linha_caixa2 = mysql_fetch_array($sql_caixa2)) {
+while ($linha_caixa2 = mysqli_fetch_array($sql_caixa2)) {
 $txt_valor_saida = $linha_caixa2['valor'];
 $saida += $txt_valor_saida;
 }
@@ -101,10 +101,10 @@ $saida += $txt_valor_saida;
 
   <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+      <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
       <td width="589"  valign="top"><div align="center">
         <form name="form" method="post" action="">
 		<input type="hidden" name="data_inicial" value="<?php echo $data_inicial; ?>">
@@ -138,7 +138,7 @@ $saida += $txt_valor_saida;
     </tr>
     <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
     </tr>
 </table>

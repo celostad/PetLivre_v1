@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -49,18 +49,18 @@ echo "<br>retorno: ".$retorno;
 <body>
 <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
   <tr>
-    <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+    <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
   </tr>
   <tr>
-    <td width="140" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+    <td width="140" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
     <td width="589" valign="top">
       <div align="right">
-        <? include("form_cad_clie.php"); ?>
+        <?php include("form_cad_clie.php"); ?>
     </div></td>
   </tr>
   <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
   </tr>
 </table>

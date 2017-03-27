@@ -1,7 +1,8 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
+include($pontos."include/mostra_erros.php");
 include($pontos."barra.php");
 include($pontos."conexao.php");
 
@@ -32,16 +33,16 @@ $select = 2;
 <body>
 <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
   <tr>
-    <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+    <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
   </tr>
   <tr>
-    <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+    <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
     <td width="589" valign="top"><div align="center"><?php  include($pontos."include/menu_cadastros.php"); ?></div>
-<div align="center"><? include("lista_pet.php"); ?></div></td>
+<div align="center"><?php include("lista_pet.php"); ?></div></td>
   </tr>
   <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
   </tr>
 </table>

@@ -27,9 +27,9 @@ window.setInterval("self.close();window.opener.focus();",1000);
 
 <?php 
 
-$sql_pendente = mysql_query("SELECT * FROM tab_caixa WHERE codigo='$cod_pendente'")Or die ("Erro na tabela: tab_caixa - sql_pendente".mysql_error());
+$sql_pendente = mysqli_query($connection, "SELECT * FROM tab_caixa WHERE codigo='$cod_pendente'")Or die ("Erro na tabela: tab_caixa - sql_pendente".mysqli_error($connection));
 
-	if ($linha_pendente = mysql_fetch_array($sql_pendente)){
+	if ($linha_pendente = mysqli_fetch_array($sql_pendente)){
 	
 	$codigo_bd = $linha_pendente ['codigo'];
 	$data_bd = Convert_Data_Ingl_Port($linha_pendente ['data']);
@@ -79,12 +79,12 @@ $sql_pendente = mysql_query("SELECT * FROM tab_caixa WHERE codigo='$cod_pendente
                     <tr>
                       <td width="13%"><div align="left"><strong><font size="2">Esp&eacute;cie</font></strong></div></td>
                       <td width="57%"><?
-$sql_4 = mysql_query("select codigo, especie from combo_especie ORDER BY codigo ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql_4 = mysqli_query($connection, "select codigo, especie from combo_especie ORDER BY codigo ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 echo "<select name='txt_especie' tabindex='5' id='txt_especie' onchange='javascript:tipo_especie()'>";
 echo "<option value='".$txt_cod_especie."'>".$txt_especie."</option>";
 echo "<option>"."</option>";
-while($pega4 = mysql_fetch_array($sql_4)){
+while($pega4 = mysqli_fetch_array($sql_4)){
 echo "<option value='".$pega4['codigo']."'>".$pega4['especie']."</option>";
 }
 echo "</select>";

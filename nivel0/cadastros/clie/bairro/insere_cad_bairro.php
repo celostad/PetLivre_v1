@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 require_once("../../../../conexao.php");
@@ -18,7 +18,7 @@ function Convert_Data_Port_Ingl($entradata){
     return $saida_data;
 }
 
-$sql2 = mysql_query("INSERT INTO `combo_bairro` (`codigo`, `bairro`) VALUES (NULL, '$txt_bairro')") or die (mysql_error());
+$sql2 = mysqli_query($connection, "INSERT INTO `combo_bairro` (`codigo`, `bairro`) VALUES (NULL, '$txt_bairro')") or die (mysqli_error($connection));
 
 header("Location: cad_clie_bairro.php");    
 //  -------------------------------------------------------------------------------------------

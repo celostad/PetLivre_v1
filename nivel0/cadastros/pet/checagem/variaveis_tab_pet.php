@@ -1,7 +1,7 @@
-<?
-$sql_tab_temp = mysql_query("SELECT * FROM `tab_temp_pet` WHERE user_cadastro='$usuario'") or die("erro ao selecionar sql_ref");
+<?php
+$sql_tab_temp = mysqli_query($connection, "SELECT * FROM `tab_temp_pet` WHERE user_cadastro='$usuario'") or die("erro ao selecionar sql_ref");
 
-if ($linha_tab_temp = mysql_fetch_array($sql_tab_temp)) {
+if ($linha_tab_temp = mysqli_fetch_array($sql_tab_temp)) {
 
 $txt_nome_pet = $linha_tab_temp['nome'];
 $txt_raca = $linha_tab_temp['raca'];
@@ -23,9 +23,9 @@ $txt_caminho_foto ="foto/".$txt_caminho_foto1;
 
 
 // PEGA A FOTO
-$sql_ref = mysql_query("SELECT * FROM `tab_pet` WHERE codigo='$rad_sel_visl'") or die("erro ao selecionar sql_ref");
+$sql_ref = mysqli_query($connection, "SELECT * FROM `tab_pet` WHERE codigo='$rad_sel_visl'") or die("erro ao selecionar sql_ref");
 
-if ($linha_ref = mysql_fetch_array($sql_ref)) {
+if ($linha_ref = mysqli_fetch_array($sql_ref)) {
 
 $txt_codigo_pet = $linha_ref['codigo'];
 if (empty($txt_nome_pet)){$txt_nome_pet = $linha_ref['nome'];}

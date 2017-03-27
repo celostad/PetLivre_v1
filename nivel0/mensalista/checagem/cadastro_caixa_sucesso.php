@@ -12,9 +12,9 @@ include("func_data.php");
 
 $usuario = $_SESSION["sessao_login"];
 
-$sql_ref = mysql_query("SELECT * FROM `tab_temp_caixa` WHERE usuario='$usuario'") or die("erro ao selecionar sql_ref");
+$sql_ref = mysqli_query($connection, "SELECT * FROM `tab_temp_caixa` WHERE usuario='$usuario'") or die("erro ao selecionar sql_ref");
 
-if ($linha_ref = mysql_fetch_array($sql_ref)) {
+if ($linha_ref = mysqli_fetch_array($sql_ref)) {
 
 $txt_cod_produto = $linha_ref['cod_produto'];
 $txt_produto = $linha_ref['produto'];
@@ -31,9 +31,9 @@ $data_atual = Convert_Data_Port_Ingl($entrada);
 
 
 
-$sql4 = mysql_query("SELECT * FROM combo_especie WHERE codigo='$txt_especie'") or die("Erro na tabela: combo_especie");
+$sql4 = mysqli_query($connection, "SELECT * FROM combo_especie WHERE codigo='$txt_especie'") or die("Erro na tabela: combo_especie");
 
-	if ($linha4 = mysql_fetch_array($sql4)) {
+	if ($linha4 = mysqli_fetch_array($sql4)) {
 		$txt_cartao = $linha4['especie'];
 	}
 
@@ -46,13 +46,13 @@ $sql4 = mysql_query("SELECT * FROM combo_especie WHERE codigo='$txt_especie'") o
 //  *******************  INSERE AS VARIÁVEIS NA TAB CAIXA *****************************************
 if (!empty($linha_ref)){
 
-$sql2 = mysql_query("INSERT INTO `tab_caixa` (`codigo`, `cod_produto`, `produto`, `pet`, `qtde`, `medida`,`valor`, `especie`, `obs`, 
+$sql2 = mysqli_query($connection, "INSERT INTO `tab_caixa` (`codigo`, `cod_produto`, `produto`, `pet`, `qtde`, `medida`,`valor`, `especie`, `obs`, 
 `usuario`, `data`) VALUES (NULL, '$txt_cod_produto', '$txt_produto', '$txt_pet', '$txt_qtde', '$sel_medida', '$txt_valor', '$txt_especie', '$txt_obs_caixa',
- '$usuario','$data_atual')") or die (mysql_error());
+ '$usuario','$data_atual')") or die (mysqli_error($connection));
 
 //  -------------------------------------------------------------------------------------------
     if ($txt_especie > 1 and $txt_especie < 6){
-    $sql3 = mysql_query("INSERT INTO `tab_cartao` (`codigo`,  `ref_cartao`, `cartao`, `valor`, `data_venda`, `usuario`) VALUES (NULL, '$txt_especie', '$txt_cartao', '$txt_valor', '$data_atual', '$usuario')") or die (mysql_error());
+    $sql3 = mysqli_query($connection, "INSERT INTO `tab_cartao` (`codigo`,  `ref_cartao`, `cartao`, `valor`, `data_venda`, `usuario`) VALUES (NULL, '$txt_especie', '$txt_cartao', '$txt_valor', '$data_atual', '$usuario')") or die (mysqli_error($connection));
     }
 
 

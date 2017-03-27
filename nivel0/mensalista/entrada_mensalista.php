@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../include/arruma_link.php");
@@ -46,10 +46,10 @@ $select = 1;
 <body>
   <table width="740" height="671" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" rowspan="2" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+      <td width="150" height="280" rowspan="2" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
       <td width="589" height="20" valign="top"><div align="center">
 	  <?php  include($pontos."include/menu_mensalista.php"); ?>
         </div>

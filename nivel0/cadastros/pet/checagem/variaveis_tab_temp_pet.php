@@ -1,7 +1,7 @@
-<?
-$sql_ref = mysql_query("SELECT * FROM `tab_temp_pet` WHERE user_cadastro='$usuario'") or die("erro ao selecionar sql_ref");
+<?php
+$sql_ref = mysqli_query($connection, "SELECT * FROM `tab_temp_pet` WHERE user_cadastro='$usuario'") or die("erro ao selecionar sql_ref");
 
-if ($linha_ref = mysql_fetch_array($sql_ref)) {
+if ($linha_ref = mysqli_fetch_array($sql_ref)) {
 
 $txt_nome_pet = $linha_ref['nome'];
 $txt_raca = $linha_ref['raca'];
@@ -20,7 +20,8 @@ $txt_caminho_foto1 = $linha_ref['caminho_foto'];
 $txt_caminho_foto ="foto/".$txt_caminho_foto1;
 }
 
-if ($txt_data_nasc =="0000-00-00"){$txt_data_nasc="";}
+if (!isset($txt_data_nasc) || $txt_data_nasc =="0000-00-00") {$txt_data_nasc = '';}
+// if ($txt_data_nasc =="0000-00-00"){$txt_data_nasc="";}
 
 $txt_data_nasc = Convert_Data_Ingl_Port($txt_data_nasc);
 

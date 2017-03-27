@@ -51,9 +51,9 @@ $security_key="a19760a5a3385a407f76082c1f418f4c";
 if ($_SESSION["envia_email"] == 0){
 
 // VERIFICA CARTÃO DE CRÉDITO
-$sql_cartao1 = mysql_query("SELECT * FROM tab_cartao WHERE ref_cartao <4 && enviado_email = 0 && TO_DAYS(NOW()) - 30 = TO_DAYS(data_venda)") or die ("Erro na consulta: sql_cartao");
+$sql_cartao1 = mysqli_query($connection, "SELECT * FROM tab_cartao WHERE ref_cartao <4 && enviado_email = 0 && TO_DAYS(NOW()) - 30 = TO_DAYS(data_venda)") or die ("Erro na consulta: sql_cartao");
 
-while ($linha1 = mysql_fetch_array($sql_cartao1)){
+while ($linha1 = mysqli_fetch_array($sql_cartao1)){
 
 	$ref_cartao_db = $linha1['ref_cartao'];
 	$cartao_db = $linha1['cartao'];	
@@ -109,15 +109,15 @@ while ($linha1 = mysql_fetch_array($sql_cartao1)){
 unset($sql_cartao);
 unset($sql_cartao1);
 
-$sql_cartao2 = mysql_query("UPDATE `tab_cartao` SET  enviado_email=1 WHERE ref_cartao <4 && enviado_email = 0 && TO_DAYS(NOW()) - 30 = TO_DAYS(data_venda)") or die ("Erro na consulta: sql_cartao");
+$sql_cartao2 = mysqli_query($connection, "UPDATE `tab_cartao` SET  enviado_email=1 WHERE ref_cartao <4 && enviado_email = 0 && TO_DAYS(NOW()) - 30 = TO_DAYS(data_venda)") or die ("Erro na consulta: sql_cartao");
 
 
 
 
 // VERIFICA CARTÃO DE DÉBITO
-$sql_cartao1 = mysql_query("SELECT * FROM tab_cartao WHERE ref_cartao >3 && enviado_email = 0 && TO_DAYS(NOW()) - 3 = TO_DAYS(data_venda)") or die ("Erro na consulta: sql_cartao1");
+$sql_cartao1 = mysqli_query($connection, "SELECT * FROM tab_cartao WHERE ref_cartao >3 && enviado_email = 0 && TO_DAYS(NOW()) - 3 = TO_DAYS(data_venda)") or die ("Erro na consulta: sql_cartao1");
 
-while ($linha1 = mysql_fetch_array($sql_cartao1)){
+while ($linha1 = mysqli_fetch_array($sql_cartao1)){
 
 	$ref_cartao_db = $linha1['ref_cartao'];
 	$cartao_db = $linha1['cartao'];	
@@ -173,7 +173,7 @@ while ($linha1 = mysql_fetch_array($sql_cartao1)){
 
 
 
-$sql_cartao3 = mysql_query("UPDATE `tab_cartao` SET  enviado_email=1 WHERE ref_cartao >3 && enviado_email = 0 && TO_DAYS(NOW()) - 3 = TO_DAYS(data_venda)") or die ("Erro na consulta: sql_cartao");
+$sql_cartao3 = mysqli_query($connection, "UPDATE `tab_cartao` SET  enviado_email=1 WHERE ref_cartao >3 && enviado_email = 0 && TO_DAYS(NOW()) - 3 = TO_DAYS(data_venda)") or die ("Erro na consulta: sql_cartao");
 
 
 

@@ -10,7 +10,7 @@
     <form name="form" enctype="multipart/form-data" method="POST">
 	<tr>
 	
-      <td width="547" height="22" valign="top" bordercolor="#333333" bgcolor="#CCCCCC"><div align="center" class="style3"><strong> <? echo "Mensalista  -  ";?> 
+      <td width="547" height="22" valign="top" bordercolor="#333333" bgcolor="#CCCCCC"><div align="center" class="style3"><strong> <?php echo "Mensalista  -  ";?> 
 <?php $h = getdate(); //variavel recebe a data
 $data_atual = $hoje = $h['mday']."/".$mes = $h['mon']."/".$ano = $h['year'];
 echo $data_atual;
@@ -25,13 +25,13 @@ echo $data_atual;
                 <td width="70" height="20"><div align="right"><font size="2"><strong>Mensalista:</strong></font></div></td>
                 <td width="290" height="25"><div align="left">
                   <?
-$sql1 = mysql_query("select codigo, nome from tab_pet where mensalista='Sim' ORDER BY nome ASC") or print("Erro ao ler a tabela: tab_pet".mysql_error());
+$sql1 = mysqli_query($connection, "select codigo, nome from tab_pet where mensalista='Sim' ORDER BY nome ASC") or print("Erro ao ler a tabela: tab_pet".mysqli_error($connection));
 echo "<select name='txt_cod_pet' tabindex='1' id='txt_cod_pet'>";
 if (!empty($txt_pet)){
 echo "<option value='".$txt_cod_pet."'>".$txt_pet."</option>";
 }
 echo "<option>"."</option>";
-while($pega1 = mysql_fetch_array($sql1)){
+while($pega1 = mysqli_fetch_array($sql1)){
 echo "<option value='".$pega1['codigo']."'>".$pega1['nome']."</option>";
 }
 echo "</select>";
@@ -49,12 +49,12 @@ echo "</select>";
               <td width="70"><div align="right"><font size="2"><strong>Produto:</strong></font></div></td>
               <td width="290"><div align="left">
                 <?
-$sql_2 = mysql_query("select codigo, produto from tab_produto ORDER BY produto ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql_2 = mysqli_query($connection, "select codigo, produto from tab_produto ORDER BY produto ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 echo "<select name='txt_cod_prod' tabindex='2' id='txt_cod_prod' onchange='javascript:cad_produto_mensal()'>";
 echo "<option value='".$txt_cod_prod."'>".$txt_produto."</option>";
 echo "<option>"."</option>";
-while($pega = mysql_fetch_array($sql_2)){
+while($pega = mysqli_fetch_array($sql_2)){
 echo "<option value='".$pega['codigo']."'>".$pega['produto']."</option>";
 }
 echo "<option></option>";
@@ -106,8 +106,8 @@ echo "</select>";
           <td width="424" height="61"><table width="100%" height="68" border="0" cellpadding="1" cellspacing="1">
               <tr>
                 <td width="70" height="66"><div align="right"><strong><font size="2">Obs:</font></strong></div></td>
-                <td width="290" height="66"><textarea name="txt_obs_mensal" cols="33" rows="3" id="txt_obs_mensal" tabindex="6"><? echo $txt_obs_mensal; ?></textarea>
-                    <? //echo $retorno; ?></td>
+                <td width="290" height="66"><textarea name="txt_obs_mensal" cols="33" rows="3" id="txt_obs_mensal" tabindex="6"><?php echo $txt_obs_mensal; ?></textarea>
+                    <?php //echo $retorno; ?></td>
               </tr>
           </table></td>
         </tr>
@@ -119,7 +119,7 @@ echo "</select>";
                       <input type="image" name="ImageField" id="ImageField" tabindex="17" title="Gravar entrada mensalista"  onclick="javascript:gravar_mensal();" src="<?=$pontos;?>imagens/cad_clie/gravar.gif" alt="Gravar" width="31" height="37" border="0" />
                   </div></td>
                   <td width="57"><div align="center">
-                      <? if ($nivel>1 and !empty($rad_sel_visl)){
+                      <?php if ($nivel>1 and !empty($rad_sel_visl)){
 echo '<input type="image" name="ImageField2" src="'.$pontos.'imagens/cad_clie/fechar.gif" onclick="javascript:checar("deleta_clie.php?id='.$rad_sel_visl.');" width="37" height="37" border="0" tabindex="19" alt="Apagar registro" title="Apagar registro">'; 
 
 /* 
@@ -129,7 +129,7 @@ echo "<a href=\"javascript:checar('deleta_clie.php?id=".$rad_sel_visl."');\"><im
 }?>
                   </div></td>
                   <td width="71" valign="middle"><div align="center">
-                      <? 
+                      <?php 
 if (empty($retorno)){
 echo '<a href="javascript:sair_form();"><img src="'.$pontos.'imagens/cad_clie/sair.gif" alt="Sair" title="Sair do formul&aacute;rio" width="35" height="37" border="0" tabindex="19" /></a>';
 }

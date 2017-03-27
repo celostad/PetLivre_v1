@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../../include/arruma_link.php");
@@ -11,11 +11,11 @@ $usuario = $_SESSION["sessao_login"];
 $txt_rad_sel = $_SESSION["rad_sel"];
 
 
-$sql = mysql_query("SELECT * FROM combo_raca WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql = mysqli_query($connection, "SELECT * FROM combo_raca WHERE codigo='$txt_rad_sel'") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 
 
-if ($linha = mysql_fetch_array($sql)){
+if ($linha = mysqli_fetch_array($sql)){
 
 $raca = $linha['raca'];
 }
@@ -36,7 +36,7 @@ MM_reloadPage(true);
 // -->
 
 </script>
-<?
+<?php
   if ($checa_retorno=="cad_pet"){
  echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"../cad_pet.php\"'>";}
   
@@ -53,7 +53,7 @@ echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"..
   </tr>
   <tr> 
     <td width="535" height="50" align="center" valign="middle"><form name="frmAjax"  method="post"><strong><em><b><font size="2" face="Times New Roman, Times, serif">Ra&ccedil;a</font></b><font face="Times New Roman, Times, serif"><b><font size="2">:</font></b></font>
-        <input name="txt_raca" type="text" id="txt_raca" style="visibility:visible" size="20" maxlength="18" value="<? echo $raca; ?>">
+        <input name="txt_raca" type="text" id="txt_raca" style="visibility:visible" size="20" maxlength="18" value="<?php echo $raca; ?>">
 &nbsp;<a href="javascript:alterar_raca2();"><img src="../../../../imagens/cad_pet/gravar.gif" width="31" height="37" border="0" align="absmiddle"></a></em></strong>
       </form>
     </td>

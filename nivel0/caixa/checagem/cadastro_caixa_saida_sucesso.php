@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 echo '
@@ -12,9 +12,9 @@ include("func_data.php");
 
 $usuario = $_SESSION["sessao_login"];
 
-$sql_ref = mysql_query("SELECT * FROM `tab_temp_caixa` WHERE usuario='$usuario'") or die("erro ao selecionar sql_ref");
+$sql_ref = mysqli_query($connection, "SELECT * FROM `tab_temp_caixa` WHERE usuario='$usuario'") or die("erro ao selecionar sql_ref");
 
-if ($linha_ref = mysql_fetch_array($sql_ref)) {
+if ($linha_ref = mysqli_fetch_array($sql_ref)) {
 
 $txt_cod_material = $linha_ref['cod_material'];
 $txt_material = $linha_ref['material'];
@@ -32,9 +32,9 @@ $data_atual = Convert_Data_Port_Ingl($entrada);
 
 //  *******************  INSERE AS VARIÁVEIS NA TAB CAIXA *****************************************
 
-$sql2 = mysql_query("INSERT INTO `tab_caixa` (`codigo`, `cod_material`, `material`, `qtde`, `medida`, `valor`, `especie`, `obs`, 
+$sql2 = mysqli_query($connection, "INSERT INTO `tab_caixa` (`codigo`, `cod_material`, `material`, `qtde`, `medida`, `valor`, `especie`, `obs`, 
 `status`, `usuario`, `data`) VALUES (NULL, '$txt_cod_material', '$txt_material', '$txt_qtde', '$sel_medida', '$txt_valor', '$txt_especie', '$txt_obs_caixa',
- 0,'$usuario','$data_atual')") or die (mysql_error());
+ 0,'$usuario','$data_atual')") or die (mysqli_error($connection));
 
 //  -------------------------------------------------------------------------------------------
 

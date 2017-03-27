@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -22,7 +22,7 @@ include("checagem/func_data.php");
 $txt_rad_sel = $_GET["id"];
 
 $sql = "DELETE FROM `tab_clie` WHERE `codigo` = '$txt_rad_sel'";
-$resultado = mysql_query($sql) or die ("Problema na Consulta");
+$resultado = mysqli_query($connection,$sql) or die ("Problema na Consulta");
 
 header("Location: index_cad_clie.php");    
 

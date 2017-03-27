@@ -248,7 +248,7 @@ var f = ""
 //window.opener.location.submit();
 
 
-var minhapopup = window.open("busca_cad_animal.php","pop_consulta","width=420,height=150,scrollbars=auto,status=0");
+var minhapopup = window.open("busca_cad_animal.php","pop_consulta","width=550,height=150,scrollbars=auto,status=0");
 minhapopup.focus();
 }
 
@@ -417,7 +417,7 @@ var temp
 var ok = true;
 var f = ""
 
-var minhapopup = window.open('raca/grava_variaveis_bd.php','pop_raca','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('raca/grava_variaveis_bd.php','pop_raca','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='raca/grava_variaveis_bd.php';
 document.form.target="pop_raca";
 document.form.submit();
@@ -431,7 +431,7 @@ var temp
 var ok = true;
 var f = ""
 
-var minhapopup = window.open('../animal/raca/grava_variaveis_bd.php','pop_raca2','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('../animal/raca/grava_variaveis_bd.php','pop_raca2','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='../animal/raca/grava_variaveis_bd.php';
 document.form.target="pop_raca2";
 document.form.submit();
@@ -945,7 +945,7 @@ var digits="0123456789"
 var temp 
 var ok = true;
 var f = ""
-var minhapopup = window.open('cor/grava_variaveis_bd.php','pop_cor','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('cor/grava_variaveis_bd.php','pop_cor','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='cor/grava_variaveis_bd.php';
 document.form.target="pop_cor";
 document.form.submit();
@@ -960,7 +960,7 @@ var digits="0123456789"
 var temp 
 var ok = true;
 var f = ""
-var minhapopup = window.open('../animal/cor/grava_variaveis_bd.php','pop_cor2','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('../animal/cor/grava_variaveis_bd.php','pop_cor2','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='../animal/cor/grava_variaveis_bd.php';
 document.form.target="pop_cor2";
 document.form.submit();

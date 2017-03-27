@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 require_once("../../../../conexao.php");
@@ -18,16 +18,16 @@ function Convert_Data_Port_Ingl($entradata){
     return $saida_data;
 }
 
-$sql_consulta = mysql_query("SELECT * FROM combo_raca WHERE raca like '$txt_raca' or raca like '$txt_raca_alta'") or die (mysql_error());
+$sql_consulta = mysqli_query($connection, "SELECT * FROM combo_raca WHERE raca like '$txt_raca' or raca like '$txt_raca_alta'") or die (mysqli_error($connection));
 
-if ($linha = mysql_fetch_array($sql_consulta)) { ?>
+if ($linha = mysqli_fetch_array($sql_consulta)) { ?>
 <script>
 alert ("Atenção!\nEsta raça já está cadastrada.\n\n")
 window.location = "cad_raca.php";
 </script>
-<? }else{
+<?php }else{
 
-$sql2 = mysql_query("INSERT INTO `combo_raca` (`codigo`, `raca`) VALUES (NULL, '$txt_raca')") or die (mysql_error());
+$sql2 = mysqli_query($connection, "INSERT INTO `combo_raca` (`codigo`, `raca`) VALUES (NULL, '$txt_raca')") or die (mysqli_error($connection));
 
 header("Location: cad_raca.php");    
 }

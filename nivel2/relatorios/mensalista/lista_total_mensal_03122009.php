@@ -47,9 +47,9 @@ case $mes == 12: $mes_conv="dezembro";break;
 <?php
 
  // Faz o Select pegando o registro inicial at&eacute; a quantidade de registros para p&aacute;gina
-    $sql_registros = mysql_query("SELECT * FROM tab_mensalista WHERE month(`data_banho`)= '$mes' and status=0 ORDER BY mensalista, data_banho ASC");
+    $sql_registros = mysqli_query($connection, "SELECT * FROM tab_mensalista WHERE month(`data_banho`)= '$mes' and status=0 ORDER BY mensalista, data_banho ASC");
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $txt_cod_produto = $linha_ref['cod_produto'];
 $txt_produto = $linha_ref['produto'];
@@ -64,32 +64,32 @@ $txt_data_banho = $linha_ref['data_banho'];
 
 #tab_temp_mensalista
 
-    $sql_inser_temp = mysql_query("INSERT INTO `tab_temp_mensalista` (`id`, `cod_produto`, `produto`, `cod_pet`, `mensalista`, `cod_dono`, `qtde`, `medida`, `valor`, `obs`, `usuario`, `data_banho`)VALUES(NULL, '$txt_cod_produto', '$txt_produto', '$txt_cod_pet', '$txt_mensalista', '$txt_cod_dono', '$txt_qtde', '$txt_medida', '$txt_valor', '$txt_obs', '$usuario', '$txt_data_banho')");
+    $sql_inser_temp = mysqli_query($connection, "INSERT INTO `tab_temp_mensalista` (`id`, `cod_produto`, `produto`, `cod_pet`, `mensalista`, `cod_dono`, `qtde`, `medida`, `valor`, `obs`, `usuario`, `data_banho`)VALUES(NULL, '$txt_cod_produto', '$txt_produto', '$txt_cod_pet', '$txt_mensalista', '$txt_cod_dono', '$txt_qtde', '$txt_medida', '$txt_valor', '$txt_obs', '$usuario', '$txt_data_banho')");
 
 }// fecha while($linha_ref...
 
 
-$qtde_reg = mysql_num_rows($sql_registros);
+$qtde_reg = mysqli_num_rows($sql_registros);
 
 
 if ($qtde_reg > 0){
 
-    $sql_registro2 = mysql_query("SELECT DISTINCT cod_pet, SUM(valor) as total FROM tab_temp_mensalista WHERE usuario='$usuario' GROUP BY cod_pet ORDER BY mensalista, data_banho ASC") or die (mysql_error());
+    $sql_registro2 = mysqli_query($connection, "SELECT DISTINCT cod_pet, SUM(valor) as total FROM tab_temp_mensalista WHERE usuario='$usuario' GROUP BY cod_pet ORDER BY mensalista, data_banho ASC") or die (mysqli_error($connection));
 	
 	
-while($linha_2 = mysql_fetch_array($sql_registro2)) {
+while($linha_2 = mysqli_fetch_array($sql_registro2)) {
 
 		$cod_pet_db = $linha_2['cod_pet'];
 		$total = $linha_2['total'];
 
 
-    $sql_mensal2 = mysql_query("SELECT * FROM tab_temp_mensalista WHERE usuario='$usuario' && cod_pet='$cod_pet_db' ORDER BY mensalista, data_banho ASC") or die (mysql_error());
+    $sql_mensal2 = mysqli_query($connection, "SELECT * FROM tab_temp_mensalista WHERE usuario='$usuario' && cod_pet='$cod_pet_db' ORDER BY mensalista, data_banho ASC") or die (mysqli_error($connection));
 
 
 $cor="#FFFFFF";
 
 
-while($linha_mensal2 = mysql_fetch_array($sql_mensal2)) {
+while($linha_mensal2 = mysqli_fetch_array($sql_mensal2)) {
 
 $txt_cod_produto = $linha_mensal2['cod_produto'];
 $txt_produto = $linha_mensal2['produto'];
@@ -138,7 +138,7 @@ if ($cor=="#FFFFFF"){$cor="#E6E6E6";}else{$cor="#FFFFFF";}
             </div></td>
             <td width="186" height="5"><div align="center"><?php
 echo $txt_produto;?></div></td>
-            <td width="79"><div align="center"><? echo number_format($txt_valor, 2, ',','.'); ?></div></td>
+            <td width="79"><div align="center"><?php echo number_format($txt_valor, 2, ',','.'); ?></div></td>
             <td width="208"><div align="center"><?php echo $txt_obs; ?></div></td>
           </tr>
 
@@ -184,7 +184,7 @@ $total ="";
 echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center"><b>&nbsp;N&atilde;o h&aacute; registros</b></div</font></td></tr>';
 }
 
-$sql_del = mysql_query("DELETE FROM tab_temp_mensalista WHERE usuario='$usuario'");
+$sql_del = mysqli_query($connection, "DELETE FROM tab_temp_mensalista WHERE usuario='$usuario'");
 @mysql_close();
 ?>
         </table>

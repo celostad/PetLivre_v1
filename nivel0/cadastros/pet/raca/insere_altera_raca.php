@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 require_once("../../../../conexao.php");
@@ -12,7 +12,7 @@ include("../../../../barra.php");
  **                                                                          **
  **                                                                          **
  **                                                                          **
- **                      Data de criaÁ„o:  Dez 2007                          **
+ **                      Data de cria√ß√£o:  Dez 2007                          **
  **										                                     **
  ******************************************************************************
 */
@@ -20,16 +20,16 @@ include("../../../../barra.php");
 $txt_raca = $_POST["txt_raca"];
 $txt_rad_sel = $_SESSION["rad_sel"];
 
-$sql_consulta = mysql_query("SELECT * FROM combo_raca WHERE raca like '$txt_raca'") or die (mysql_error());
+$sql_consulta = mysqli_query($connection, "SELECT * FROM combo_raca WHERE raca like '$txt_raca'") or die (mysqli_error($connection));
 
-if ($linha = mysql_fetch_array($sql_consulta)) { ?>
+if ($linha = mysqli_fetch_array($sql_consulta)) { ?>
 <script>
-alert ("AtenÁ„o!\nEssa RaÁa j· existe.\n\n")
+alert ("Aten√ß√£o!\nEssa Ra√ßa j√° existe.\n\n")
 window.location = "cad_raca.php";
 </script>
-<? }else{
+<?php }else{
 
-$sql4 = mysql_query("UPDATE combo_raca SET raca= '$txt_raca' WHERE codigo = '$txt_rad_sel'");
+$sql4 = mysqli_query($connection, "UPDATE combo_raca SET raca= '$txt_raca' WHERE codigo = '$txt_rad_sel'");
 
 
 header("Location: cad_raca.php");   

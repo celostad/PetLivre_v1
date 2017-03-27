@@ -1,18 +1,25 @@
 <?php
 
+
 $phpself = $_SERVER['PHP_SELF'];
-//$url2 = explode("petlivre/", $phpself);
+$url2 = explode("petlivre/", $phpself);
 $url = explode("/", $phpself);
 $link = sizeof($url);
 
-//echo "link: ".$link."<br>";
+echo "link: ".$link."<br>";
+
 switch ($link){
+/*
+case 1:	$pontos = "../"; $pt_lk_pg=""; break;
+case 2:	$pontos = "../../"; $pt_lk_pg="../"; break;
+case 3:	$pontos = "../../../"; $pt_lk_pg="../../"; break;
+case 4:	$pontos = "../../../../"; $pt_lk_pg="../../../"; break;
+*/
 
-case 4:	$pontos = "../"; $pt_lk_pg=""; break;
-case 5:	$pontos = "../../"; $pt_lk_pg="../"; break;
-case 6:	$pontos = "../../../"; $pt_lk_pg="../../"; break;
-case 7:	$pontos = "../../../../"; $pt_lk_pg="../../../"; break;
-
+case 5:	$pontos = "../"; $pt_lk_pg="";break;
+case 6:	$pontos = "../../"; $pt_lk_pg="../";break;
+case 7:	$pontos = "../../../"; $pt_lk_pg="../../";break;
+case 8:	$pontos = "../../../../"; $pt_lk_pg="../../../";break;
 
 }
 

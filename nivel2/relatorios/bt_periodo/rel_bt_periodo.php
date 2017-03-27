@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -45,14 +45,14 @@ $_SESSION["rad_clie"] ="";
 $_SESSION["retorno"] ="";
 
 // RECEBIDOS
-//$sql_caixa = mysql_query("SELECT produto, valor, status, data FROM `tab_caixa` where data >='$data_inicial' and data <='$data_final' and produto <>'' and status=1") or die("erro ao selecionar1");
+//$sql_caixa = mysqli_query($connection, "SELECT produto, valor, status, data FROM `tab_caixa` where data >='$data_inicial' and data <='$data_final' and produto <>'' and status=1") or die("erro ao selecionar1");
 
 // BANHOS
-$sql_banhos = mysql_query("SELECT * FROM `tab_caixa` WHERE status=1 and produto like '%Banho%' and (data BETWEEN '$data_inicial' AND '$data_final')") or die("erro ao selecionar: sql_banhos");
-$qtde_banhos = mysql_num_rows($sql_banhos);
+$sql_banhos = mysqli_query($connection, "SELECT * FROM `tab_caixa` WHERE status=1 and produto like '%Banho%' and (data BETWEEN '$data_inicial' AND '$data_final')") or die("erro ao selecionar: sql_banhos");
+$qtde_banhos = mysqli_num_rows($sql_banhos);
 
-$sql_banhos_mensalista = mysql_query("SELECT * FROM `tab_mensalista` WHERE produto like '%Banho%' and (data_banho BETWEEN '$data_inicial' AND '$data_final')") or die("erro ao selecionar: sql_banhos_mensalista");
-$qtde_banhos_mensal = mysql_num_rows($sql_banhos_mensalista);
+$sql_banhos_mensalista = mysqli_query($connection, "SELECT * FROM `tab_mensalista` WHERE produto like '%Banho%' and (data_banho BETWEEN '$data_inicial' AND '$data_final')") or die("erro ao selecionar: sql_banhos_mensalista");
+$qtde_banhos_mensal = mysqli_num_rows($sql_banhos_mensalista);
 
 ?>
 <html>
@@ -71,10 +71,10 @@ document.form.submit();
 <body>
   <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+      <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
       <td width="589"  valign="top">
 <?
 echo "Periodo entre: <font size=2>".$data_periodo_inicial."</font>&nbsp;&nbsp;á&nbsp;&nbsp;<font size=2>".$data_periodo_final."</font><br><br>";
@@ -94,7 +94,7 @@ echo "Periodo entre: <font size=2>".$data_periodo_inicial."</font>&nbsp;&nbsp;á&
     </tr>
     <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
     </tr>
 </table>

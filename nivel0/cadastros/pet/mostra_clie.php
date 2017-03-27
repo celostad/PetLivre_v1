@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../barra.php");
@@ -11,9 +11,9 @@ $checa_vazio2 = $_SESSION["checa_rad_vazio2"];
 
 if ($checa_vazio2 ==""){
 
-$sql_ref1 = mysql_query("SELECT * FROM `tab_clie` WHERE nome='$txt_dono'") or die("erro ao selecionar1");
+$sql_ref1 = mysqli_query($connection, "SELECT * FROM `tab_clie` WHERE nome='$txt_dono'") or die("erro ao selecionar1");
 
-if ($linha_ref1 = mysql_fetch_array($sql_ref1)){
+if ($linha_ref1 = mysqli_fetch_array($sql_ref1)){
 
 $txt_cod_dono = $linha_ref1['codigo'];
 }
@@ -37,9 +37,9 @@ include("checagem/checa_alteracao.php");
 }
 
 
-$sql_ref_2 = mysql_query("SELECT * FROM `tab_temp_pet` WHERE user_cadastro='$usuario'") or die("erro ao selecionar1");
+$sql_ref_2 = mysqli_query($connection, "SELECT * FROM `tab_temp_pet` WHERE user_cadastro='$usuario'") or die("erro ao selecionar1");
 
-if ($linha_ref_2 = mysql_fetch_array($sql_ref_2)){
+if ($linha_ref_2 = mysqli_fetch_array($sql_ref_2)){
 
 $dados_check_animal = $linha_ref_2['dados_check'];
 }
@@ -48,9 +48,9 @@ $dados_check_animal = $linha_ref_2['dados_check'];
 
 
 // PEGA O NOME DO ANIMAL
-$sql_ref3 = mysql_query("SELECT * FROM `tab_pet` WHERE codigo='$rad_sel_visl'") or die("erro ao selecionar sql_ref1");
+$sql_ref3 = mysqli_query($connection, "SELECT * FROM `tab_pet` WHERE codigo='$rad_sel_visl'") or die("erro ao selecionar sql_ref1");
 
-if ($linha_ref3 = mysql_fetch_array($sql_ref3)) {
+if ($linha_ref3 = mysqli_fetch_array($sql_ref3)) {
 
 $txt_codigo_animal = $linha_ref3['codigo'];
 $txt_nome_animal = $linha_ref3['nome'];
@@ -91,7 +91,7 @@ $txt_dono_tab = $linha_ref3['dono'];
 <form name="frmAjax" method="POST">
   <table width="400" border="0" bordercolor="#cccccc" height="100" align="center" cellpadding="0" cellspacing="0">
     <tr>
-      <td width="634" height="20" colspan="3"><div align="left"><span class="style19">&nbsp;&nbsp;C&oacute;digo:&nbsp;</span><span class="link1 style21">&nbsp;<? echo $txt_codigo_animal; ?> </span><span class="style19">&nbsp;&nbsp;&nbsp;&nbsp;Animal:</span>&nbsp;<span class="link1 style21"><? echo $txt_nome_animal; ?></span></div></td>
+      <td width="634" height="20" colspan="3"><div align="left"><span class="style19">&nbsp;&nbsp;C&oacute;digo:&nbsp;</span><span class="link1 style21">&nbsp;<?php echo $txt_codigo_animal; ?> </span><span class="style19">&nbsp;&nbsp;&nbsp;&nbsp;Animal:</span>&nbsp;<span class="link1 style21"><?php echo $txt_nome_animal; ?></span></div></td>
     </tr>
     <tr>
       <td height="10" colspan="3"></td>
@@ -116,9 +116,9 @@ $txt_dono_tab = $linha_ref3['dono'];
     
 // PEGA OS DADOS DO ANIMAL
 
-$sql_registros = mysql_query("SELECT * FROM tab_clie WHERE nome='$txt_dono_tab' ORDER BY nome");
+$sql_registros = mysqli_query($connection, "SELECT * FROM tab_clie WHERE nome='$txt_dono_tab' ORDER BY nome");
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $cod = $linha_ref['codigo'];
 $txt_nome = $linha_ref['nome'];
@@ -129,9 +129,9 @@ if ($txt_ddd_tel==""){$txt_ddd_tel= $linha_ref['ddd_cel'];}
 if ($txt_tel==""){$txt_tel= $linha_ref['cel'];}
 
 ?>
-                <td><div align="center" class="style11 style8"><? echo $cod; ?> </div></td>
-                <td height="8"><div align="center" class="style11 style8"><? echo $txt_nome; ?> </div></td>
-                <td><div align="center" class="style11 style8">( <? echo $txt_ddd_tel; ?> ) <? echo $txt_tel; ?> </div></td>
+                <td><div align="center" class="style11 style8"><?php echo $cod; ?> </div></td>
+                <td height="8"><div align="center" class="style11 style8"><?php echo $txt_nome; ?> </div></td>
+                <td><div align="center" class="style11 style8">( <?php echo $txt_ddd_tel; ?> ) <?php echo $txt_tel; ?> </div></td>
                 <td><div align="center">
                     <input name="rad_clie" type="radio" value="<?=$cod;?>">
                 </div></td>

@@ -27,21 +27,21 @@
   <tr>
     <td width="133" height="20" class="style9"><div align="center" class="style10">Sistema Gerencial </div></td>
     <td width="452" rowspan="2"><div align="center">
-      <table width="452" height="98" border="1" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC">
+      <table width="452" height="80" border="1" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC">
         <tr>
-          <td><img src="<?=$pontos;?>imagens/titulo.jpg" width="452" height="96" /></td>
+          <!-- <td><img src="<?=$pontos;?>imagens/titulo.jpg" width="452" height="80" /></td> -->
         </tr>
       </table>
     </div></td>
-    <td width="120" height="100" rowspan="2" background="<?=$pontos;?>imagens/dir_titulo_cima.jpg"><table width="120" height="98" border="0" align="center" cellpadding="1" cellspacing="1">
+    <td width="120" height="100" rowspan="2" background="<?=$pontos;?>imagens/dir_titulo_cima.jpg"><table width="120" height="80" border="0" align="center" cellpadding="1" cellspacing="1">
         <tr>
-          <td height="52" valign="middle">
-              <div align="left"><font class="style9">&nbsp;&nbsp;Ol·, &nbsp;</font><font class="style8"><? echo strtoupper($usuario);?></font></div>
+          <td height="32" valign="middle">
+              <div align="left"><font class="style9">&nbsp;&nbsp;Ol√°, &nbsp;</font><font class="style8"><?php echo strtoupper($usuario);?></font></div>
 	    </td>
         </tr>
         <tr>
           <td height="21" valign="middle"><div align="center">
-	      Alterar Cadastro</div></td>
+	      <span style="font-size: 12px;">Alterar Cadastro</span></div></td>
         </tr>
         <tr>
           <td height="21" valign="top">

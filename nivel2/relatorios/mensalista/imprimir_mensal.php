@@ -37,17 +37,17 @@ $mes = $_POST['sel_mes'];
 <?php
 
  // Faz o Select pegando o registro inicial at&eacute; a quantidade de registros para p&aacute;gina
-    $sql_registros = mysql_query("SELECT * FROM tab_mensalista WHERE month(`data_banho`)= '$mes' and status=0 ORDER BY mensalista, data_banho ASC");
+    $sql_registros = mysqli_query($connection, "SELECT * FROM tab_mensalista WHERE month(`data_banho`)= '$mes' and status=0 ORDER BY mensalista, data_banho ASC");
 
    
 $cor="#FFFFFF";
 $nro =0;
 $conta_cabec =1;
 
-$qtde_reg = mysql_num_rows($sql_registros);
+$qtde_reg = mysqli_num_rows($sql_registros);
 
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $cod = $linha_ref['id'];
 $txt_cod_produto = $linha_ref['cod_produto'];
@@ -103,7 +103,7 @@ echo '<font color="#0000FF">'.$txt_data_banho.'</font>';
             <td width="186" height="5" class="info"><div align="center"><?php
 echo '<font color="#0000FF">'.$txt_produto.'</font>';
 ?></div></td>
-            <td width="79" class="info"><div align="center"><? echo number_format($txt_valor, 2, ',','.'); ?></div></td>
+            <td width="79" class="info"><div align="center"><?php echo number_format($txt_valor, 2, ',','.'); ?></div></td>
             <td width="208" class="info"><div align="center"><?php echo $txt_obs; ?></div></td>
 <?php
 
@@ -138,7 +138,7 @@ echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center">
             <td width="175" class="info">&nbsp;</td>
             <td width="218" class="info"><div align="center"></div></td>
             <td width="135" colspan="3" class="info"><div align="center"><font color="#FFFFFF">
-			<? echo number_format($total1, 2, ',','.');?></font></div></td>
+			<?php echo number_format($total1, 2, ',','.');?></font></div></td>
           </tr>
       </table>
 	  </td>

@@ -37,8 +37,8 @@ $mes = "07";
           </tr>
 <?php
 /*
-	    $sql_somatoria = mysql_query("SELECT * FROM tab_mensalista WHERE status=0 and data_banho='$data_atual'");
-		while($linha_somatoria = mysql_fetch_array($sql_somatoria)) {
+	    $sql_somatoria = mysqli_query($connection, "SELECT * FROM tab_mensalista WHERE status=0 and data_banho='$data_atual'");
+		while($linha_somatoria = mysqli_fetch_array($sql_somatoria)) {
 		$txt_valor1 = $linha_somatoria['valor'];
 		$total1 += $txt_valor1;
 		}
@@ -46,12 +46,12 @@ $mes = "07";
 
     
  // Faz o Select pegando o registro inicial at&eacute; a quantidade de registros para p&aacute;gina
-    $sql_registros = mysql_query("SELECT * FROM tab_mensalista WHERE month(`data_banho`)= '$mes' and status=0 ORDER BY mensalista, data_banho ASC");
+    $sql_registros = mysqli_query($connection, "SELECT * FROM tab_mensalista WHERE month(`data_banho`)= '$mes' and status=0 ORDER BY mensalista, data_banho ASC");
 
    
 $cor="#FFFFFF";
 $nro =0;
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $cod = $linha_ref['id'];
 $txt_cod_produto = $linha_ref['cod_produto'];
@@ -72,7 +72,7 @@ $nro++;
           <tr bgcolor="<?=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
 ?>" class="info" onmouseover="this.style.backgroundColor='#66FF66'" onmouseout="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
-            <td width="35" height="5" class="info"><div align="center">&nbsp;<? echo $nro; ?></div></td>
+            <td width="35" height="5" class="info"><div align="center">&nbsp;<?php echo $nro; ?></div></td>
             <td width="150" height="5" class="info"><div align="center">
               <?php
 echo '<font color="#0000FF">'.$txt_data_banho.'</font>';
@@ -82,8 +82,8 @@ echo '<font color="#0000FF">'.$txt_data_banho.'</font>';
               <?php
 echo '<font color="#0000FF">'.$txt_produto.'</font>';
 ?></td>
-            <td width="137" class="info"><div align="center"><? echo $txt_mensalista; ?></div></td>
-            <td width="97" class="info"><div align="center">&nbsp;<? echo number_format($txt_valor, 2, ',','.'); ?></div></td>
+            <td width="137" class="info"><div align="center"><?php echo $txt_mensalista; ?></div></td>
+            <td width="97" class="info"><div align="center">&nbsp;<?php echo number_format($txt_valor, 2, ',','.'); ?></div></td>
             <?php }
 if ($linha_ref==""){
 
@@ -106,7 +106,7 @@ echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center">
             <td width="175" class="info">&nbsp;</td>
             <td width="218" class="info"><div align="center"></div></td>
             <td width="135" colspan="3" class="info"><div align="center"><font color="#FFFFFF">
-			<? echo number_format($total1, 2, ',','.');?></font></div></td>
+			<?php echo number_format($total1, 2, ',','.');?></font></div></td>
           </tr>
       </table></td>
     </tr>

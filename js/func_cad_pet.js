@@ -244,7 +244,7 @@ var f = ""
 //window.opener.location.submit();
 
 
-var minhapopup = window.open("busca_cad_pet.php","pop_consulta","width=420,height=150,scrollbars=auto,status=0");
+var minhapopup = window.open("busca_cad_pet.php","pop_consulta","width=550,height=150,scrollbars=auto,status=0");
 minhapopup.focus();
 }
 
@@ -368,7 +368,7 @@ var f = ""
 
 //window.opener.location.submit();
 
-var minhapopup = window.open("popup_anexa_foto.php","pop_post_anexa_foto","width=240,height=200,scrollbars=no,status=0");
+var minhapopup = window.open("popup_anexa_foto.php","pop_post_anexa_foto","width=400,height=200,scrollbars=no,status=0");
 /*
 document.form.action='checagem/fecha_popup_busca_clie.php';
 document.form.target="_self";
@@ -445,7 +445,7 @@ if (document.form.txt_data_nasc.value.length <10){
 }
 }
 
-var minhapopup = window.open('raca/pre_grava_variaveis_bd.php','pop_raca','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('raca/pre_grava_variaveis_bd.php','pop_raca','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='raca/pre_grava_variaveis_bd.php';
 document.form.target="pop_raca";
 document.form.submit();
@@ -460,7 +460,7 @@ var temp
 var ok = true;
 var f = ""
 
-var minhapopup = window.open('../animal/raca/grava_variaveis_bd.php','pop_raca2','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('../animal/raca/grava_variaveis_bd.php','pop_raca2','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='../animal/raca/grava_variaveis_bd.php';
 document.form.target="pop_raca2";
 document.form.submit();
@@ -545,7 +545,7 @@ var f = ""
 
 //window.opener.location.submit();
 
-var minhapopup = window.open("popup_anexa_foto.php","pop_post_anexa_foto","width=240,height=200,scrollbars=no,status=0");
+var minhapopup = window.open("popup_anexa_foto.php","pop_post_anexa_foto","width=400,height=200,scrollbars=no,status=0");
 minhapopup.focus();
 }
 
@@ -577,7 +577,7 @@ if (document.form.txt_data_nasc.value.length <10){
 }
 }
 
-var minhapopup = window.open('cor/grava_variaveis_bd.php','pop_cor','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('cor/grava_variaveis_bd.php','pop_cor','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='cor/grava_variaveis_bd.php';
 document.form.target="pop_cor";
 document.form.submit();
@@ -592,7 +592,7 @@ var digits="0123456789"
 var temp 
 var ok = true;
 var f = ""
-var minhapopup = window.open('../pet/cor/grava_variaveis_bd.php','pop_cor2','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('../pet/cor/grava_variaveis_bd.php','pop_cor2','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='../pet/cor/grava_variaveis_bd.php';
 document.form.target="pop_cor2";
 document.form.submit();

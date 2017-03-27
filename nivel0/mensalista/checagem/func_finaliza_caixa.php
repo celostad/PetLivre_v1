@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -11,7 +11,7 @@ $data_atual = Convert_Data_Port_Ingl($entrada);
 
 // FINALIZA O CAIXA
 
-$sql_final = mysql_query("UPDATE `tab_caixa` SET status=1, usuario_final='$usuario', data_finalizacao='$data_atual' WHERE status=0");
+$sql_final = mysqli_query($connection, "UPDATE `tab_caixa` SET status=1, usuario_final='$usuario', data_finalizacao='$data_atual' WHERE status=0");
 
 header("location: ../index_caixa.php");
      

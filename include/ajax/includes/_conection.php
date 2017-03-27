@@ -1,4 +1,4 @@
-<? include('_GLOBALS.php'); ?>
+<?php include('_GLOBALS.php'); ?>
 <?
 //Seta variaveis de conexao com banco
 $host		= "localhost";

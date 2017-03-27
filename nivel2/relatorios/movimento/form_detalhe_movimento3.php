@@ -50,10 +50,10 @@ document.form.submit();
 $cor ="#FFFFFF";
 $nro =0;
 
-$sql2 = mysql_query("SELECT * FROM `tab_caixa` WHERE status=1 && (data BETWEEN '$data_inicial_hidden' AND '$data_final_hidden') && cod_produto <>0") or die("erro ao selecionar a tabela: SQL2");
+$sql2 = mysqli_query($connection, "SELECT * FROM `tab_caixa` WHERE status=1 && (data BETWEEN '$data_inicial_hidden' AND '$data_final_hidden') && cod_produto <>0") or die("erro ao selecionar a tabela: SQL2");
 
 
-while ($linha2 = mysql_fetch_array($sql2)) {
+while ($linha2 = mysqli_fetch_array($sql2)) {
 
 $txt_valor = $linha2['valor'];
 $soma += $txt_valor;
@@ -95,9 +95,9 @@ echo $linha2['produto'];
 	  
 	  $cod_especie = $linha2['especie'];
 	  
-	  $sql4 = mysql_query("SELECT * FROM `combo_especie` WHERE codigo='$cod_especie'") or die("erro ao selecionar a tabela: SQL4");
+	  $sql4 = mysqli_query($connection, "SELECT * FROM `combo_especie` WHERE codigo='$cod_especie'") or die("erro ao selecionar a tabela: SQL4");
 
-	if($linha4 = mysql_fetch_array($sql4)) {
+	if($linha4 = mysqli_fetch_array($sql4)) {
 	  
 	  echo $linha4['especie'];
 	}

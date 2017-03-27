@@ -92,7 +92,7 @@ var f = ""
 
 //window.opener.location.submit();
 
-var minhapopup = window.open("busca_cad_clie.php","pop_consulta","width=420,height=90,scrollbars=auto,status=0");
+var minhapopup = window.open("busca_cad_clie.php","pop_consulta","width=500,height=90,scrollbars=auto,status=0");
 minhapopup.focus();
 }
 
@@ -430,7 +430,7 @@ if (document.form.txt_data_nasc_clie.value.length <10){
 }
 }
 
-var minhapopup = window.open('../clie/bairro/grava_variaveis_bd.php','pop_bairro','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('../clie/bairro/grava_variaveis_bd.php','pop_bairro','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='../clie/bairro/grava_variaveis_bd.php';
 document.form.target="pop_bairro";
 document.form.submit();
@@ -455,7 +455,7 @@ if (document.form.txt_data_nasc_clie.value.length <10){
 }
 }
 
-var minhapopup = window.open('../clie/cidade/grava_variaveis_bd.php','pop_cidade','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('../clie/cidade/grava_variaveis_bd.php','pop_cidade','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='../clie/cidade/grava_variaveis_bd.php';
 document.form.target="pop_cidade";
 document.form.submit();
@@ -485,7 +485,7 @@ if (document.form.txt_data_nasc_clie.value.length <10){
 }
 }
 
-var minhapopup = window.open('bairro/grava_variaveis_bd.php','pop_bairro','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('bairro/grava_variaveis_bd.php','pop_bairro','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='bairro/grava_variaveis_bd.php';
 document.form.target="pop_bairro";
 document.form.submit();
@@ -582,7 +582,7 @@ if (document.form.txt_data_nasc_clie.value.length <10){
 }
 }
 
-var minhapopup = window.open('cidade/grava_variaveis_bd.php','pop_bairro','width=420,height=220,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('cidade/grava_variaveis_bd.php','pop_bairro','width=550,height=220,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='cidade/grava_variaveis_bd.php';
 document.form.target="pop_bairro";
 document.form.submit();

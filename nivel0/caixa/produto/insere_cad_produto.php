@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 require_once("../../../conexao.php");
@@ -18,7 +18,7 @@ function Convert_Data_Port_Ingl($entradata){
     return $saida_data;
 }
 
-$sql2 = mysql_query("INSERT INTO `tab_produto` (`codigo`, `produto`, `categoria`) VALUES (NULL, '$txt_produto', '$sel_categoria')") or die (mysql_error());
+$sql2 = mysqli_query($connection, "INSERT INTO `tab_produto` (`codigo`, `produto`, `categoria`) VALUES (NULL, '$txt_produto', '$sel_categoria')") or die (mysqli_error($connection));
 
 header("Location: cad_produto.php");    
 //  -------------------------------------------------------------------------------------------

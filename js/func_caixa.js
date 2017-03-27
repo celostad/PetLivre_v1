@@ -146,7 +146,7 @@ var f = ""
 
 if (document.form.txt_produto.value =="-- Incluir  /  Alterar --"){
 
-var minhapopup = window.open('produto/grava_variaveis_bd.php','pop_produto','width=490,height=300,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('produto/grava_variaveis_bd.php','pop_produto','width=520,height=300,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='produto/grava_variaveis_bd.php';
 document.form.target="pop_produto";
 document.form.submit();
@@ -171,7 +171,7 @@ var ok = true;
 var f = ""
 
 if (document.form.txt_material.value =="-- Incluir  /  Alterar --"){
-var minhapopup = window.open('material/grava_variaveis_bd.php','pop_material','width=490,height=300,scrollbars=yes,status=0,top=0,left=100');
+var minhapopup = window.open('material/grava_variaveis_bd.php','pop_material','width=520,height=300,scrollbars=yes,status=0,top=0,left=100');
 document.form.action='material/grava_variaveis_bd.php';
 document.form.target="pop_material";
 document.form.submit();

@@ -1,4 +1,4 @@
-<?
+<?php
 echo "
 <script>
 //custom style 2
@@ -8,14 +8,14 @@ var mm3 = new TMainMenu('mm3','vertical');
 var pmhome35 = new TPopMenu('Principal','".$pontos."imagens/botao_menu/home.gif','a','".$pt_lk_pg."index_menu.php','Retorna a tela inicial');
 
 
-var pmopcao_user = new TPopMenu('Usuários','".$pontos."imagens/botao_menu/usuarios.gif','','','Menu de Usuários');
-	var pmopcao_user_caduser = new TPopMenu('Cadastro de usuário','','a','".$pt_lk_pg."caduser/index_caduser.php','Cadastra novo usuário');
+var pmopcao_user = new TPopMenu('Usu&aacute;rios','".$pontos."imagens/botao_menu/usuarios.gif','','','Menu de Usu&aacute;rios');
+	var pmopcao_user_caduser = new TPopMenu('Cadastro de usu&aacute;rio','','a','".$pt_lk_pg."caduser/index_caduser.php','Cadastra novo usu&aacute;rio');
 
-var pmcartao30 = new TPopMenu('Cartão','".$pontos."imagens/botao_menu/cartao.gif','','','');
-    var pmcartao30_lanca = new TPopMenu('Lançar Movimento','','a','".$pt_lk_pg."relatorios/bt_periodo/index_bt_periodo.php','Lança os movimentos diarios do cartão');
+var pmcartao30 = new TPopMenu('Cart&atilde;o','".$pontos."imagens/botao_menu/cartao.gif','','','');
+    var pmcartao30_lanca = new TPopMenu('Lan&ccedil;ar Movimento','','a','".$pt_lk_pg."relatorios/bt_periodo/index_bt_periodo.php','Lança os movimentos diarios do cartão');
 	var pmcartao30_visualizar = new TPopMenu('Visualizar movimentos','','a','".$pt_lk_pg."caixa/movimento/index_movimento.php','Movimento do Caixa por período');    
 
-var pmrelatorios30 = new TPopMenu('Relatórios','".$pontos."imagens/botao_menu/ramo.gif','','','');
+var pmrelatorios30 = new TPopMenu('Relat&oacute;rios','".$pontos."imagens/botao_menu/ramo.gif','','','');
     var pmrelatorios30_movibanho = new TPopMenu('Banho e Tosa','','a','".$pt_lk_pg."relatorios/bt_periodo/index_bt_periodo.php','Movimento do Banho e Tosa por período');
 	var pmrelatorios30_movicaixa = new TPopMenu('Caixa','','a','".$pt_lk_pg."relatorios/movimento/index_movimento.php','Movimento do Caixa por período');
 	var pmrelatorios30_mensalista = new TPopMenu('mensalista','','a','".$pt_lk_pg."relatorios/mensalista/index_mensalista.php','Movimento dos Mensalistas');

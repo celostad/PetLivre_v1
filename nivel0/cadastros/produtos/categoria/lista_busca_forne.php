@@ -10,11 +10,11 @@ $h = getdate(); //variavel recebe a data
 $data_atual = $hoje = $h['mday']."/".$mes = $h['mon']."/".$ano = $h['year'];
 
 
-$sql = mysql_query("SELECT * FROM `tab_fornecedor` WHERE $sel_tipo_pesq like '%$txt_descricao_pesq%'") or die("erro ao selecionar");
+$sql = mysqli_query($connection, "SELECT * FROM `tab_fornecedor` WHERE $sel_tipo_pesq like '%$txt_descricao_pesq%'") or die("erro ao selecionar");
 
-//if ($linha = mysql_fetch_array($sql)) {
+//if ($linha = mysqli_fetch_array($sql)) {
 
-$linhas=mysql_num_rows($sql);
+$linhas=mysqli_num_rows($sql);
 if($linhas>0){
 
 
@@ -74,18 +74,18 @@ echo '<script type="text/javascript" src="'.$pontos.'js/func_cad_forne.js"></scr
             <?		  
     
  // Faz o Select pegando o registro inicial at&eacute; a quantidade de registros para p&aacute;gina
-    $sql_registros = mysql_query("SELECT * FROM tab_fornecedor WHERE $sel_tipo_pesq like '%$txt_descricao_pesq%' ORDER BY razao_social ASC LIMIT $inicio, $total_reg");
+    $sql_registros = mysqli_query($connection, "SELECT * FROM tab_fornecedor WHERE $sel_tipo_pesq like '%$txt_descricao_pesq%' ORDER BY razao_social ASC LIMIT $inicio, $total_reg");
 
 // Serve para contar quantos registros voc&ecirc; tem na seua tabela para fazer a pagina&ccedil;&atilde;o
-    $sql_conta = mysql_query("SELECT * FROM tab_fornecedor WHERE $sel_tipo_pesq like '%$txt_descricao_pesq%'");
+    $sql_conta = mysqli_query($connection, "SELECT * FROM tab_fornecedor WHERE $sel_tipo_pesq like '%$txt_descricao_pesq%'");
     
-    $quantreg = mysql_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
+    $quantreg = mysqli_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
     
  $tp = ceil($quantreg/$total_reg);    
    
 $cor="#FFFFFF";
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $cod = $linha_ref['codigo'];
 $txt_razao_social = $linha_ref['razao_social'];
@@ -105,14 +105,14 @@ $cor=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6";
             <tr bgcolor="<?=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
 ?>" class="info" onmouseover="this.style.backgroundColor='#66FF66'" onmouseout="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
-              <td width="31" class="info"><div align="center"><? echo $cod; ?></div></td>
-              <td width="205" height="5" class="info"><div align="center">&nbsp;<? echo $txt_razao_social; ?></div></td>
-              <td width="165" height="5" class="info"><div align="center">&nbsp;<? echo $txt_email; ?></div></td>
+              <td width="31" class="info"><div align="center"><?php echo $cod; ?></div></td>
+              <td width="205" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_razao_social; ?></div></td>
+              <td width="165" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_email; ?></div></td>
               <td width="110" class="info"><div align="center">&nbsp;
-                    <? if (!empty($txt_ddd_tel)){echo "(".$txt_ddd_tel.") ".$txt_tel;} ?>
+                    <?php if (!empty($txt_ddd_tel)){echo "(".$txt_ddd_tel.") ".$txt_tel;} ?>
               </div></td>
               <td width="62" height="5" colspan="2" class="info"><div align="center">
-                <? 
+                <?php 
 if ($nivel >1){echo '<a href="javascript:checar(\'deleta_forne.php?id='.$cod.'\');"><img src="'.$pontos.'imagens/delete.gif" border="0" alt="Apagar registro" title="Apagar registro"></a>&nbsp;';
 }else{echo'&nbsp;&nbsp;&nbsp;&nbsp;';}
 
@@ -158,7 +158,7 @@ $reg="registros"; $enc ="encontrados";
                   </map>
           </div></td>
           <td width="235" class="info"><div align="center">
-              <? // Chama o arquivo que monta a pagina&ccedil;&atilde;o
+              <?php // Chama o arquivo que monta a pagina&ccedil;&atilde;o
 if ($quantreg >=10){include("paginacao.php");}
 ?>
               <br />
@@ -183,7 +183,7 @@ echo "</font>";
       </div></td>
     </tr>
     <tr>
-      <td height="20" colspan="5"><div align="center">Total de&nbsp;<strong><font color="#5D8FC0"><? echo  $quantreg; ?></font>&nbsp;</strong>&nbsp;<? echo $reg; ?>&nbsp;<? echo $enc; ?>&nbsp;para&nbsp;<strong><font color="#5D8FC0"><? echo $txt_descricao_pesq; ?></font></strong></div></td>
+      <td height="20" colspan="5"><div align="center">Total de&nbsp;<strong><font color="#5D8FC0"><?php echo  $quantreg; ?></font>&nbsp;</strong>&nbsp;<?php echo $reg; ?>&nbsp;<?php echo $enc; ?>&nbsp;para&nbsp;<strong><font color="#5D8FC0"><?php echo $txt_descricao_pesq; ?></font></strong></div></td>
     </tr>
   </table>
 </form>

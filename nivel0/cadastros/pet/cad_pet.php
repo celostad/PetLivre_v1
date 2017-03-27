@@ -1,7 +1,8 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
+include($pontos."include/mostra_erros.php");
 include($pontos."barra.php");
 include($pontos."conexao.php");
 include("checagem/func_data.php");
@@ -12,10 +13,12 @@ $nivel = $_SESSION["sessao_nivel"];
 $rad_sel_visl = $_SESSION["rad_sel_visl"];
 $retorno = $_SESSION["retorno"];
 
-if (empty($rad_sel_visl)){
-$rad_sel_visl = $_GET["id"];
-//$_GET['codigo'] = $rad_sel_visl;
-}
+if(!isset($_GET["id"])){$_GET["id"] ='';}
+if(!isset($_GET["codigo"])){$_GET["codigo"] ='';}
+if(!isset($_GET["check_cad_clie"])){$_GET["check_cad_clie"] ='';}
+if(!isset($_GET["ret"])){$_GET["ret"] ='';}
+
+if (empty($rad_sel_visl)){$rad_sel_visl = $_GET["id"];}
 
 
 //if (!empty($_GET['id'])){$rad_sel_visl = $_GET['id'];}
@@ -54,18 +57,18 @@ if ($nivel ==3){$nivel_conv="Administrador";}
 <body>
 <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
   <tr>
-    <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+    <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
   </tr>
   <tr>
-    <td width="140" height="282" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+    <td width="140" height="282" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
     <td width="593" valign="top">
       <div align="right">
-        <? include("form_cad_pet.php"); ?>
+        <?php include("form_cad_pet.php"); ?>
     </div></td>
   </tr>
   <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
   </tr>
 </table>

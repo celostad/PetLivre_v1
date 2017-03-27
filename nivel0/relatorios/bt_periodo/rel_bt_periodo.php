@@ -1,4 +1,8 @@
-<?
+<?php
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
+
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -11,7 +15,7 @@ $nivel = $_SESSION["sessao_nivel"];
 //$checa_retorno = $_SESSION["checa_retorno"];
 
 if ($nivel ==1){echo '<script>
-alert("                          AtenÁ„o!\n\nVocÍ n„o tem permiss„o para visualizar esta p·gina.\n\n")
+alert("                          Aten√ß√£o!\n\nVoc√™ n√£o tem permiss√£o para visualizar esta p√°gina.\n\n")
 window.location = "../../index_menu.php"
 </script>';
 }
@@ -36,7 +40,7 @@ $data_final = $ano_final."-".$mes_final."-".$dia_final;
 $data_periodo_inicial = $dia_inicial." / ".$mes_inicial." / ".$ano_inicial;
 $data_periodo_final = $dia_final." / ".$mes_final." / ".$ano_final;
 
-// APAGA OS DADOS DAS VARI¡VEIS
+// APAGA OS DADOS DAS VARI√ÅVEIS
 
 $_SESSION["rad_sel_visl"] ="";
 $_SESSION["rad_animal_clie"] ="";
@@ -45,10 +49,10 @@ $_SESSION["rad_clie"] ="";
 $_SESSION["retorno"] ="";
 
 // RECEBIDOS
-//$sql_caixa = mysql_query("SELECT produto, valor, status, data FROM `tab_caixa` where data >='$data_inicial' and data <='$data_final' and produto <>'' and status=1") or die("erro ao selecionar1");
-$sql_caixa = mysql_query("SELECT * FROM `tab_caixa` WHERE status=1 and cod_produto <=10 and cod_produto <>0 and (data BETWEEN '$data_inicial' AND '$data_final')") or die("erro ao selecionar1");
+//$sql_caixa = mysqli_query($connection, "SELECT produto, valor, status, data FROM `tab_caixa` where data >='$data_inicial' and data <='$data_final' and produto <>'' and status=1") or die("erro ao selecionar1");
+$sql_caixa = mysqli_query($connection, "SELECT * FROM `tab_caixa` WHERE status=1 and cod_produto <=10 and cod_produto <>0 and (data BETWEEN '$data_inicial' AND '$data_final')") or die("erro ao selecionar - sql_caixa [rel_bt_periodo.php]");
 
-$qtde = mysql_num_rows($sql_caixa);
+$qtde = mysqli_num_rows($sql_caixa);
 
 ?>
 <html>
@@ -67,13 +71,13 @@ document.form.submit();
 <body>
   <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+      <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
       <td width="589"  valign="top">
-<?
-echo "Periodo entre: <font size=2>".$data_periodo_inicial."</font>&nbsp;&nbsp;·&nbsp;&nbsp;<font size=2>".$data_periodo_final."</font><br><br>";
+<?php
+echo "Periodo entre: <font size=2>".$data_periodo_inicial."</font>&nbsp;&nbsp;√°&nbsp;&nbsp;<font size=2>".$data_periodo_final."</font><br><br>";
 
    echo "<br><font size=2 color=0000FF><b>Total de Banhos: &nbsp;&nbsp;".$qtde."</b></font>";
    echo "<br>";
@@ -88,7 +92,7 @@ echo "Periodo entre: <font size=2>".$data_periodo_inicial."</font>&nbsp;&nbsp;·&
     </tr>
     <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
     </tr>
 </table>

@@ -18,8 +18,8 @@ if ($nivel ==3){$nivel_conv="Administrador";}
 $data_atual = Convert_Data_Port_Ingl($data_atual2);
 $txt_cod_pet = $_GET['cod_pet'];
 
-$sql1 = mysql_query("SELECT * FROM tab_mensalista WHERE cod_pet='$txt_cod_pet'") or print("Erro ao ler a tabela: tab_mensalista".mysql_error());
-	if($pega1 = mysql_fetch_array($sql1)){
+$sql1 = mysqli_query($connection, "SELECT * FROM tab_mensalista WHERE cod_pet='$txt_cod_pet'") or print("Erro ao ler a tabela: tab_mensalista".mysqli_error($connection));
+	if($pega1 = mysqli_fetch_array($sql1)){
 	$mensalista = $pega1['mensalista'];
 }
 
@@ -58,7 +58,7 @@ document.form.submit();
     <form name="form" enctype="multipart/form-data" method="POST">
 	<tr>
 	
-      <td width="547" height="22" valign="top" bordercolor="#333333" bgcolor="#CCCCCC"><div align="center" class="style3"><strong> <? echo "Mensalistas (Pagamento)  - ";?> 
+      <td width="547" height="22" valign="top" bordercolor="#333333" bgcolor="#CCCCCC"><div align="center" class="style3"><strong> <?php echo "Mensalistas (Pagamento)  - ";?> 
 <?php $h = getdate(); //variavel recebe a data
 $data_atual = $hoje = $h['mday']."/".$mes = $h['mon']."/".$ano = $h['year'];
 echo $data_atual;
@@ -86,12 +86,12 @@ echo $data_atual;
               <td width="70"><div align="right"><strong><font size="2">Esp&eacute;cie</font></strong></div></td>
               <td width="290" height="20"><div align="left"><font size="2"><b><font face="Times New Roman, Times, serif" size="2"></a></font></b></font><font size="2"><b><font face="Times New Roman, Times, serif" size="2"><strong><font size="2">
                   <?
-$sql_4 = mysql_query("select codigo, especie from combo_especie ORDER BY codigo ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql_4 = mysqli_query($connection, "select codigo, especie from combo_especie ORDER BY codigo ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 echo "<select name='txt_especie' tabindex='5' id='txt_especie'";
 echo "<option value='".$txt_cod_especie."'>".$txt_especie."</option>";
 echo "<option>"."</option>";
-while($pega4 = mysql_fetch_array($sql_4)){
+while($pega4 = mysqli_fetch_array($sql_4)){
 echo "<option value='".$pega4['codigo']."'>".$pega4['especie']."</option>";
 }
 echo "</select>";
@@ -106,8 +106,8 @@ echo "</select>";
           <td width="424" height="61"><table width="100%" height="68" border="0" cellpadding="1" cellspacing="1">
               <tr>
                 <td width="70" height="66"><div align="right"><strong><font size="2">Obs:</font></strong></div></td>
-                <td width="290" height="66"><textarea name="txt_obs_mensal" cols="33" rows="3" id="txt_obs_mensal" tabindex="6"><? echo $txt_obs_mensal; ?></textarea>
-                    <? //echo $retorno; ?>
+                <td width="290" height="66"><textarea name="txt_obs_mensal" cols="33" rows="3" id="txt_obs_mensal" tabindex="6"><?php echo $txt_obs_mensal; ?></textarea>
+                    <?php //echo $retorno; ?>
                     <input type="hidden" name="txt_cod_pet" value="<?php echo $txt_cod_pet; ?>"/>
 					<input type="hidden" name="txt_mensalista" value="<?php echo $mensalista; ?>"/>
 

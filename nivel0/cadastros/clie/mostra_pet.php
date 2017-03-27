@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -12,8 +12,8 @@ $id = $_GET["id"];
 
 
 // PEGA O NOME DO CLIENTE
-$sql_ref1 = mysql_query("SELECT * FROM `tab_clie` WHERE codigo='$id'") or die("erro ao selecionar sql_ref1");
-$tr = mysql_num_rows($sql_ref1);
+$sql_ref1 = mysqli_query($connection, "SELECT * FROM `tab_clie` WHERE codigo='$id'") or die("erro ao selecionar sql_ref1");
+$tr = mysqli_num_rows($sql_ref1);
 
 if ($tr <2){
 echo'<script>
@@ -25,7 +25,7 @@ self.close();
 /*
 header("Location: ../pet/cad_pet.php?id=$id");echo '<script>self.close();</script>
 */
-if ($linha_ref1 = mysql_fetch_array($sql_ref1)) {
+if ($linha_ref1 = mysqli_fetch_array($sql_ref1)) {
 
 $txt_codigo_clie = $linha_ref1['codigo'];
 $txt_nome_clie = $linha_ref1['nome'];
@@ -48,7 +48,7 @@ $txt_nome_clie = $linha_ref1['nome'];
     <tr>
       <td><table width="340" border="0" bordercolor="#cccccc" height="95" align="center" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="340" height="20"><div align="left"><span class="style19"><strong>Cliente:</strong></span>&nbsp;<font color="#5F8FBF"><strong><? echo $txt_nome_clie; ?></strong></font>&nbsp;&nbsp;(C&oacute;digo&nbsp;<? echo $txt_codigo_clie; ?>)</span></div></td>
+            <td width="340" height="20"><div align="left"><span class="style19"><strong>Cliente:</strong></span>&nbsp;<font color="#5F8FBF"><strong><?php echo $txt_nome_clie; ?></strong></font>&nbsp;&nbsp;(C&oacute;digo&nbsp;<?php echo $txt_codigo_clie; ?>)</span></div></td>
           </tr>
           <tr>
             <td height="10"></td>
@@ -73,11 +73,11 @@ $txt_nome_clie = $linha_ref1['nome'];
     
 // PEGA OS DADOS DO ANIMAL
 
-$sql_registros = mysql_query("SELECT * FROM tab_pet WHERE cod_dono='$id' ORDER BY nome");
+$sql_registros = mysqli_query($connection, "SELECT * FROM tab_pet WHERE cod_dono='$id' ORDER BY nome");
 
 $cor="#FFFFFF";
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $cod = $linha_ref['codigo'];
 $txt_nome = $linha_ref['nome'];
@@ -89,11 +89,11 @@ $cor=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6";
         <tr bgcolor="<?=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
 ?>" class="info" onMouseOver="this.style.backgroundColor='#5F8FBF'" onMouseOut="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
-                        <td><div align="center" class="style19"><? echo $cod; ?> </div></td>
-                        <td width="101" height="8"><div align="center" class="style19"><? echo $txt_nome; ?> </div></td>
-                        <td width="146"><div align="center" class="style19"><? echo $txt_raca; ?></div></td>
+                        <td><div align="center" class="style19"><?php echo $cod; ?> </div></td>
+                        <td width="101" height="8"><div align="center" class="style19"><?php echo $txt_nome; ?> </div></td>
+                        <td width="146"><div align="center" class="style19"><?php echo $txt_raca; ?></div></td>
                         <td width="18"><div align="center">
-                            <? echo '<a href="cad_clie.php?id='.$cod.'"><img src="'.$pontos.'imagens/atualizar.jpg" border="0" alt="Ver ou Alterar registro" title="Ver ou Alterar"></a>';?>
+                            <?php echo '<a href="cad_clie.php?id='.$cod.'"><img src="'.$pontos.'imagens/atualizar.jpg" border="0" alt="Ver ou Alterar registro" title="Ver ou Alterar"></a>';?>
                         </div></td>
                       </tr>
                       <?

@@ -31,18 +31,18 @@ if ($nivel ==3){$nivel_conv="Administrador";}
 $mes = $_REQUEST['sel_mes'];
 
 switch($mes){
-case $mes == 01 or $mes == 1: $mes_conv="janeiro";break;
-case $mes == 02 or $mes == 2: $mes_conv="fevereiro";break;
-case $mes == 03 or $mes == 3: $mes_conv="março";break;
-case $mes == 04 or $mes == 4: $mes_conv="abril";break;
-case $mes == 05 or $mes == 5: $mes_conv="maio";break;
-case $mes == 06 or $mes == 6: $mes_conv="junho";break;
-case $mes == 07 or $mes == 7: $mes_conv="julho";break;
-case $mes == 08 or $mes == 8: $mes_conv="agosto";break;
-case $mes == 09 or $mes == 9: $mes_conv="setembro";break;
-case $mes == 10: $mes_conv="outubro";break;
-case $mes == 11: $mes_conv="novembro";break;
-case $mes == 12: $mes_conv="dezembro";break;
+case $mes == 01 or $mes == 1: $mes_conv="janeiro";
+case $mes == 02 or $mes == 2: $mes_conv="fevereiro";
+case $mes == 03 or $mes == 3: $mes_conv="março";
+case $mes == 04 or $mes == 4: $mes_conv="abril";
+case $mes == 05 or $mes == 5: $mes_conv="maio";
+case $mes == 06 or $mes == 6: $mes_conv="junho";
+case $mes == 07 or $mes == 7: $mes_conv="julho";
+case $mes == 08 or $mes == 8: $mes_conv="agosto";
+case $mes == 09 or $mes == 9: $mes_conv="setembro";
+case $mes == 10: $mes_conv="outubro";
+case $mes == 11: $mes_conv="novembro";
+case $mes == 12: $mes_conv="dezembro";
 }
 
 if (strlen($mes) <2){$mes2 = "0".$mes;}else{$mes2 = $mes;}
@@ -75,9 +75,9 @@ $data_final = "31-".$mes2."-".$ano;
 $conta_cabec =1;
 
  // Faz o Select pegando o registro inicial até a quantidade de registros para pagina
-    $sql_registros = mysql_query("SELECT * FROM tab_mensalista WHERE month(`data_banho`)= '$mes' and status=0 ORDER BY mensalista, data_banho ASC");
+    $sql_registros = mysqli_query($connection, "SELECT * FROM tab_mensalista WHERE month(`data_banho`)= '$mes' and status=0 ORDER BY mensalista, data_banho ASC");
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $txt_cod_produto = $linha_ref['cod_produto'];
 $txt_produto = $linha_ref['produto'];
@@ -92,32 +92,32 @@ $txt_data_banho = $linha_ref['data_banho'];
 
 #tab_temp_mensalista
 
-    $sql_inser_temp = mysql_query("INSERT INTO `tab_temp_mensalista` (`id`, `cod_produto`, `produto`, `cod_pet`, `mensalista`, `cod_dono`, `qtde`, `medida`, `valor`, `obs`, `usuario`, `data_banho`)VALUES(NULL, '$txt_cod_produto', '$txt_produto', '$txt_cod_pet', '$txt_mensalista', '$txt_cod_dono', '$txt_qtde', '$txt_medida', '$txt_valor', '$txt_obs', '$usuario', '$txt_data_banho')");
+    $sql_inser_temp = mysqli_query($connection, "INSERT INTO `tab_temp_mensalista` (`id`, `cod_produto`, `produto`, `cod_pet`, `mensalista`, `cod_dono`, `qtde`, `medida`, `valor`, `obs`, `usuario`, `data_banho`)VALUES(NULL, '$txt_cod_produto', '$txt_produto', '$txt_cod_pet', '$txt_mensalista', '$txt_cod_dono', '$txt_qtde', '$txt_medida', '$txt_valor', '$txt_obs', '$usuario', '$txt_data_banho')");
 
 }// fecha while($linha_ref...
 
 
-$qtde_reg = mysql_num_rows($sql_registros);
+$qtde_reg = mysqli_num_rows($sql_registros);
 
 
 if ($qtde_reg > 0){
 
-    $sql_registro2 = mysql_query("SELECT DISTINCT cod_pet, SUM(valor) as total FROM tab_temp_mensalista WHERE usuario='$usuario' GROUP BY cod_pet ORDER BY mensalista, data_banho ASC") or die (mysql_error());
+    $sql_registro2 = mysqli_query($connection, "SELECT DISTINCT cod_pet, SUM(valor) as total FROM tab_temp_mensalista WHERE usuario='$usuario' GROUP BY cod_pet ORDER BY mensalista, data_banho ASC") or die (mysqli_error($connection));
 	
 	
-while($linha_2 = mysql_fetch_array($sql_registro2)) {
+while($linha_2 = mysqli_fetch_array($sql_registro2)) {
 
 		$cod_pet_db = $linha_2['cod_pet'];
 		$total = $linha_2['total'];
 
 
-    $sql_mensal2 = mysql_query("SELECT * FROM tab_temp_mensalista WHERE usuario='$usuario' && cod_pet='$cod_pet_db' ORDER BY mensalista, data_banho ASC") or die (mysql_error());
+    $sql_mensal2 = mysqli_query($connection, "SELECT * FROM tab_temp_mensalista WHERE usuario='$usuario' && cod_pet='$cod_pet_db' ORDER BY mensalista, data_banho ASC") or die (mysqli_error($connection));
 
 
 $cor="#FFFFFF";
 
 
-while($linha_mensal2 = mysql_fetch_array($sql_mensal2)) {
+while($linha_mensal2 = mysqli_fetch_array($sql_mensal2)) {
 
 $txt_cod_produto = $linha_mensal2['cod_produto'];
 $txt_produto = $linha_mensal2['produto'];
@@ -166,7 +166,7 @@ if ($cor=="#FFFFFF"){$cor="#E6E6E6";}else{$cor="#FFFFFF";}
             </div></td>
             <td width="186" height="5"><div align="center"><?php
 echo $txt_produto;?></div></td>
-            <td width="79"><div align="center"><? echo number_format($txt_valor, 2, ',','.'); ?></div></td>
+            <td width="79"><div align="center"><?php echo number_format($txt_valor, 2, ',','.'); ?></div></td>
             <td width="208"><div align="center"><?php echo $txt_obs; ?></div></td>
           </tr>
 
@@ -215,7 +215,7 @@ echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center">
 
 }// FECHA if ($qtde_reg > 0) ...
 
-$sql_del = mysql_query("DELETE FROM tab_temp_mensalista WHERE usuario='$usuario'");
+$sql_del = mysqli_query($connection, "DELETE FROM tab_temp_mensalista WHERE usuario='$usuario'");
 @mysql_close();
 ?>
         </table>

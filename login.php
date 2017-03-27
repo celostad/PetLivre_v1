@@ -1,4 +1,8 @@
-<?
+<?php
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
+
 session_start();
 
 include("conexao.php");
@@ -8,9 +12,9 @@ $login = $_POST['login'];
 $senha_postada = $_POST['senha'];
 
 
-$sql = mysql_query("SELECT * FROM acesso WHERE login='$login' AND senha=md5('$senha_postada')") or die("erro ao selecionar");
+$sql = mysqli_query($connection, "SELECT * FROM acesso WHERE login='$login' AND senha=md5('$senha_postada')") or die("erro ao selecionar ". mysqli_error());
 
-if( $linha = mysql_fetch_array($sql)) {
+if( $linha = mysqli_fetch_array($sql)) {
  
   $cod = $linha['codigo'];
   $nome = $linha['nome'];
@@ -37,9 +41,9 @@ $date1 =date("$h_H:i");
 if(date("w") ==0){
 
 // VERIFICA SE USUARIO TEM PERMISSÃO DE ACESSO AOS DOMINGOS
-$sql_config_dias = mysql_query("SELECT login_dia_semana FROM tab_config_user WHERE id_user='$cod'") or die("erro ao selecionar: tab_config_user");
+$sql_config_dias = mysqli_query("SELECT login_dia_semana FROM tab_config_user WHERE id_user='$cod'") or die("erro ao selecionar: tab_config_user");
 
-	if($linha_config_dias = mysql_fetch_array($sql_config_dias)){
+	if($linha_config_dias = mysqli_fetch_array($sql_config_dias)){
 
 	$login_dia_semana_db = $linha_config_dias['login_dia_semana'];
 	}

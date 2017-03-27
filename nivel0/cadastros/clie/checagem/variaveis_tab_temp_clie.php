@@ -1,7 +1,11 @@
-<?
-$sql_ref = mysql_query("SELECT * FROM `tab_temp_clie` WHERE user_cadastro='$usuario'") or die("erro ao selecionar sql_ref");
+<?php
 
-if ($linha_ref = mysql_fetch_array($sql_ref)) {
+include("../../../include/arruma_link.php");
+include($pontos."include/mostra_erros.php");
+
+$sql_ref = mysqli_query($connection, "SELECT * FROM `tab_temp_clie` WHERE user_cadastro='$usuario'") or die("erro ao selecionar sql_ref");
+
+if ($linha_ref = mysqli_fetch_array($sql_ref)) {
 
 $txt_codigo_clie = $linha_ref['codigo'];
 $txt_nome_clie = $linha_ref['nome'];
@@ -25,7 +29,8 @@ $txt_data_cadastro = $linha_ref['data_cadastro'];
 $txt_data_ult_atlz = $linha_ref['data_ult_atlz'];
 }
 
-if ($txt_data_nasc_clie =="0000-00-00"){$txt_data_nasc_clie="";}
+if (!isset($txt_data_nasc_clie) || $txt_data_nasc_clie =="0000-00-00") {$txt_data_nasc_clie = '';}
+if (!isset($sel_sexo)) {$sel_sexo = '';}
 
 $txt_data_nasc_clie = Convert_Data_Ingl_Port($txt_data_nasc_clie);
 

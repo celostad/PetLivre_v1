@@ -9,8 +9,8 @@
 <form name="form" enctype="multipart/form-data" method="POST">
   <table width="385" border="0" bordercolor="#cccccc" height="235" align="center" cellpadding="0" cellspacing="0">
     <tr>
-      <td width="547" height="22" valign="top" bgcolor="#999999"><div align="center" class="style3"><strong> <? echo "Banho e Tosa  -  ";?> 
-<? if (empty($txt_data_cadastro)){
+      <td width="547" height="22" valign="top" bgcolor="#999999"><div align="center" class="style3"><strong> <?php echo "Banho e Tosa  -  ";?> 
+<?php if (empty($txt_data_cadastro)){
 $h = getdate(); //variavel recebe a data
 $data_atual = $hoje = $h['mday']."/".$mes = $h['mon']."/".$ano = $h['year'];
 echo $data_atual;
@@ -32,7 +32,7 @@ echo Convert_Data_Ingl_Port($txt_data_cadastro);
                   <tr>
                     <td width="60" height="20"><div align="right"><font size="2"><strong>Nome:</strong></font></div>
                     </td>
-                    <td width="278" height="20"><input name="txt_nome_clie2"  tabindex="1" type="text" id="txt_nome_clie22" value="<? echo $txt_nome_clie; ?>" size="42" />
+                    <td width="278" height="20"><input name="txt_nome_clie2"  tabindex="1" type="text" id="txt_nome_clie22" value="<?php echo $txt_nome_clie; ?>" size="42" />
                     </td>
                   </tr>
                 </table>
@@ -60,7 +60,7 @@ echo '<a href="'.$txt_caminho_foto.'" title="Clique aqui para ampliar" target="_
                   </tr>
                   <tr>
                     <td height="52"><div align="center">
-                        <? if (!empty($txt_caminho_foto1)){
+                        <?php if (!empty($txt_caminho_foto1)){
 
 echo'<input type="button" name="btn_anx_foto" id="btn_anx_foto" tabindex="16" value="Alterar Foto" onclick="javascript:popup_anexa_foto();" />';
 }else{
@@ -78,7 +78,7 @@ echo'<input type="button" name="btn_anx_foto" id="btn_anx_foto" tabindex="16" va
                   <tr>
                     <td width="60"><div align="right"><b><font size="2">Endere&ccedil;o:</font></b></div>
                     </td>
-                    <td width="278" height="20"><input name="txt_end_clie" tabindex="2" type="text" id="txt_end_clie" value="<? echo $txt_end_clie; ?>" size="42" />
+                    <td width="278" height="20"><input name="txt_end_clie" tabindex="2" type="text" id="txt_end_clie" value="<?php echo $txt_end_clie; ?>" size="42" />
                     </td>
                   </tr>
                 </table>
@@ -91,19 +91,19 @@ echo'<input type="button" name="btn_anx_foto" id="btn_anx_foto" tabindex="16" va
                     </td>
                     <td width="181" height="20"><font size="2"><b><font face="Times New Roman, Times, serif" size="2">
                       <?
-$sql_2 = mysql_query("select * from combo_bairro ORDER BY bairro ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql_2 = mysqli_query($connection, "select * from combo_bairro ORDER BY bairro ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 echo "<select name='txt_bairro_clie' tabindex='3' id='txt_bairro_clie' onchange='javascript:incluir_bairro()'>";
 if (!empty($txt_bairro_clie)){
 echo "<option value='".$txt_bairro_clie."'>".$txt_bairro_clie."</option>";
 echo "<option>"."</option>";
-while($pega = mysql_fetch_array($sql_2)){
+while($pega = mysqli_fetch_array($sql_2)){
 echo "<option value='".$pega['bairro']."'>".$pega['bairro']."</option>";
 }
 
 }else{
 echo "<option>"."</option>";
-while($pega = mysql_fetch_array($sql_2)){
+while($pega = mysqli_fetch_array($sql_2)){
 echo "<option value='".$pega['bairro']."'>".$pega['bairro']."</option>";
 }
 }
@@ -122,7 +122,7 @@ if ($checa_retorno==10 or $checa_retorno==30){echo "<a href='javascript:foto_cad
                     </font></b></font></td>
                     <td width="28"><div align="right"><strong><font size="2">CEP:</font></strong></div>
                     </td>
-                    <td width="77"><input name="txt_cep_clie" tabindex="4" type="text" id="cep" onkeyup="formata_cep(this.value); somente_numeros(this);" value="<? echo $txt_cep_clie; ?>" size="7" maxlength="9" />
+                    <td width="77"><input name="txt_cep_clie" tabindex="4" type="text" id="cep" onkeyup="formata_cep(this.value); somente_numeros(this);" value="<?php echo $txt_cep_clie; ?>" size="7" maxlength="9" />
                     </td>
                   </tr>
                 </table>
@@ -135,18 +135,18 @@ if ($checa_retorno==10 or $checa_retorno==30){echo "<a href='javascript:foto_cad
                     </td>
                     <td width="211"><font size="2"><b><font face="Times New Roman, Times, serif" size="2">
                       <?
-$sql_3 = mysql_query("select * from combo_cidade ORDER BY cidade ASC") or print("Erro ao ler a tabela: Cidade ".mysql_error());
+$sql_3 = mysqli_query($connection, "select * from combo_cidade ORDER BY cidade ASC") or print("Erro ao ler a tabela: Cidade ".mysqli_error($connection));
 echo "<select name='txt_cidade_clie' tabindex='5' id='txt_cidade_clie' onchange='javascript:incluir_cidade()'>";
 if (!empty($txt_cidade_clie)){
 echo "<option value='".$txt_cidade_clie."'>".$txt_cidade_clie."</option>";
 echo "<option>"."</option>";
-while($pega3 = mysql_fetch_array($sql_3)){
+while($pega3 = mysqli_fetch_array($sql_3)){
 echo "<option value='".$pega3['cidade']."'>".$pega3['cidade']."</option>";
 }
 
 }else{
 echo "<option>"."</option>";
-while($pega3 = mysql_fetch_array($sql_3)){
+while($pega3 = mysqli_fetch_array($sql_3)){
 echo "<option value='".$pega3['cidade']."'>".$pega3['cidade']."</option>";
 }
 }
@@ -194,16 +194,16 @@ $x_uf='selected="selected"';
                     <td width="61" height="20"><div align="right"><strong><font size="2">Telefone:</font></strong></div>
                     </td>
                     <td width="118"><font size="2"><b><font face="Times New Roman, Times, serif" size="2"></font><font size="2"><font size="2">
-                      <input name="txt_ddd_tel_clie" tabindex="7" type="text" id="txt_ddd_tel_clie" value="<? echo $txt_ddd_tel_clie; ?>" size="1" maxlength="2" />
+                      <input name="txt_ddd_tel_clie" tabindex="7" type="text" id="txt_ddd_tel_clie" value="<?php echo $txt_ddd_tel_clie; ?>" size="1" maxlength="2" />
             -</font><b><font size="2">
-            <input name="txt_tel_clie" type="text" id="telefone" onkeyup="formata_tel(this.value); somente_numeros(this);" value="<? echo $txt_tel_clie; ?>" size="7" maxlength="9" tabindex="8" />
+            <input name="txt_tel_clie" type="text" id="telefone" onkeyup="formata_tel(this.value); somente_numeros(this);" value="<?php echo $txt_tel_clie; ?>" size="7" maxlength="9" tabindex="8" />
           </font></b></font></b></font></td>
                     <td width="46"><div align="right"><strong><font size="2">Celular:</font></strong></div>
                     </td>
                     <td width="122" height="20"><font size="2"><font size="2">
-                      <input name="txt_ddd_cel_clie" tabindex="9" type="text" id="txt_ddd_cel_clie" value="<? echo $txt_ddd_cel_clie; ?>" size="1" maxlength="2" />
+                      <input name="txt_ddd_cel_clie" tabindex="9" type="text" id="txt_ddd_cel_clie" value="<?php echo $txt_ddd_cel_clie; ?>" size="1" maxlength="2" />
             -
-            <input name="txt_cel_clie" type="text" id="cel" onkeyup="formata_cel(this.value); somente_numeros(this);" value="<? echo $txt_cel_clie; ?>" size="7" maxlength="9" tabindex="10" />
+            <input name="txt_cel_clie" type="text" id="cel" onkeyup="formata_cel(this.value); somente_numeros(this);" value="<?php echo $txt_cel_clie; ?>" size="7" maxlength="9" tabindex="10" />
                     </font></font></td>
                   </tr>
                 </table>
@@ -215,12 +215,12 @@ $x_uf='selected="selected"';
                     <td width="61"><div align="right"><strong><font size="2">CPF:</font></strong></div>
                     </td>
                     <td width="170"><font size="2" face="Times New Roman, Times, serif"><b>
-                      <input name="txt_cpf" type="text" id="txt_cpf" tabindex="11" onkeyup="formata_cpf(this.value); somente_numeros(this);"  value="<? echo $txt_cpf; ?>" size="14" maxlength="14" />
+                      <input name="txt_cpf" type="text" id="txt_cpf" tabindex="11" onkeyup="formata_cpf(this.value); somente_numeros(this);"  value="<?php echo $txt_cpf; ?>" size="14" maxlength="14" />
                     </b></font></td>
                     <td width="25"><div align="right"><strong><font size="2">RG:</font></strong></div>
                     </td>
                     <td width="91"><font size="2" face="Times New Roman, Times, serif"><b>
-                      <input name="txt_rg_clie" type="text" id="txt_rg_clie" tabindex="12" value="<? echo $txt_rg_clie; ?>" size="9" maxlength="11" />
+                      <input name="txt_rg_clie" type="text" id="txt_rg_clie" tabindex="12" value="<?php echo $txt_rg_clie; ?>" size="9" maxlength="11" />
                     </b></font></td>
                   </tr>
                 </table>
@@ -233,7 +233,7 @@ $x_uf='selected="selected"';
                             Nascimento:</font></strong></div>
                     </td>
                     <td width="63" height="26"><font size="2">
-                      <input name="txt_data_nasc_clie" type="text" id="data"  onkeyup="formata(this);" value="<? echo $txt_data_nasc_clie; ?>" size="8" maxlength="10" tabindex="13" />
+                      <input name="txt_data_nasc_clie" type="text" id="data"  onkeyup="formata(this);" value="<?php echo $txt_data_nasc_clie; ?>" size="8" maxlength="10" tabindex="13" />
                     </font></td>
                     <td width="62"><div align="right"><font size="2"><strong>Sexo:</strong></font></div>
                     </td>
@@ -267,24 +267,24 @@ echo '<option value="'.$sel_sexo.'">'.$sel_sexo_descr.'</option>';
                   <tr>
                     <td width="40" height="20"><div align="right"><font size="2"><strong>Nome:</strong></font></div>
                     </td>
-                    <td width="114" height="20"><input name="txt_nome_pet" type="text" id="txt_nome_pet" tabindex="1" value="<? echo $txt_nome_pet; ?>" size="19"/>
+                    <td width="114" height="20"><input name="txt_nome_pet" type="text" id="txt_nome_pet" tabindex="1" value="<?php echo $txt_nome_pet; ?>" size="19"/>
                     </td>
                     <td width="31"><div align="right"><font size="2"><strong>Ra&ccedil;a:</strong></font></div>
                     </td>
                     <td width="154"><div align="left"><font size="2"><b><font face="Times New Roman, Times, serif" size="2">
-                        <?
-$sql_2 = mysql_query("select * from combo_raca ORDER BY raca ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+                        <?php
+$sql_2 = mysqli_query($connection, "select * from combo_raca ORDER BY raca ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 echo "<select name='txt_raca' id='txt_raca' tabindex='3' onchange='javascript:cad_raca()'>";
 if (!empty($txt_raca)){
 echo "<option value='".$txt_raca."'>".$txt_raca."</option>";
 echo "<option>"."</option>";
-while($pega = mysql_fetch_array($sql_2)){
+while($pega = mysqli_fetch_array($sql_2)){
 echo "<option value='".$pega['raca']."'>".$pega['raca']."</option>";
 }
 }else{
 echo "<option>"."</option>";
-while($pega = mysql_fetch_array($sql_2)){
+while($pega = mysqli_fetch_array($sql_2)){
 echo "<option value='".$pega['raca']."'>".$pega['raca']."</option>";
 }
 }
@@ -306,7 +306,7 @@ if ($checa_retorno==10 or $checa_retorno==30){echo "<a href='javascript:foto_cad
                         <table width="180" height="152" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
                           <tr>
                             <td valign="middle">
-                              <?
+                              <?php
 if ($txt_caminho_foto1=="") {
 echo '<img src="'.$pontos.'imagens/cad_pet/sem_imagem2.gif" width="180" height="152" />';
 }else{
@@ -322,7 +322,7 @@ echo '<a href="'.$txt_caminho_foto.'" title="Clique aqui para ampliar" target="_
                   </tr>
                   <tr>
                     <td height="40"><div align="center">
-                        <? if (!empty($txt_caminho_foto1)){
+                        <?php if (!empty($txt_caminho_foto1)){
 
 echo '<input type="button" name="btn_anx_foto" id="btn_anx_foto" tabindex="16" value="Alterar Foto" onclick="javascript:popup_anexa_foto();" />';
 }else{
@@ -377,18 +377,18 @@ echo'<input type="button" name="btn_anx_foto" id="btn_anx_foto" tabindex="16" va
                     </td>
                     <td width="173" height="20"><font size="2"><b><font face="Times New Roman, Times, serif" size="2">
                       <?
-$sql_1 = mysql_query("select * from combo_cor ORDER BY cor ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+$sql_1 = mysqli_query($connection, "select * from combo_cor ORDER BY cor ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 echo "<select name='txt_cor' id='txt_cor' tabindex='5' onchange='javascript:cad_cor()'>";
 if (!empty($txt_cor)){
 echo "<option value='".$txt_cor."'>".$txt_cor."</option>";
 echo "<option>"."</option>";
-while($pega1 = mysql_fetch_array($sql_1)){
+while($pega1 = mysqli_fetch_array($sql_1)){
 echo "<option value='".$pega1['cor']."'>".$pega1['cor']."</option>";
 }
 }else{
 echo "<option>"."</option>";
-while($pega1 = mysql_fetch_array($sql_1)){
+while($pega1 = mysqli_fetch_array($sql_1)){
 echo "<option value='".$pega1['cor']."'>".$pega1['cor']."</option>";
 }
 }
@@ -427,13 +427,13 @@ $x_especie='selected="selected"';
                             Nasc:</font></strong></div>
                     </td>
                     <td width="110"><font size="2">
-                      <input name="txt_data_nasc" type="text" id="txt_data_nasc" onchange="validaData(this);" onkeyup="formata(this);" value="<? echo $txt_data_nasc; ?>" size="8" maxlength="10" tabindex="7" />
+                      <input name="txt_data_nasc" type="text" id="txt_data_nasc" onchange="validaData(this);" onkeyup="formata(this);" value="<?php echo $txt_data_nasc; ?>" size="8" maxlength="10" tabindex="7" />
                     </font></td>
                     <td width="64"><div align="left"><strong><font size="2">Mensalista:</font></strong></div>
                     </td>
                     <td width="113" height="20"><div align="left"><font size="2"><b><font face="Times New Roman, Times, serif" size="2"></font></b></font>
                             <select name="txt_mensal" id="txt_mensal" tabindex="8">
-                              <?
+                              <?php
 if (!empty($txt_mensal)){
 echo '<option value="'.$txt_mensal.'">'.$txt_mensal.'</option>';
 $x_mensal="";
@@ -457,12 +457,12 @@ $x_mensal='selected="selected"';
                     <td width="40" height="20"><div align="right"><strong><font size="2">Chip:</font></strong></div>
                     </td>
                     <td width="139"><font size="2" face="Times New Roman, Times, serif"><b>
-                      <input name="txt_chip" type="text" id="txt_chip" tabindex="9" onkeyup="somente_numeros(this);" value="<? echo $txt_chip; ?>" size="14" maxlength="14" />
+                      <input name="txt_chip" type="text" id="txt_chip" tabindex="9" onkeyup="somente_numeros(this);" value="<?php echo $txt_chip; ?>" size="14" maxlength="14" />
                     </b></font></td>
                     <td width="46"><div align="right"><strong><font size="2">RGA:</font></strong></div>
                     </td>
                     <td width="122" height="20"><font size="2" face="Times New Roman, Times, serif"><b>
-                      <input name="txt_rga" type="text" id="txt_rga" tabindex="10" value="<? echo $txt_rga; ?>" size="9" maxlength="11" />
+                      <input name="txt_rga" type="text" id="txt_rga" tabindex="10" value="<?php echo $txt_rga; ?>" size="9" maxlength="11" />
                     </b></font></td>
                   </tr>
                 </table>
@@ -486,7 +486,7 @@ $x_mensal='selected="selected"';
                       <input type="image" name="ImageField" id="ImageField" tabindex="17" title="Gravar entrada no caixa"  onclick="javascript:gravar_caixa();" src="<?=$pontos;?>imagens/cad_clie/gravar.gif" alt="Gravar" width="31" height="37" border="0" />
                   </div></td>
                   <td width="57"><div align="center">
-                      <? if ($nivel>1 and !empty($rad_sel_visl)){
+                      <?php if ($nivel>1 and !empty($rad_sel_visl)){
 echo '<input type="image" name="ImageField2" src="'.$pontos.'imagens/cad_clie/fechar.gif" onclick="javascript:checar("deleta_clie.php?id='.$rad_sel_visl.');" width="37" height="37" border="0" tabindex="19" alt="Apagar registro" title="Apagar registro">'; 
 
 /* 
@@ -496,7 +496,7 @@ echo "<a href=\"javascript:checar('deleta_clie.php?id=".$rad_sel_visl."');\"><im
 }?>
                   </div></td>
                   <td width="71" valign="middle"><div align="center">
-                      <? 
+                      <?php 
 if (empty($retorno)){
 echo '<a href="javascript:sair_form();"><img src="'.$pontos.'imagens/cad_clie/sair.gif" alt="Sair" title="Sair do formul&aacute;rio" width="35" height="37" border="0" tabindex="19" /></a>';
 }
@@ -520,7 +520,7 @@ echo '<a href="javascript:sair_form_retorna_vindo_busca_pet();"><img src="'.$pon
                 </tr>
               </table>
               <font color="#7F9DB9" size="2">&nbsp;Data do banho:</font> <font color="#000000" size="2">
-                          <? if (empty($txt_data_cadastro)){
+                          <?php if (empty($txt_data_cadastro)){
 $h = getdate(); //variavel recebe a data
 $data_atual = $hoje = $h['mday']."/".$mes = $h['mon']."/".$ano = $h['year'];
 echo $data_atual;

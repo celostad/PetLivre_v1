@@ -32,7 +32,7 @@ if(isset($_POST['done'])){
 
     }else{        
 
-       $sql = mysql_query("INSERT INTO `agenda`(`evento`, `dtevento`, `autor`, `hora`, `local`, `conteudo`) VALUES ('$evento', '$dtevento', '$autor', '$hora', '$local', '$conteudo')") or die(mysql_error());
+       $sql = mysqli_query($connection, "INSERT INTO `agenda`(`evento`, `dtevento`, `autor`, `hora`, `local`, `conteudo`) VALUES ('$evento', '$dtevento', '$autor', '$hora', '$local', '$conteudo')") or die(mysqli_error($connection));
 
             if($sql){
 
@@ -121,6 +121,7 @@ if(isset($erro)){
 <td>Data Evento:</td>
 
 <td><select name="dia">
+    
 
 		<option>1</option>
 
@@ -214,19 +215,14 @@ if(isset($erro)){
 
   </select>
 
-  <select name="ano" >  		
-
-        <option>2009</option>
-
-        <option>2010</option>
-
-        <option>2011</option>
-
-        <option>2012</option>
-
-        <option>2013</option> 
-
-  </select>  </td>
+  <select name="ano" > 
+      <?php for($i=10;$i <=50; $i++) {
+          # code...
+        echo '<option>20'.$i.'</option>';
+     } 
+     ?>
+  </select> 
+  </td>
 
 </tr>
 
@@ -277,4 +273,3 @@ if(isset($erro)){
 </body>
 
 </html>
-

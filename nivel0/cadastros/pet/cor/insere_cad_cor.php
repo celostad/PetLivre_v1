@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 require_once("../../../../conexao.php");
@@ -18,16 +18,16 @@ function Convert_Data_Port_Ingl($entradata){
     return $saida_data;
 }
 
-$sql_consulta = mysql_query("SELECT * FROM combo_cor WHERE cor like '$txt_cor' or cor like '$txt_cor_alta'") or die (mysql_error());
+$sql_consulta = mysqli_query($connection, "SELECT * FROM combo_cor WHERE cor like '$txt_cor' or cor like '$txt_cor_alta'") or die (mysqli_error($connection));
 
-if ($linha = mysql_fetch_array($sql_consulta)) { ?>
+if ($linha = mysqli_fetch_array($sql_consulta)) { ?>
 <script>
 alert ("Atenção!\nEssa Cor já está cadastrada.\n\n")
 window.location = "cad_cor.php";
 </script>
-<? }else{
+<?php }else{
 
-$sql2 = mysql_query("INSERT INTO `combo_cor` (`codigo`, `cor`) VALUES (NULL, '$txt_cor')") or die (mysql_error());
+$sql2 = mysqli_query($connection, "INSERT INTO `combo_cor` (`codigo`, `cor`) VALUES (NULL, '$txt_cor')") or die (mysqli_error($connection));
 
 header("Location: cad_cor.php");    
 }

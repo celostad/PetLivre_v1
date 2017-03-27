@@ -70,9 +70,9 @@ $inicio = ($pagina - 1) * $max;
 
 
 
-$sqln = mysql_query("SELECT * FROM agenda ORDER BY id DESC");
+$sqln = mysqli_query($connection, "SELECT * FROM agenda ORDER BY id DESC");
 
-$num = mysql_num_rows($sqln);
+$num = mysqli_num_rows($sqln);
 
 
 
@@ -94,9 +94,9 @@ print "Listando a página ".$pagina." de ".$total_paginas."!";
 
 
 
-$sqln = mysql_query("SELECT * FROM agenda ORDER BY id DESC LIMIT ".$inicio.",".$max."");
+$sqln = mysqli_query($connection, "SELECT * FROM agenda ORDER BY id DESC LIMIT ".$inicio.",".$max."");
 
-$num = mysql_num_rows($sqln);
+$num = mysqli_num_rows($sqln);
 
 }
 

@@ -18,7 +18,7 @@
             de acesso &aacute;s:<b><font face="Verdana" size="2"> </font></b></font></font></font><font face="Verdana" size="2"><br>
             <font size="1" color="#333333"> IP LOGADO</font><font color="#333333"><br>
             <b><font face="Verdana" size="2"> </font><font face="Verdana, Arial, Helvetica, sans-serif" size="5" color="#000000"><font face="Verdana" size="2"><font color="#333333"><b><font face="Verdana" size="2">
-            <?
+            <?php
   echo $ip = getenv("REMOTE_ADDR");
 ?>
             </font></b></font></font></font></b> <br>

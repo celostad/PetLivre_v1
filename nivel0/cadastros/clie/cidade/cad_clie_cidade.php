@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../../include/arruma_link.php");
@@ -26,7 +26,7 @@ MM_reloadPage(true);
 </script>
 </head>
 <title>Pet Livre  (Cadastro de cidade) </title>
-<?
+<?php
   if ($checa_retorno=="cad_clie"){
  echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"../cad_clie.php\"'>";}
   
@@ -63,16 +63,16 @@ echo "<body bgcolor='#FFFFFF' onUnload='javascript:window.opener.location = \"..
             </font></div></td>
           </tr>
           <tr>
-            <?
-$sql = mysql_query("SELECT * FROM combo_cidade ORDER BY cidade ASC") or print("Erro ao ler a tabela:
-".mysql_error());
+            <?php
+$sql = mysqli_query($connection, "SELECT * FROM combo_cidade ORDER BY cidade ASC") or print("Erro ao ler a tabela:
+".mysqli_error($connection));
 
 for ($nro = 1; $nro <= 300; $nro++){
 
-$linha = mysql_fetch_array($sql);
+$linha = mysqli_fetch_array($sql);
 
 if ($linha =="") {
-break;
+
 }else {
 
 $codigo = $linha['codigo'];
@@ -80,16 +80,16 @@ $codigo = $linha['codigo'];
 $cidade = $linha['cidade'];
 
 ?>
-            <td width="46"><div align="center">&nbsp; <? echo $nro; ?> </div></td>
-            <td width="229"><div align="center">&nbsp; <? echo $cidade; ?> </div></td>
+            <td width="46"><div align="center">&nbsp; <?php echo $nro; ?> </div></td>
+            <td width="229"><div align="center">&nbsp; <?php echo $cidade; ?> </div></td>
             <td width="70"><div align="center">
-                <input type="radio" name="rad_sel" value="<? echo $codigo; ?>">
+                <input type="radio" name="rad_sel" value="<?php echo $codigo; ?>">
             </div></td>
           </tr>
-          <?
+          <?php
 }
  }
-@mysql_close($sql);
+@mysqli_close($sql);
 
 ?>
           <tr>

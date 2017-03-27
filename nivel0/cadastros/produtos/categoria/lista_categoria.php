@@ -46,18 +46,18 @@ echo '<script type="text/javascript" src="'.$pontos.'js/func_cad_forne.js"></scr
             <?		  
     
  // Faz o Select pegando o registro inicial at&eacute; a quantidade de registros para p&aacute;gina
-    $sql_registros = mysql_query("SELECT * FROM combo_categoria ORDER BY categoria_mat ASC LIMIT $inicio, $total_reg");
+    $sql_registros = mysqli_query($connection, "SELECT * FROM combo_categoria ORDER BY categoria_mat ASC LIMIT $inicio, $total_reg");
 
 // Serve para contar quantos registros voc&ecirc; tem na seua tabela para fazer a pagina&ccedil;&atilde;o
-    $sql_conta = mysql_query("SELECT * FROM combo_categoria");
+    $sql_conta = mysqli_query($connection, "SELECT * FROM combo_categoria");
     
-    $quantreg = mysql_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
+    $quantreg = mysqli_num_rows($sql_conta); // Quantidade de registros pra pagina&ccedil;&atilde;o
     
  $tp = ceil($quantreg/$total_reg);    
    
 $cor="#FFFFFF";
 
-while($linha_ref = mysql_fetch_array($sql_registros)) {
+while($linha_ref = mysqli_fetch_array($sql_registros)) {
 
 $cod = $linha_ref['codigo'];
 $txt_categoria = $linha_ref['categoria_mat'];
@@ -68,9 +68,9 @@ $cor=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6";
 <tr bgcolor="<?=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
 ?>" class="info" onmouseover="this.style.backgroundColor='#66FF66'" onmouseout="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
-              <td width="61" class="info"><div align="center"><? echo $cod; ?></div></td>
-              <td width="283" height="5" class="info"><div align="center">&nbsp;<? echo $txt_categoria; ?></div></td>
-              <td width="233" height="5" colspan="2" class="info"><div align="center"><? 
+              <td width="61" class="info"><div align="center"><?php echo $cod; ?></div></td>
+              <td width="283" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_categoria; ?></div></td>
+              <td width="233" height="5" colspan="2" class="info"><div align="center"><?php 
 if ($nivel >1){echo '<a href="javascript:checar(\'deleta_cat.php?id='.$cod.'\');"><img src="'.$pontos.'imagens/delete.gif" border="0" alt="Apagar registro" title="Apagar registro"></a>&nbsp;';
 }else{echo'&nbsp;&nbsp;&nbsp;&nbsp;';}
 
@@ -102,7 +102,7 @@ echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center">
                 </map>
             </div></td>
             <td width="235" class="info"><div align="center">
-                <? // Chama o arquivo que monta a pagina&ccedil;&atilde;o
+                <?php // Chama o arquivo que monta a pagina&ccedil;&atilde;o
 if ($quantreg >10){include("paginacao.php");}
 ?>
                 <br />
@@ -117,7 +117,7 @@ if ($quantreg >10){include("paginacao.php");}
     </tr>
     <tr>
       <td height="20" colspan="5"><div align="center">
-          <?
+          <?php
 if ($quantreg >=10){
 echo "<font size='1' color='#cccccc' face='Verdana'>";
 echo "P&aacute;gina: $pc de $tp &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; registros: $quantreg";

@@ -36,22 +36,22 @@ $_SESSION["rad_clie"] ="";
 $_SESSION["retorno"] ="";
 
 //APAGA DADOS TAB_TEMP_CAIXA
-$sql_apaga_temp_caixa = mysql_query("SELECT * FROM `tab_temp_caixa` WHERE usuario='$usuario'") or die("erro ao selecionar1: sql_apaga_temp_caixa");
+$sql_apaga_temp_caixa = mysqli_query($connection, "SELECT * FROM `tab_temp_caixa` WHERE usuario='$usuario'") or die("erro ao selecionar1: sql_apaga_temp_caixa");
 
-if ($linha_apaga_temp_caixa = mysql_fetch_array($sql_apaga_temp_caixa)) {
+if ($linha_apaga_temp_caixa = mysqli_fetch_array($sql_apaga_temp_caixa)) {
 //APAGA DADOS TEMPORARIOS TABELA CLIENTE
 $sql1 = "DELETE FROM `tab_temp_caixa` WHERE `usuario` = '$usuario'";
 $resultado1 = mysql_query($sql1) or die ("Problema no Delete TAB_TEMP_CAIXA - SQL1");
 }
 
 ?>
-<? //include("../../include/ajax/includes/_conection.php"); ?>
-<? require_once("../../include/ajax/includes/xajax/xajax.inc.php"); ?>
+<?php //include("../../include/ajax/includes/_conection.php"); ?>
+<?php require_once("../../include/ajax/includes/xajax/xajax.inc.php"); ?>
 <?php
 function suggestStates($text,$btype) {
 	$sql = "SELECT `produto` FROM `tab_produto` WHERE UPPER(`produto`) LIKE UPPER('".$palavra."%');";
 	$rsCidades = mysql_query($sql,$GLOBALS['conexao']);
-	while ( $Cidade = mysql_fetch_array($rsCidades) ):
+	while ( $Cidade = mysqli_fetch_array($rsCidades) ):
 		$database[] = utf8_encode($Cidade['produto']);
 	endwhile;
 
@@ -106,16 +106,16 @@ $xajax->processRequests();
   <br />
   <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
-      <td width="589"  valign="top"><? //if($caixa==1){ include("lista_caixa.php");}else{include("checagem/msg_finalizar_caixa.php");}
+      <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
+      <td width="589"  valign="top"><?php //if($caixa==1){ include("lista_caixa.php");}else{include("checagem/msg_finalizar_caixa.php");}
  ?></td>
     </tr>
     <tr>
       <td height="20" colspan="2" valign="top"><div align="center">
-          <? include ($pontos."include/rodape.php"); ?>
+          <?php include ($pontos."include/rodape.php"); ?>
       </div></td>
     </tr>
   </table>

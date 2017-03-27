@@ -1,4 +1,4 @@
-<?
+<?php
 $sel_tipo_pesq = $_SESSION["tipo_pesq"];
 $txt_descricao_pesq = $_SESSION["descricao_pesq"];
 $usuario = $_SESSION["sessao_login"];
@@ -19,6 +19,7 @@ if ($sel_tipo_pesq =="Mensalista"){$sel_tipo_pesq ="mensalista";}
 //paginação
 $total_reg = 10; 
 
+if(!isset($_GET["pagina"])){$_GET["pagina"]='';}
 $pagina = $_GET["pagina"];
 
 if(!$pagina) {
@@ -53,9 +54,9 @@ if ($pesq ==1){
 $sql = "SELECT * FROM `tab_pet` WHERE $sel_tipo_pesq like '%$txt_descricao_pesq%'";
 }
 
-$resultado = mysql_query($sql) or die("erro ao selecionar: resultado");
+$resultado = mysqli_query($connection,$sql) or die("erro ao selecionar: resultado");
 
-$linhas=mysql_num_rows($resultado);
+$linhas=mysqli_num_rows($resultado);
 
 
 
@@ -89,10 +90,10 @@ if ($pesq ==1){
 $sql2 = "SELECT * FROM `tab_pet` WHERE $sel_tipo_pesq like '%$txt_descricao_pesq%' ORDER BY nome ASC LIMIT $inicio, $total_reg";
 }
 
-$resultado2 = mysql_query($sql2) or die("erro ao selecionar: resultado2");
+$resultado2 = mysqli_query($connection,$sql2) or die("erro ao selecionar: resultado2");
 
  
-$quantreg = mysql_num_rows($resultado2); // Quantidade de registros pra pagina&ccedil;&atilde;o
+$quantreg = mysqli_num_rows($resultado2); // Quantidade de registros pra pagina&ccedil;&atilde;o
 
 $tp = ceil($quantreg/$total_reg);    
 
@@ -115,10 +116,10 @@ echo '<script type="text/javascript" src="'.$pontos.'js/func_cad_pet.js"></scrip
               <td width="70" height="20"><div align="center" >Dono</div></td>
               <td width="62" height="20"><div align="center">&nbsp;</div></td>
             </tr>
-            <?		  
+            <?php		  
 if($quantreg >0) {
 
-while($linha_ref = mysql_fetch_array($resultado2)) {
+while($linha_ref = mysqli_fetch_array($resultado2)) {
 
 $cod = $linha_ref['codigo'];
 $txt_nome = $linha_ref['nome'];
@@ -129,9 +130,9 @@ $txt_cod_dono = $linha_ref['cod_dono'];
 
 $nome_dono = explode(" ",$txt_dono);
 
-$sql = mysql_query("SELECT * FROM `tab_clie` WHERE codigo='$txt_cod_dono'") or die("erro ao selecionar");
+$sql = mysqli_query($connection, "SELECT * FROM `tab_clie` WHERE codigo='$txt_cod_dono'") or die("erro ao selecionar");
 
-if ($linha = mysql_fetch_array($sql)) {
+if ($linha = mysqli_fetch_array($sql)) {
 
 $txt_ddd_tel = $linha['ddd_tel'];
 $txt_tel = $linha['tel'];
@@ -145,36 +146,36 @@ $cor=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6";
             <tr bgcolor="<?=($cor=="#E6E6E6") ? "#FFFFFF": "#E6E6E6"; 
 ?>" class="info" onmouseover="this.style.backgroundColor='#66FF66'" onmouseout="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
-              <td width="38" class="info"><div align="center"><? echo $cod; ?></div></td>
-              <td width="180" height="5" class="info"><div align="center">&nbsp;<? echo $txt_nome; ?></div></td>
-              <td width="99" height="5" class="info"><div align="center">&nbsp;<? echo $txt_raca; ?></div></td>
-              <td width="122" class="info"><div align="center">&nbsp;<? echo $txt_cor; ?></div></td>
-              <td width="70" height="5" class="info"><div align="center">&nbsp;<? echo $nome_dono[0]; ?></div></td>
+              <td width="38" class="info"><div align="center"><?php echo $cod; ?></div></td>
+              <td width="180" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_nome; ?></div></td>
+              <td width="99" height="5" class="info"><div align="center">&nbsp;<?php echo $txt_raca; ?></div></td>
+              <td width="122" class="info"><div align="center">&nbsp;<?php echo $txt_cor; ?></div></td>
+              <td width="70" height="5" class="info"><div align="center">&nbsp;<?php echo $nome_dono[0]; ?></div></td>
               <td width="62" height="5" colspan="2" class="info"><div align="center">
-                    <? 
+                    <?php 
 if ($nivel >1){echo '<a href="javascript:checar(\'deleta_pet.php?id='.$cod.'\');"><img src="'.$pontos.'imagens/delete.gif" border="0" alt="Apagar registro" title="Apagar registro"></a>&nbsp;';
 }else{echo'&nbsp;&nbsp;&nbsp;&nbsp;';}
 
 echo '<a href="cad_pet.php?id='.$cod.'&&ret=1"><img src="'.$pontos.'imagens/atualizar.jpg" border="0" alt="Alterar registro" title="Alterar registro"></a>';
 
 // VERIFICA SE O PET POSSUI CLIENTE
-$sql_ref2 = mysql_query("SELECT * FROM `tab_clie` WHERE codigo='$txt_cod_dono'") or die("erro ao selecionar sql_ref");
-$tr1 = mysql_num_rows($sql_ref2);
+$sql_ref2 = mysqli_query($connection, "SELECT * FROM `tab_clie` WHERE codigo='$txt_cod_dono'") or die("erro ao selecionar sql_ref");
+$tr1 = mysqli_num_rows($sql_ref2);
 
-if ($linha_ref2 = mysql_fetch_array($sql_ref2)){$txt_cod_clie=$linha_ref2['codigo'];}
+if ($linha_ref2 = mysqli_fetch_array($sql_ref2)){$txt_cod_clie=$linha_ref2['codigo'];}
 
 if ($tr1 >=1){ 
 
-echo '&nbsp;<a href="../clie/cad_clie.php?id='.$txt_cod_clie.'&&ret=3"><img src="'.$pontos.'imagens/cad_pet/btn_clie.gif" border="0" alt="'.$nome_dono[0].'" title="'.$nome_dono[0].'"></a>';
+      echo '&nbsp;<a href="../clie/cad_clie.php?id='.$txt_cod_clie.'&&ret=3"><img src="'.$pontos.'imagens/cad_pet/btn_clie.gif" border="0" alt="'.$nome_dono[0].'" title="'.$nome_dono[0].'"></a>';
 
-$txt_nome ="";
-$txt_raca ="";
-$txt_cor ="";
-$txt_cod_dono ="";
-$tr1 ="";
-$txt_ddd_tel="";
-$txt_tel="";
-}
+      $txt_nome ="";
+      $txt_raca ="";
+      $txt_cor ="";
+      $txt_cod_dono ="";
+      $tr1 ="";
+      $txt_ddd_tel="";
+      $txt_tel="";
+    }
 }
 }
 }else{
@@ -220,7 +221,7 @@ $reg="registros"; $enc ="encontrados";
                     </map>
             </div></td>
             <td width="235" class="info"><div align="center">
-                <? // Chama o arquivo que monta a pagina&ccedil;&atilde;o
+                <?php // Chama o arquivo que monta a pagina&ccedil;&atilde;o
 if ($quantreg >=10){include("paginacao.php");}
 ?>
                 <br />
@@ -245,7 +246,7 @@ echo "</font>";
       </div></td>
     </tr>
     <tr>
-      <td height="20" colspan="5"><div align="center">Total de&nbsp;<strong><font color="#5D8FC0"><? echo  $quantreg; ?></font>&nbsp;</strong>&nbsp;<? echo $reg; ?>&nbsp;<? echo $enc; ?>&nbsp;para&nbsp;<strong><font color="#5D8FC0"><? echo $txt_descricao_pesq; ?></font></strong></div></td>
+      <td height="20" colspan="5"><div align="center">Total de&nbsp;<strong><font color="#5D8FC0"><?php echo  $quantreg; ?></font>&nbsp;</strong>&nbsp;<?php echo $reg; ?>&nbsp;<?php echo $enc; ?>&nbsp;para&nbsp;<strong><font color="#5D8FC0"><?php echo $txt_descricao_pesq; ?></font></strong></div></td>
     </tr>
   </table>
 </form>

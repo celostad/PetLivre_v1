@@ -1,4 +1,4 @@
-<? include("../../../include/arruma_link.php");
+<?php include("../../../include/arruma_link.php");
 echo '<script type="text/javascript" src="'.$pontos.'js/func_cad_clie.js"></script>';
 ?>
 <html>

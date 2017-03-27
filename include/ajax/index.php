@@ -8,13 +8,13 @@
 //                                                                                                  //
 //==================================================================================================//
 ?>
-<? include("includes/_conection.php"); ?>
-<? require_once("includes/xajax/xajax.inc.php"); ?>
+<?php include("includes/_conection.php"); ?>
+<?php require_once("includes/xajax/xajax.inc.php"); ?>
 <?php
 function suggestStates($text,$btype) {
 	$sql = "SELECT `produto` FROM `tab_produto` WHERE UPPER(`produto`) LIKE UPPER('".$palavra."%');";
 	$rsCidades = mysql_query($sql,$GLOBALS['conexao']);
-	while ( $Cidade = mysql_fetch_array($rsCidades) ):
+	while ( $Cidade = mysqli_fetch_array($rsCidades) ):
 		$database[] = utf8_encode($Cidade['produto']);
 	endwhile;
 

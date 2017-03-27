@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -41,10 +41,10 @@ if ($nivel ==3){$nivel_conv="Administrador";}
 <body>
   <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+      <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
       <td width="589"  valign="top">
 	  <?php
 	   	   include ("form_detalhe_movimento3.php");
@@ -53,7 +53,7 @@ if ($nivel ==3){$nivel_conv="Administrador";}
     </tr>
     <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
     </tr>
 </table>

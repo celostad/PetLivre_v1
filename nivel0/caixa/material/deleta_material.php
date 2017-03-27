@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -23,7 +23,7 @@ $txt_rad_sel = $_POST["rad_sel"];
 
 
 $sql = "DELETE FROM `tab_material` WHERE `codigo` = '$txt_rad_sel'";
-$resultado = mysql_query($sql) or die ("Problema na Consulta");
+$resultado = mysqli_query($connection,$sql) or die ("Problema na Consulta");
 
 
 

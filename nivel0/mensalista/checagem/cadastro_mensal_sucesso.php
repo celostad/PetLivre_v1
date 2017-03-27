@@ -30,16 +30,16 @@ $txt_obs_mensal = $row['obs'];
 }// fecha foreach
 }
 // PEGA O CÓDIGO DO DONO
-$sql_cdono = mysql_query("SELECT * FROM `tab_pet` WHERE codigo='$txt_cod_pet'") or die("Erro ao selecionar   -  CODIGO_DONO  sql_cdono");
+$sql_cdono = mysqli_query($connection, "SELECT * FROM `tab_pet` WHERE codigo='$txt_cod_pet'") or die("Erro ao selecionar   -  CODIGO_DONO  sql_cdono");
 
-if ($linha_cdono = mysql_fetch_array($sql_cdono)){$txt_cod_dono = $linha_cdono['cod_dono'];}
+if ($linha_cdono = mysqli_fetch_array($sql_cdono)){$txt_cod_dono = $linha_cdono['cod_dono'];}
 
 //  *******************  INSERE AS VARIÁVEIS NA TAB CAIXA *****************************************
 if (!empty($Dados_post)){
 
-$sql2 = mysql_query("INSERT INTO `tab_mensalista` (`id`, `cod_produto`, `produto`, `cod_pet`, `mensalista`, `cod_dono`, `qtde`, `medida`,`valor`, `status`, `obs`, 
+$sql2 = mysqli_query($connection, "INSERT INTO `tab_mensalista` (`id`, `cod_produto`, `produto`, `cod_pet`, `mensalista`, `cod_dono`, `qtde`, `medida`,`valor`, `status`, `obs`, 
 `usuario`, `data_banho`) VALUES (NULL, '$txt_cod_prod', '$txt_produto', '$txt_cod_pet', '$txt_pet', '$txt_cod_dono', '$txt_qtde', '$sel_medida', '$txt_valor', 0, '$txt_obs_mensal',
- '$usuario', '$data_atual')") or die (mysql_error());
+ '$usuario', '$data_atual')") or die (mysqli_error($connection));
 
 //  -------------------------------------------------------------------------------------------
 

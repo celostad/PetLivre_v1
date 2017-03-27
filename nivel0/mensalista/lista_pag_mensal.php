@@ -79,26 +79,26 @@ minhapopup.focus();
  
 $mes_num = $mes_num-1;
  
-    $sql_registros = mysql_query("SELECT DISTINCT cod_pet, mensalista FROM tab_mensalista WHERE month(`data_banho`)= '$mes_num' and status=0 ORDER BY mensalista ASC");
+    $sql_registros = mysqli_query($connection, "SELECT DISTINCT cod_pet, mensalista FROM tab_mensalista WHERE month(`data_banho`)= '$mes_num' and status=0 ORDER BY mensalista ASC");
 
 
-    $sql_resultado = mysql_query("SELECT DISTINCT cod_pet, mensalista FROM tab_mensalista WHERE month(`data_banho`)= '$mes_num' and status=0 ORDER BY mensalista ASC LIMIT $inicio, $total_reg");
+    $sql_resultado = mysqli_query($connection, "SELECT DISTINCT cod_pet, mensalista FROM tab_mensalista WHERE month(`data_banho`)= '$mes_num' and status=0 ORDER BY mensalista ASC LIMIT $inicio, $total_reg");
 
-    $quantreg = mysql_num_rows($sql_registros); // Quantidade de registros pra pagina&ccedil;&atilde;o
+    $quantreg = mysqli_num_rows($sql_registros); // Quantidade de registros pra pagina&ccedil;&atilde;o
     
  	$tp = ceil($quantreg/$total_reg);    
    
 $cor="#FFFFFF";
 $nro =0;
-while($linha_ref = mysql_fetch_array($sql_resultado)) {
+while($linha_ref = mysqli_fetch_array($sql_resultado)) {
 
 $txt_cod_pet = $linha_ref['cod_pet'];
 $txt_mensalista = $linha_ref['mensalista'];
 
 /*
-	$sql_soma = mysql_query("SELECT cod_pet, valor, SUM(valor) as total FROM tab_mensalista WHERE cod_pet='$txt_cod_pet' and  month(`data_banho`)= '$mes_num' and status=0 GROUP BY cod_pet") or die("erro: ".mysql_error());
+	$sql_soma = mysqli_query($connection, "SELECT cod_pet, valor, SUM(valor) as total FROM tab_mensalista WHERE cod_pet='$txt_cod_pet' and  month(`data_banho`)= '$mes_num' and status=0 GROUP BY cod_pet") or die("erro: ".mysqli_error($connection));
 
-	if($linha_soma = mysql_fetch_array($sql_soma)){
+	if($linha_soma = mysqli_fetch_array($sql_soma)){
 		$txt_total = $linha_soma['total'];
 	}
 */	
@@ -111,8 +111,8 @@ $nro++;
 ?>" class="info" onmouseover="this.style.backgroundColor='#66FF66'" onmouseout="this.style.backgroundColor='<?=($cor=="#FFFFFF") ? "#E6E6E6": "#FFFFFF"; 
 ?>'">
 
-<td width="61" height="18" class="info"><div align="center">&nbsp;<? echo $txt_cod_pet; ?></div></td>
-            <td width="170" height="18" class="info"><div align="center"><? echo $txt_mensalista; ?></div></td>
+<td width="61" height="18" class="info"><div align="center">&nbsp;<?php echo $txt_cod_pet; ?></div></td>
+            <td width="170" height="18" class="info"><div align="center"><?php echo $txt_mensalista; ?></div></td>
             <td width="92" height="18" class="info"><div align="center"><a href="javascript:
 			var minhapopup = window.open('form_pagamento_mensalista.php?cod_pet=<?php echo $txt_cod_pet; if (!empty($pagina)){echo '&&pagina='.$pagina;}?>','pop_consulta','width=400,height=250,scrollbars=auto,status=0');
 minhapopup.focus();">Baixar</a></div></td>
@@ -135,7 +135,7 @@ echo '<tr><td height="45" colspan="6"><font color="#5F8FBF"><div align="center">
       <td height="5" colspan="5" class="info"><br /></td>
     </tr>
     <tr>
-      <td height="10" colspan="10"><? if ($quantreg >=10){
+      <td height="10" colspan="10"><?php if ($quantreg >=10){
 echo "<div align='center'><font size='1' color='#cccccc' face='Verdana'>";
 echo "P&aacute;gina: $pc de $tp &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; registros: $quantreg";
 echo "</font></div>";
@@ -147,7 +147,7 @@ echo "</font></div>";
       <td height="20" colspan="5">&nbsp;</td>
     </tr>
     <tr>
-      <td height="20" colspan="5"><div align="center">       <? // Chama o arquivo que monta a pagina&ccedil;&atilde;o
+      <td height="20" colspan="5"><div align="center">       <?php // Chama o arquivo que monta a pagina&ccedil;&atilde;o
 if ($quantreg >=10){include("paginacao.php");}
 ?>
 </div></td>

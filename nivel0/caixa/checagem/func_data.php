@@ -1,4 +1,4 @@
-<?
+<?php
 
 $ip = getenv("REMOTE_ADDR");
 $h = getdate(); //variavel recebe a data

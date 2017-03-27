@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include("../../../include/arruma_link.php");
@@ -18,14 +18,14 @@ $txt_valor = $_POST["txt_valor"];
 $txt_obs_mensal = $_POST["txt_obs_mensal"];
 
 // PEGA O NOME DO PRODUTO
-$sql_cp = mysql_query("SELECT * FROM `tab_produto` WHERE codigo='$txt_cod_prod'") or die("Erro ao selecionar   -  PRODUTO  sql_cp");
+$sql_cp = mysqli_query($connection, "SELECT * FROM `tab_produto` WHERE codigo='$txt_cod_prod'") or die("Erro ao selecionar   -  PRODUTO  sql_cp");
 
-if ($linha_cp = mysql_fetch_array($sql_cp)){$txt_produto = $linha_cp['produto'];}
+if ($linha_cp = mysqli_fetch_array($sql_cp)){$txt_produto = $linha_cp['produto'];}
 
 // PEGA O NOME DO PET
-$sql_cpet = mysql_query("SELECT * FROM `tab_pet` WHERE codigo='$txt_cod_pet'") or die("Erro ao selecionar   -  tab_PET  sql_cpet");
+$sql_cpet = mysqli_query($connection, "SELECT * FROM `tab_pet` WHERE codigo='$txt_cod_pet'") or die("Erro ao selecionar   -  tab_PET  sql_cpet");
 
-if ($linha_cpet = mysql_fetch_array($sql_cpet)){$txt_pet = $linha_cpet['nome'];}
+if ($linha_cpet = mysqli_fetch_array($sql_cpet)){$txt_pet = $linha_cpet['nome'];}
 
 unset($_SESSION["Dados_post"]);
 

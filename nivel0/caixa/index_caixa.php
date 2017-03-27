@@ -2,6 +2,7 @@
 session_start();
 
 include("../../include/arruma_link.php");
+include($pontos."include/mostra_erros.php");
 require($pontos."barra.php");
 include($pontos."conexao.php");
 include($pontos."include/func_data.php");
@@ -32,17 +33,18 @@ $_SESSION["rad_clie"] ="";
 $_SESSION["retorno"] ="";
 
 //APAGA DADOS TAB_TEMP_CAIXA
-$sql_apaga_temp_caixa = mysql_query("SELECT * FROM `tab_temp_caixa` WHERE usuario='$usuario'") or die("erro ao selecionar1: sql_apaga_temp_caixa");
+$sql_apaga_temp_caixa = mysqli_query($connection, "SELECT * FROM `tab_temp_caixa` WHERE usuario='$usuario'") or die("erro ao selecionar1: sql_apaga_temp_caixa");
 
-if ($linha_apaga_temp_caixa = mysql_fetch_array($sql_apaga_temp_caixa)) {
+if ($linha_apaga_temp_caixa = mysqli_fetch_array($sql_apaga_temp_caixa)) {
 //APAGA DADOS TEMPORARIOS TABELA CLIENTE
 $sql1 = "DELETE FROM `tab_temp_caixa` WHERE `usuario` = '$usuario'";
-$resultado1 = mysql_query($sql1) or die ("Problema no Delete TAB_TEMP_CAIXA - SQL1");
+$resultado1 = mysqli_query($connection,$sql1) or die ("Problema no Delete TAB_TEMP_CAIXA - SQL1");
 }
 
 
 
 $select = 1;
+// echo "Caixa: ".$caixa;
 ?>
 <html>
 <head>
@@ -54,17 +56,17 @@ $select = 1;
 <body>
   <table width="740" height="420" border="0" align="center" cellpadding="1" cellspacing="1">
     <tr>
-      <td height="102" colspan="2" valign="top"><? include($pontos."include/titulo_cima.php"); ?></td>
+      <td height="102" colspan="2" valign="top"><?php include($pontos."include/titulo_cima.php"); ?></td>
     </tr>
     <tr>
-      <td width="150" height="280" valign="top"><? include ($pontos."include/menu.php"); ?></td>
+      <td width="150" height="280" valign="top"><?php include ($pontos."include/menu.php"); ?></td>
       <td width="589"  valign="top"><?php  include($pontos."include/menu_caixa.php"); ?>
-	  <? if($caixa==1){ include("lista_caixa.php");}else{include("checagem/msg_finalizar_caixa.php");}
+	  <?php if($caixa==1){ include("lista_caixa.php");}else{include("checagem/msg_finalizar_caixa.php");}
  ?></td>
     </tr>
     <tr>
     <td height="20" colspan="2" valign="top"><div align="center">
-      <? include ($pontos."include/rodape.php"); ?>
+      <?php include ($pontos."include/rodape.php"); ?>
     </div></td>
     </tr>
 </table>

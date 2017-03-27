@@ -4,7 +4,7 @@
     <td height="20"><table width="555" border="0" align="left" cellpadding="1" cellspacing="1">
       <tr>
         <td width="554" align="center" bgcolor="#FF9933"><div align="left" class="style3">
-          <div align="center"><strong><? if (empty($rad_sel_visl)){ echo "Cadastro de Categoria";}else{echo "Cadastro de Categoria (".$rad_sel_visl.")";}?></strong></div>
+          <div align="center"><strong><?php if (empty($rad_sel_visl)){ echo "Cadastro de Categoria";}else{echo "Cadastro de Categoria (".$rad_sel_visl.")";}?></strong></div>
         </div></td>
       </tr>
 	  <tr>
@@ -18,7 +18,7 @@
         <td width="360" height="39" align="center"><table width="360" height="20" border="0" cellpadding="2" cellspacing="1">
           <tr>
             <td width="79" height="20"><div align="right"><font size="2"><strong>Categorial:</strong></font></div></td>
-            <td width="270" height="20"><input name="txt_razao_social" type="text" id="txt_razao_social" tabindex="1" value="<? echo $txt_razao_social; ?>" size="40"/>              
+            <td width="270" height="20"><input name="txt_razao_social" type="text" id="txt_razao_social" tabindex="1" value="<?php echo $txt_razao_social; ?>" size="40"/>              
             <div align="right"><font size="2"></font></div>              <div align="left"><font size="2"><b><font face="Times New Roman, Times, serif" size="2"></a></font></b></font></div></td>
             </tr>
         </table></td>
@@ -61,7 +61,7 @@ echo '<a href="javascript:sair_form_retorna_vindo_busca_clie();"><img src="'.$po
           </tr>
           <tr>
             <td height="30"><div align="center"><font color="#7F9DB9" size="2">&nbsp;Data Cadastro:</font> <font color="#000000" size="2">
-                <? if (empty($txt_data_cadastro)){
+                <?php if (empty($txt_data_cadastro)){
 $h = getdate(); //variavel recebe a data
 $data_atual = $hoje = $h['mday']."/".$mes = $h['mon']."/".$ano = $h['year'];
 echo $data_atual;
