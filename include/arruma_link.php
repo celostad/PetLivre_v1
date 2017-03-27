@@ -6,7 +6,7 @@ $url2 = explode("petlivre/", $phpself);
 $url = explode("/", $phpself);
 $link = sizeof($url);
 
-echo "link: ".$link."<br>";
+//echo "link: ".$link."<br>";
 
 switch ($link){
 /*
