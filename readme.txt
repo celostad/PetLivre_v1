@@ -2,7 +2,7 @@ Sistema para petshop - PetLivre 1.0
 
 Como Configurar:
 
-1) Criar o banco de dados.
+1) Criar o banco de dados no MySql chamado "petlivre".
 2) criar o diretório petlivre e jogar todos os arquivos dentro.
 3) Ajustar o arquivo "/include/arruma_link.php"
 	- (Apartir de sua url) Contar as barras invertidas até o diretório "petlivre";
